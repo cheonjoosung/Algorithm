@@ -1,0 +1,57 @@
+package js;
+import java.util.Scanner;
+
+//부분배
+public class Sol42 {
+
+
+	static int Answer;
+	static int Max;
+
+	public static void main(String args[]) throws Exception	{
+		Scanner sc = new Scanner(System.in);
+
+		int T = sc.nextInt();
+		for(int test_case = 0; test_case < T; test_case++) {
+
+			int size = sc.nextInt();
+			int sum = sc.nextInt();
+
+			int [] arr = new int[size];
+
+			Answer = 0;
+			Max = 0;
+
+			for(int i=0 ; i<size ; i++) {
+				arr[i] = sc.nextInt();
+				if(arr[i] > Max) Max = arr[i];
+			}
+
+			int minCount = (sum/Max)+1;
+
+			for(int i = minCount ; i <= size ; i++) {
+				for(int j = 0 ; j <= size-i ; j++) {
+					if(getSum(arr, j, i) >= sum) {
+						Answer = i;
+						System.out.println(getSum(arr, j, i) + " , " + j + " , " + i);
+						break;
+					}
+				}
+				if(Answer > 0) break;
+			}
+
+			System.out.println("#testcase"+(test_case+1));
+			System.out.println(Answer);
+		}
+	}
+
+	public static int getSum(int [] arr, int startPoint, int minCount) {
+		int temp = 0;
+
+		while(minCount-- > 0) {
+			temp += arr[startPoint++];
+		}
+
+		return temp;
+	}
+}
