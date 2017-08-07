@@ -26,7 +26,7 @@ public class Sol02 {
 			int foundIndex = -1;
 			
 			for(int i = 0 ; i < num ; i++) {
-				if(arr[i] + num <= arr[num-1] + 1) continue;
+				if(arr[i] + num < arr[num-1] + 1) continue;
 				
 				boolean result = check(arr, i, num);
 				
@@ -35,6 +35,8 @@ public class Sol02 {
 					break;
 				}
 			}
+			
+			System.out.println(foundIndex);
 			
 			Answer = num - foundIndex;
 
@@ -47,13 +49,11 @@ public class Sol02 {
 	public static boolean check(int [] arr, int index, int size) {
 		int temp = 1;
 		boolean isCheck = false;
-		//System.out.println("index : " + index + "  ,  size :  " + size);
 
-		for(int j = size-1 ; j > index ; j--) {
+		for(int j = size-1 ; j >= index ; j--) {
 			int last = arr[j] + temp++;
 			int first = arr[index] + size;
-//			System.out.println("index : " + index + "  ,  first :  " + first +
-//					"  ,  j :  " + j + "  , last : " + last);
+			
 			if( first >= last ) {
 				isCheck = true;
 			} else {

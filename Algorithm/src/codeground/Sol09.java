@@ -5,7 +5,6 @@ import java.util.Scanner;
 // 9번 화학자의 문장
 public class Sol09 {
 
-
 	static int Answer;
 	
 	static ArrayList<String> list = new ArrayList<>();
@@ -39,9 +38,6 @@ public class Sol09 {
 			check[0] = true;
 			check[1] = wordCheck(line.charAt(0)+"");
 			
-			//TTFT ¥¬ ∞°¥….. TTFFT ¥¬ ∫“∞°¥… F∞° ¡ﬂ∞£ø° 2π¯ ≥™ø¿∏È Ω«∆–. ∏∂¡ˆ∏∑ TTF or TFT 
-			//∑Œ ≥°≥™∏È π´¡∂∞« ∆‰¿œ.. TTF ¥¬ ¿¸∞˙ ¿¸¿¸¿Ã T¿Ãπ«∑Œ «—±€¿⁄≥™ µŒ±€¿⁄∑Œ ≥°≥™¥¬ ∞ÊøÏ ¥Ÿµ«æﬂ «‘. ±Ÿµ• F∂Û¥¬∞« æ»µ»¥Ÿ¥¬∞Õ
-			//FTF ¿« ∞ÊøÏ ∏∂¡ˆ∏∑¿∫ π´¡∂∞« «—±€¿⁄∑Œ ≥°≥™æﬂ «‘. ¿¸¿¸¿Ã F ¿Ãπ«∑Œ µŒ±€¿⁄∑Œ ≥°≥µ¥Ÿ¥¬ ¿«πÃ∞° µ»¥Ÿ.
 			for(int i=2 ; i <= line.length() ; i++) {
 				check[i] = 
 						(check[i-1] && wordCheck(line.charAt(i-1)+""))
@@ -69,4 +65,5 @@ public class Sol09 {
 		if(list.contains(val)) return true;
 		else return false;
 	}
+
 }
