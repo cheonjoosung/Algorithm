@@ -3,7 +3,7 @@ package codeground;
 import java.util.Scanner;
 
 //Codeground 1번 숫자 골라내기
-class Solution {
+public class Sol01 {
 	static int Answer;
 
 	public static void main(String args[]) throws Exception {
