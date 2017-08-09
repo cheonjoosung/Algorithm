@@ -2,7 +2,7 @@ package codeground;
 
 import java.util.Scanner;
 
-//45번 안녕 
+//49번 안녕 
 public class Sol49 {
 	static int Answer;
 
