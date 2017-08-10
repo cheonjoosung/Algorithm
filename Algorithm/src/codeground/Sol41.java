@@ -4,29 +4,22 @@ import java.util.Scanner;
 
 //41번 윤목
 public class Sol41 {
-
-	static int Answer;
-	static int Sum;
-
 	public static void main(String args[]) throws Exception	{
 		Scanner sc = new Scanner(System.in);
 
 		int T = sc.nextInt();
 		for(int test_case = 0; test_case < T; test_case++) {
-
-			Answer = 0;
-
 			String input = sc.next();
 
-			int a = 0, b = 0, floatSize = 0, number = 0;
+			long a = 0, b = 0, floatSize = 0, number = 0;
 			long sum = 0;
 
 			if(input.indexOf('.') != -1) {
-				a = Integer.parseInt(input.substring(0, input.indexOf('.')));
-				b = Integer.parseInt(input.substring(input.indexOf('.')+1, input.length()));
+				a = Long.parseLong(input.substring(0, input.indexOf('.')));
+				b = Long.parseLong(input.substring(input.indexOf('.')+1, input.length()));
 				floatSize = input.length() - input.indexOf('.') - 1;
 
-				int decimal = (int) Math.pow(10, floatSize);
+				long decimal = (long) Math.pow(10, floatSize);
 
 				if(b == 0) {
 					number = 1;
@@ -37,18 +30,18 @@ public class Sol41 {
 				sum = a*number + b;
 
 			} else {
-				a = Integer.parseInt(input.substring(0, input.length()));
+				a = Long.parseLong(input.substring(0, input.length()));
 				sum = a;
 				number = 1;
 			}
 
 			if(gcd((int) sum, number) != 0) {
-				int gcd = gcd((int) sum, number);
+				long gcd = gcd((int) sum, number);
 				sum = sum/gcd;
 				number = number/gcd;
 			}
 
-			int one=0, two=0, three=0, four=0, five=0;
+			long one=0, two=0, three=0, four=0, five=0;
 
 			long result = sum-number;
 			if(sum < number) result *= -1;
@@ -59,13 +52,13 @@ public class Sol41 {
 			 sum - number = b + 2*c + 3*d + 4*e
 			 */
 
-			five = (int) (result/4);
+			five = (result/4);
 			result %= 4;
-			four = (int) (result/3);
+			four = (result/3);
 			result %= 3;
-			three = (int) (result/2);
+			three = (result/2);
 			result %= 2;
-			two = (int) (result);
+			two = (result);
 			
 			one = number - (two + three + four + five);
 
@@ -75,9 +68,9 @@ public class Sol41 {
 		}
 	}
 
-	public static int gcd(int a, int b) {
+	public static long gcd(long a, long b) {
 		while (b != 0) {
-			int temp = a % b;
+			long temp = a % b;
 			a = b;
 			b = temp;
 		}
