@@ -25,35 +25,54 @@ public class Sol41 {
 				a = Integer.parseInt(input.substring(0, input.indexOf('.')));
 				b = Integer.parseInt(input.substring(input.indexOf('.')+1, input.length()));
 				floatSize = input.length() - input.indexOf('.') - 1;
+
+				int decimal = (int) Math.pow(10, floatSize);
+
+				if(b == 0) {
+					number = 1;
+				} else {
+					number = decimal;
+				}
+
+				sum = a*number + b;
+
 			} else {
 				a = Integer.parseInt(input.substring(0, input.length()));
+				sum = a;
+				number = 1;
 			}
-
-			int decimal = (int) Math.pow(10, floatSize);
-
-			if(b!=0 && decimal % b == 0) number = decimal/b;
-			else number = decimal;
-
-			sum = a*number + (b*number) / decimal;
-
-			System.out.println(sum + "  ,  " + number);
 
 			if(gcd((int) sum, number) != 0) {
-				sum /= gcd((int) sum, number);
-				number /= gcd((int) sum, number);
+				int gcd = gcd((int) sum, number);
+				sum = sum/gcd;
+				number = number/gcd;
 			}
 
-			cal(sum, number);
+			int one=0, two=0, three=0, four=0, five=0;
 
+			long result = sum-number;
+			if(sum < number) result *= -1;
+			//sum 보다 number 가 클 경우도 존재하네...
+
+			/* 1 - a, 2 - b, 3 - c, 4 - d, 5 - e 
+			 a+b+c+d+e = number / a+2*b+3*c+4*d+5*e = sum
+			 sum - number = b + 2*c + 3*d + 4*e
+			 */
+
+			five = (int) (result/4);
+			result %= 4;
+			four = (int) (result/3);
+			result %= 3;
+			three = (int) (result/2);
+			result %= 2;
+			two = (int) (result);
+			
+			one = number - (two + three + four + five);
 
 			System.out.println("#testcase"+(test_case+1));
-			System.out.println(Answer);
+			System.out.println(one + " " + two + " " + three + " " + four + " " + five);
 
 		}
-	}
-
-	public static void cal(long sum, int number) {
-		// 1 - a, 2 - b, 3 - c, 4 - d, 5 - e 
 	}
 
 	public static int gcd(int a, int b) {
