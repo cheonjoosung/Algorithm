@@ -1,0 +1,62 @@
+package codeground;
+
+import java.math.BigInteger;
+import java.util.Scanner;
+
+//25번 3N+1 
+public class Sol25 {
+	static int Answer;
+
+	public static void main(String args[]) throws Exception	{
+		Scanner sc = new Scanner(System.in);
+
+		int T = sc.nextInt();
+		for(int test_case = 0; test_case < T; test_case++) {
+
+			Answer = 0;
+			
+			int k = sc.nextInt();
+			
+			BigInteger minNumber = BigInteger.valueOf(2).pow(k);
+			BigInteger maxNumber = BigInteger.valueOf(2).pow(k);
+			
+			BigInteger temp = maxNumber;
+			
+			long count = 0;
+			
+			while(temp != BigInteger.ONE) {
+				count++;
+				System.out.println(temp);
+				temp = temp.divide(BigInteger.valueOf(2));
+				
+				if(temp == BigInteger.valueOf(1) || temp == BigInteger.valueOf(2) || temp == BigInteger.valueOf(4)) {
+					break;
+				}
+				
+				if( (temp.add(BigInteger.valueOf(-1))).mod(BigInteger.valueOf(3)) != BigInteger.ZERO ) {
+					continue;
+				} else {
+					BigInteger val = temp;
+					int tempCount = (int) count;
+					
+					while(tempCount > 0) {
+						tempCount--;
+						
+						if( (temp.add(BigInteger.valueOf(-1)).mod(BigInteger.valueOf(3)) == BigInteger.ZERO)) {
+							val = temp.add(BigInteger.valueOf(-1)).divide(BigInteger.valueOf(3));
+						} else {
+							val = temp.multiply(BigInteger.valueOf(2));
+						}
+						//System.out.println(val);
+					}
+					minNumber = val;
+				}
+			}
+
+			System.out.println("Case #"+(test_case+1));
+			System.out.println(minNumber + " " + maxNumber);
+		}
+	}
+
+
+}

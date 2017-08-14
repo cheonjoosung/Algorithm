@@ -1,0 +1,37 @@
+package codeground;
+
+import java.util.Scanner;
+
+//4번 다트문제 
+public class Sol04 {
+	static int Answer;
+
+	public static void main(String args[]) throws Exception	{
+		Scanner sc = new Scanner(System.in);
+
+		int T = sc.nextInt();
+		
+		int [] radious = new int[5];
+		
+		for(int i=0 ; i<5 ; i++) 
+			radious[i] = sc.nextInt();
+		
+		int dartCount = sc.nextInt();
+		int [] dartScore = new int[dartCount];
+		
+		for(int i=0 ; i<dartCount ; i++) 
+			dartScore[i] = sc.nextInt();
+		
+		
+		for(int test_case = 0; test_case < T; test_case++) {
+			Answer = 0;
+			
+			System.out.println("Case #"+(test_case+1));
+			System.out.println(Answer);
+		}
+		
+		
+		
+		sc.close();
+	}
+}
