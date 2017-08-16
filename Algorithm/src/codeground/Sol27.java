@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Scanner;
 
+//27번 바이러스
 public class Sol27 {
 	static int Answer;
 	static int MAX = 101;
@@ -25,9 +26,8 @@ public class Sol27 {
 			
 			int [][] a = new int[n+1][n+1];
 			
-			boolean isFound = false;
-			
 			ArrayList<Integer> removedList = new ArrayList<>();
+			boolean isFound = false;
 			
 			for(int [] temp : a) 
 				Arrays.fill(temp, -1);
@@ -40,50 +40,55 @@ public class Sol27 {
 				a[second][first] = 1;
 			}	
 			
-			int count = 0;
-			while( isFound != true) {
-				int size = n - removedList.size();
+			int size = n;
+			
+			while( size >= l) {
+				size = n - removedList.size();
+				
+				int minLine = k;
+				int maxLine = size - l -1;
+				int totalCount = 0;
+				
+				//System.out.println("minLine : " + minLine + " , maxLine : " + maxLine);
 				
 				for(int i=1 ; i<n+1 ; i++) {
-					if(removedList.contains(i)) {
+					//System.out.println("i : " + i);
+					if(removedList.contains(i)) continue;
+					
+					int lineCount = 0;
+					
+					for(int j=1 ; j<n+1 ; j++) {
+						//System.out.println("i : " + i + " , j : " + j + " , a[i][j] : " + a[i][j]);
+						if(removedList.contains(i) || removedList.contains(j)) continue;
 						
+						if(a[i][j] == 1) lineCount++;
+					}
+					
+					if(lineCount >= minLine && lineCount <= maxLine) {
+						totalCount++;
 					} else {
-						
+						removedList.add(i);
+						break;
 					}
 				}
 				
-				isFound = true;
+				if(size == totalCount) break;
 			}
 			
-			for(int i=0 ; i<n ; i++) {
-				int minLine = k;
-				int maxLine = n - i - 1;
-				
-				for(int x=1 ; x< n+1 ; x++) {
-					check(a, x, minLine, maxLine);
+			for(int val : removedList) {
+				Answer += val;
+				//System.out.print(val + " ");
+			}
+			
+			if(size < l) {
+				Answer = 0;
+				for(int i=1; i<=n ; i++) {
+					Answer += i;
 				}
 			}
-			System.out.println(a[2][1] + " , " + a[1][2]);
 			
 			System.out.println("Case #"+(test_case+1));
 			System.out.println(Answer);
-		}
-	}
-	
-	public static boolean check(int [][] a, int vertex, int minLine, int maxLine){
-		int count = 0;
-		for(int i=1 ; i < a.length ; i++) {
-			if(a[vertex][i] == 1) {
-				count++;
-			}
-		}
-		
-		System.out.println(vertex + " : " + count);
-		
-		if(count >= minLine && count <= maxLine) {
-			return true;
-		} else {
-			return false;
 		}
 	}
 }
