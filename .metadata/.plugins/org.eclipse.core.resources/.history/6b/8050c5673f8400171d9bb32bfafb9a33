@@ -25,9 +25,7 @@ public class Test {
 			
 			for(int i=0; i<n ; i++) {
 				for(int j=0 ; j<n ; j++) {
-					//a[i][j] = sc.nextInt();
-					int val = sc.nextInt();
-					
+					a[i][j] = sc.nextInt();
 				}
 			}
 
