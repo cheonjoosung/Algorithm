@@ -19,10 +19,10 @@ public class Sol14 {
 			
 			ArrayList<Point2> list = new ArrayList<>();
 			
-			int minX = 100_000_001;
-			int maxX = -1;
-			int minY = 100_000_001;
-			int maxY = -1;
+			double minX = 100_000_001;
+			double maxX = -1;
+			double minY = 100_000_001;
+			double maxY = -1;
 			
 			for(int i = 0 ; i < numLine ; i++) {
 				int fx = sc.nextInt();
@@ -44,23 +44,59 @@ public class Sol14 {
 				list.add(new Point2(fx, fy, sx, sy));
 			}
 			
-			System.out.println(minX + " " + maxX + " " + " " + minY + " " + maxY);
+			//System.out.println(minX + " " + maxX + " " + " " + minY + " " + maxY);
 			
-			System.out.println("Case #"+(test_case+1));
-			System.out.println(Answer);
+			double max = Math.max((double)maxX - (double)minX, (double)maxY - (double)minY);
+			/*
+			double x = (minX+maxX) / 2;
+			double y = (minY+maxY) / 2;
+			
+			double max = -1;
+			
+			for(Point2 p : list) {
+				long fx = p.x1;
+				long fy = p.y1;
+				
+				long sx = p.x2;
+				long sy = p.y2;
+				
+				long a = (long) (Math.pow(fx-x, 2) + Math.pow(fy-y, 2));
+				long b = (long) (Math.pow(sx-x, 2) + Math.pow(sy-y, 2));
+				
+				double val = 0;
+				if(a <= b) {
+					val = Math.max(Math.abs(fx-x), Math.abs(fy-y));
+				} else {
+					val = Math.max(Math.abs(sx-x), Math.abs(sy-y));
+				}
+				
+				//System.out.print(fx + " " + fy + " " + sx + " " + sy + " = " + val + "\n");
+				max = Math.max(max, val);
+				
+			}*/
+			max /= 2;
+			
+			if(max - Math.floor(max) == 0) {
+				System.out.println("Case #"+(test_case+1));
+				System.out.println((long)max);
+			} else {
+				System.out.println("Case #"+(test_case+1));
+				System.out.println(max);
+			}
+			
 		}
 	}
 
 }
 
 class Point2 implements Comparable<Point2>{
-	int x1;
-	int y1;
+	long x1;
+	long y1;
 	
-	int x2;
-	int y2;
+	long x2;
+	long y2;
 	
-	public Point2(int x1, int y1, int x2, int y2){
+	public Point2(long x1, long y1, long x2, long y2){
 		this.x1 = x1;
 		this.y1 = y1;
 		
