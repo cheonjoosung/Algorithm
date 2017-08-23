@@ -3,6 +3,7 @@ package codeground;
 import java.util.ArrayList;
 import java.util.Scanner;
 
+//CodeGround 14번 회로판위의 배터리
 public class Sol14 {
 
 	static int Answer;
@@ -44,7 +45,16 @@ public class Sol14 {
 				list.add(new Point2(fx, fy, sx, sy));
 			}
 			
-			//System.out.println(minX + " " + maxX + " " + " " + minY + " " + maxY);
+			System.out.println(minX + " " + maxX + " " + " " + minY + " " + maxY);
+			/*
+			 * maxX 와 maxY 는 기준이 되었지만 minX 와 minY 는 아니다. 제일 작은점을 뽑은 것이지만 maxX 와 maxY에 가까운점이라고는 보장할 수 없다.
+			 * 0 0 5 0 / 2 0 16 0 / 3 0 4 0 / 10 0 10 4 를 하면 0 과 10이 뽑혀 5가 나오지만 거리를 4로 더 줄일 수가 있다.
+			 */	
+			
+			double a = 0;
+			double b = 0;
+			
+			System.out.println(minX + " , " + minY + " , " + maxX + " , " + maxY);
 			
 			double max = Math.max((double)maxX - (double)minX, (double)maxY - (double)minY);
 			/*

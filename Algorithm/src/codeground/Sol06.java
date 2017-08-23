@@ -3,6 +3,7 @@ package codeground;
 import java.util.ArrayList;
 import java.util.Scanner;
 
+//CodeGround 6번 미궁속의 방
 public class Sol06 {
 	static int Answer;
 	static long sum;

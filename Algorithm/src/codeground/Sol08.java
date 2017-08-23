@@ -2,6 +2,7 @@ package codeground;
 
 import java.util.Scanner;
 
+////CodeGround 8번 블럭 없애기
 public class Sol08 {
 
 	static int Answer;
