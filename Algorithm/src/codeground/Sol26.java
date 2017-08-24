@@ -2,7 +2,7 @@ package codeground;
 
 import java.util.Scanner;
 
-//CodeGround 26번 징검다리
+//CodeGround 26번 징검다리 http://www.qukihub.com/post/scpc2016-1-java
 public class Sol26 {
 	static int Answer;
 
