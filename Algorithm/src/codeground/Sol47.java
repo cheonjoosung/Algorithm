@@ -17,7 +17,7 @@ public class Sol47 {
 			int n = sc.nextInt();
 
 			int [][][] val = new int[n][n][2];
-			int [][][] res = new int[n][n][7];
+			int [][][] res = new int[n][n][1201];
 
 			for(int [][] k : res) {
 				for(int [] m : k)
@@ -30,53 +30,94 @@ public class Sol47 {
 					check(val, i, j, temp);
 				}
 			}			
-			
-			for(int i=0 ; i<n ; i++) {
-				for(int j=0 ; j<n ; j++) {
+
+			for(int j=0 ; j<n ; j++) {
+				for(int i=0 ; i<n ; i++) {
 					if(i == 0 && j == 0) {
 						int two = val[0][0][0];
 						int three = val[0][0][1];
-						
+
 						res[i][j][three] = two;
 					} else if(i != 0 && j == 0) {
-						for(int k = 6; k >=0 ; k--) {
+						for(int k = 1200; k >=0 ; k--) {
 							if(res[i-1][j][k] == -1) continue;
 							else {
 								int three = val[i][j][1];
 								int two = val[i][j][0];
-								
-								if(k + three <= 6) {
-									res[i][j][k+three] = two + res[i-1][j][k];
-								} else {
-									res[i][j][6] = two + res[i-1][j][k];
-								}
+
+								res[i][j][k+three] = res[i-1][j][k] + two;
 							}
 						}
+
 					} else if(i == 0 && j != 0) {
-						for(int k = 6; k >=0 ; k--) {
+						for(int k = 1200; k >=0 ; k--) {
 							if(res[i][j-1][k] == -1) continue;
 							else {
 								int three = val[i][j][1];
 								int two = val[i][j][0];
-								
-								if(k + three <= 6) {
-									res[i][j][k+three] = two + res[i][j-1][k];
-								} else {
-									res[i][j][6] = two + res[i][j-1][k];
-								}
+
+								res[i][j][k+three] = res[i][j-1][k] + two;
 							}
 						}
+
 					} else {
-						
+						//System.out.println(i + " , " + j + " , " + k + " , " + three + " : " + res[i][j][k+three]);
+						for(int k = 1200 ; k >= 0 ; k--) {
+							int left = res[i-1][j][k];
+							int down = res[i][j-1][k];
+							
+							if(left == -1 && down == -1) continue;
+							
+							if(left != -1 && down == -1) {
+								int three = val[i][j][1];
+								int two = val[i][j][0];
+								
+								if(res[i][j][k+three] == -1) {
+									res[i][j][k+three] = res[i-1][j][k] + two;
+								} else {
+									res[i][j][k+three] = Math.max(res[i][j][k+three] ,res[i-1][j][k] + two);
+								}
+							} else if(left == -1 && down != -1) {
+								int three = val[i][j][1];
+								int two = val[i][j][0];
+								
+								if(res[i][j][k+three] == -1) {
+									res[i][j][k+three] = res[i][j-1][k] + two;
+								} else {
+									res[i][j][k+three] = Math.max(res[i][j][k+three] ,res[i][j-1][k] + two);
+								}
+							} else {
+								// ????
+								int three = val[i][j][1];
+								int two = val[i][j][0];
+								
+								if(res[i][j][k+three] == -1) {
+									res[i][j][k+three] = Math.max(res[i][j-1][k] + two, res[i-1][j][k] + two);
+								} else {
+									int temp = Math.max(res[i][j-1][k] + two, res[i-1][j][k] + two);
+									res[i][j][k+three] = Math.max(res[i][j][k+three], temp);
+								}
+								
+								
+								
+							}
+						}
 					}
 				}
 			}
-
-			Answer = Math.min(res[n-1][n-1][0], res[n-1][n-1][1]);
+			
+			for(int k = 0 ; k <= 1200 ; k++) {
+				int temp = res[n-1][n-1][k];
+				if(temp != -1 ) {
+					System.out.println(temp + " " + k);
+					Answer = Math.max(Answer, temp);
+				}
+				
+			}
 
 			System.out.println("Case #"+(test_case+1));
 			System.out.println(Answer);	
-			
+
 			/*
 			 * 3 
 			 * 5 3 1
@@ -90,14 +131,14 @@ public class Sol47 {
 		}
 	}
 
-	public static void check(int [][][] val, int temp, int x, int y) {
-		
+	public static void check(int [][][] val, int x, int y, int temp) {
+
 		while(temp != 0 && (temp%3 == 0) ) {
-			val[x][y][1]++;
+			val[y][x][1]++;
 			temp = temp/3;
 		}
 		while(temp != 0 && (temp%2 == 0) ) {
-			val[x][y][0]++;
+			val[y][x][0]++;
 			temp = temp/2;
 		}
 
