@@ -31,19 +31,24 @@ public class Sol47 {
 				}
 			}			
 			
-			for(int i=0 ; i<n ; i++) {
-				for(int j=0 ; j<n ; j++) {
+			for(int j=0 ; j<n ; j++) {
+				for(int i=0 ; i<n ; i++) {
 					if(i == 0 && j == 0) {
 						int two = val[0][0][0];
 						int three = val[0][0][1];
 						
 						res[i][j][three] = two;
+						
+						System.out.print(i + " , " + j + "  -- >>  " + res[i][j][three]+"\n");
 					} else if(i != 0 && j == 0) {
+						
 						for(int k = 6; k >=0 ; k--) {
 							if(res[i-1][j][k] == -1) continue;
 							else {
 								int three = val[i][j][1];
 								int two = val[i][j][0];
+								
+								System.out.print(i + " , " + j + " , " + k + " , two : " + two + " , three : " + three);
 								
 								if(k + three <= 6) {
 									res[i][j][k+three] = two + res[i-1][j][k];
@@ -52,7 +57,9 @@ public class Sol47 {
 								}
 							}
 						}
+						System.out.println();
 					} else if(i == 0 && j != 0) {
+						
 						for(int k = 6; k >=0 ; k--) {
 							if(res[i][j-1][k] == -1) continue;
 							else {
@@ -65,7 +72,9 @@ public class Sol47 {
 									res[i][j][6] = two + res[i][j-1][k];
 								}
 							}
+							System.out.print(i + " , " + j + "  -- >>  " + res[i][j][k]);
 						}
+						System.out.println();
 					} else {
 						
 					}
@@ -76,21 +85,10 @@ public class Sol47 {
 
 			System.out.println("Case #"+(test_case+1));
 			System.out.println(Answer);	
-			
-			/*
-			 * 3 
-			 * 5 3 1
-			 * 18 6 6
-			 * 5 12 5
-			 * 왼쪽은 3의 갯수 표시, 오른쪽은 3이 최대일 때의 2 표시
-			 * 0 1 0   0 0 0
-			 * 2 1 1   1 1 1
-			 * 0 1 1   0 2 0
-			 */
 		}
 	}
 
-	public static void check(int [][][] val, int temp, int x, int y) {
+	public static void check(int [][][] val, int x, int y, int temp) {
 		
 		while(temp != 0 && (temp%3 == 0) ) {
 			val[x][y][1]++;
