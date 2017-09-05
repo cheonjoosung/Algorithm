@@ -1,0 +1,76 @@
+package codeground;
+
+import java.util.Scanner;
+
+public class Sol35 {
+	static int Answer;
+
+	public static void main(String args[]) throws Exception	{
+		Scanner sc = new Scanner(System.in);
+
+		int T = sc.nextInt();
+		for(int test_case = 0; test_case < T; test_case++) {
+
+			Answer = 0;
+
+			int n = sc.nextInt();
+			int [] tree = new int[n];
+			int [] laser = new int[n];
+
+			for(int i=0; i<n ; i++)
+				tree[i] = sc.nextInt();
+
+			for(int i=0; i<n ; i++)
+				laser[i] = sc.nextInt();
+			
+			int minLaser = Integer.MAX_VALUE;
+			
+			for(int j=0; j<n ; j++) {
+				if(tree[j] + n-1 - laser[j] > 0) {
+					minLaser = Math.min(minLaser, laser[j]);
+				}
+				tree[j]++;
+			}
+			
+			for(int j=0; j<n ; j++) {
+				if( tree[j] + (n-1) <= minLaser) continue;
+				else {
+					if(tree[j] - laser[j] + (n-1) > 0) {
+						int temp = tree[j] - laser[j] + (n-1);
+						Answer += temp;
+						
+						System.out.print(j + " " + temp + " ");
+					}
+				}
+			}
+
+			/*
+			for(int i=0; i<n-1 ; i++) {
+				int minLaser = Integer.MAX_VALUE;
+				
+				for(int j=0; j<n ; j++) {
+					if(tree[j] - laser[j] >= 0) {
+						minLaser = Math.min(minLaser, laser[j]);
+					}
+					tree[j]++;
+				}
+				
+				for(int j=0; j<n ; j++) {
+					if(tree[j] - minLaser >= 0) {
+						int temp = tree[j] - minLaser;
+						Answer += temp;
+						tree[j] = minLaser;
+					}
+				}
+			}
+			*/
+
+
+
+			System.out.println("Case #"+(test_case+1));
+			System.out.println(Answer);
+		}
+	}
+
+
+}
