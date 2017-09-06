@@ -6,6 +6,9 @@ import java.util.Scanner;
 
 public class Sol54 {
 	static int Answer;
+	static ArrayList<P54> oneList;
+	static ArrayList<P54> moreList;
+	static int connected;
 
 	public static void main(String args[]) throws Exception	{
 		Scanner sc = new Scanner(System.in);
@@ -13,21 +16,29 @@ public class Sol54 {
 		int T = sc.nextInt();
 		for(int test_case = 0; test_case < T; test_case++) {
 			Answer = 0;
+			connected = 0;
 
 			int n = sc.nextInt();
 			int sum = 0;
 			
-			ArrayList<P54> list = new ArrayList<>();
+			oneList = new ArrayList<>();
+			moreList = new ArrayList<>();
 			
 			for(int i=0; i<n ; i++) {
-				int island = sc.nextInt();
-				int bridge = sc.nextInt();
+				int v = sc.nextInt();
+				int br = sc.nextInt();
 				
-				list.add(new P54(island, bridge));
-				sum += bridge;
+				sum += br;
+				
+				if(br == 1) {
+					oneList.add(new P54(v, br));
+				} else {
+					moreList.add(new P54(v, br));
+				}
 			}
 			
-			Collections.sort(list);
+			Collections.sort(oneList);
+			Collections.sort(moreList);
 			
 			if( (n-1) * 2 > sum) {
 				//2 - 2개, 3 - 4개, 4 - 6개, 5 - 8개의 최소 연결지점이 필요
@@ -35,42 +46,16 @@ public class Sol54 {
 				System.out.println(-1);
 			} else {
 				
-				/*
-				 * 예외 케이스 1 8 9 14 15 - 4 3 1 1 1 일 때 dp 를 활용야 할 수도 있을 
-				 */
-				for(int i=0; i<n ; i++) {
-					P54 p = list.get(i);
+				if(oneList.size() <= 0) {
+					Answer = moreList.get(moreList.size() - 1).getV() - 1;
+				} else {
 					
-					if(p.getBridgeCount() <= 0) continue;
-					
-					for(int j=i+1 ; j < n ; j++) {
-						P54 nextP = list.get(j);
-						
-						if(nextP.getBridgeCount() <= 0) continue;
-						else {
-							if(nextP.getBridgeCount() == 1 && p.getBridgeCount() == 1) {
-								if(j == n-1) {
-									int temp = nextP.getBridgeCount();
-									list.get(j).setBridgeCount(temp-1);
-									list.get(i).setBridgeCount(p.getBridgeCount()-1);
-									Answer += (nextP.getIsland() - p.getIsland());
-								} else {
-									continue;
-								}
-							} else {
-								int temp = nextP.getBridgeCount();
-								list.get(j).setBridgeCount(temp - 1);
-								list.get(i).setBridgeCount(p.getBridgeCount() - 1);
-								Answer += (nextP.getIsland() - p.getIsland());
-								
-								if(list.get(j).getBridgeCount() > 1) break;
-							}
-							
-							if(p.getBridgeCount() == 0) break;
-						}
+					while(oneList.size() > 0 && moreList.size() > 0) {
+						findNearIsland(0);
 					}
+					
 				}
-				
+							
 				System.out.println("Case #"+(test_case+1));
 				System.out.println(Answer);
 			}
@@ -78,37 +63,81 @@ public class Sol54 {
 			
 		}
 	}
+	
+	public static void findNearIsland(int index) {
+		long minValue = Long.MAX_VALUE;
+		long temp = 0;
+		
+		int v = oneList.get(index).getV();
+		
+		//System.out.println("ISLAND : " + v);
+		
+		/*
+		 * 1. v섬과 가장 가까운 교차지점의 섬을 찾는다.
+		 * 2. 만약 그 섬의 카운트가 2라면 해당지점을 moreList 에서 없애고 oneList 에 추가한다.
+		 * 3. 다리 연결했다면 oneList 에서는 제거하고 List 에서 그 섬의 다리 갯수 하나씩 제거 후 Answer 의 연결된 다리 길이 추가
+		 */
+		
+		int findIndex = -1;
+		
+		for(int i=0; i < moreList.size() ; i++) {
+			temp = Math.abs((moreList.get(i).getV() - v));
+			
+			if(temp < minValue) {
+				findIndex = i;
+				minValue = temp;
+			}
+		}
+		
+		int findNearVertex = moreList.get(findIndex).getV();
+		
+		Answer += Math.abs(findNearVertex - v);
+		
+		oneList.get(index).br--;
+		moreList.get(findIndex).br--;
+		
+		if(moreList.get(findIndex).br == 1 && moreList.size() > 1) {
+			oneList.add(moreList.get(findIndex));
+			moreList.remove(findIndex);
+		} 
+		
+		oneList.remove(index);
+		Collections.sort(oneList);
+		
+		//System.out.println(Answer + " " + findNearVertex + " " + v);
+		connected++;
+	}
 
 
 }
 
 class P54 implements Comparable<P54>{
-	int island;
-	int bridgeCount;
+	int v;
+	int br;
 	
-	P54(int island, int bridgeCount) {
-		this.island = island;
-		this.bridgeCount = bridgeCount;
+	P54(int v, int br) {
+		this.v = v;
+		this.br = br;
 	}
 
-	public int getIsland() {
-		return island;
+	public int getV() {
+		return v;
 	}
 
-	public void setIsland(int island) {
-		this.island = island;
+	public void setV(int v) {
+		this.v = v;
 	}
 
-	public int getBridgeCount() {
-		return bridgeCount;
+	public int getBr() {
+		return br;
 	}
 
-	public void setBridgeCount(int bridgeCount) {
-		this.bridgeCount = bridgeCount;
+	public void setBr(int br) {
+		this.br = br;
 	}
 
 	@Override
 	public int compareTo(P54 o) {
-		return this.island < o.island ? -1 : 1;
+		return this.v < o.v ? -1 : 1;
 	}
 }
