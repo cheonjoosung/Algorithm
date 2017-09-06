@@ -54,6 +54,8 @@ public class Sol54 {
 						findNearIsland(0);
 					}
 					
+					
+					
 				}
 							
 				System.out.println("Case #"+(test_case+1));
