@@ -22,7 +22,6 @@ public class Sol15 {
 			int roadSize = sc.nextInt();
 
 			int [][] road = new int[num][num];
-
 			moneyList = new ArrayList<>();
 
 			for(int [] k : road)
