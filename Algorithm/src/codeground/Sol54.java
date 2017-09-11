@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Scanner;
 
+//54번 섬 연결하기
 public class Sol54 {
 	static int Answer;
 	static ArrayList<P54> oneList;
@@ -47,12 +48,15 @@ public class Sol54 {
 			} else {
 				
 				if(oneList.size() <= 0) {
-					Answer = moreList.get(moreList.size() - 1).getV() - 1;
+					Answer = moreList.get(moreList.size() - 1).getV() - moreList.get(0).getV();
 				} else {
 					
 					while(oneList.size() > 0 && moreList.size() > 0) {
 						findNearIsland(0);
 					}
+					
+					if(moreList.size() > 0)
+						Answer += moreList.get(moreList.size() -1).getV() - moreList.get(0).getV();
 					
 					
 					
