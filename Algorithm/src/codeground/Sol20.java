@@ -5,13 +5,13 @@ import java.util.Arrays;
 import java.util.PriorityQueue;
 import java.util.Scanner;
 
-//CodeGround 15번 캠퍼스와 도로(1)
-public class Sol15 {
+//CodeGround 20번 캠퍼스와 도로(2)
+public class Sol20 {
 	static int N;
 	static int R;
 	static int MAX = 987_654_321;
 	static boolean [] VIA;
-	static ArrayList<ArrayList<P15>> LIST;
+	static ArrayList<ArrayList<P20>> LIST;
 
 	public static void main(String[] args) {
 		Scanner sc = new Scanner(System.in);
@@ -25,16 +25,18 @@ public class Sol15 {
 			VIA = new boolean[N+1];
 			LIST = new ArrayList<>(N+1);
 
+			Arrays.fill(VIA, false);
+
 			for(int i=0 ; i<=N ; i++)
-				LIST.add(new ArrayList<P15>());
+				LIST.add(new ArrayList<P20>());
 
 			for(int i=0 ; i<R ; i++) {
 				int s = sc.nextInt();
 				int d = sc.nextInt();
 				int cost = sc.nextInt();
 
-				LIST.get(s).add(new P15(d, cost));
-				LIST.get(d).add(new P15(s, cost));
+				LIST.get(s).add(new P20(d, cost));
+				LIST.get(d).add(new P20(s, cost));
 			}
 
 			for(int i=1 ; i<= N ; i++)
@@ -43,35 +45,35 @@ public class Sol15 {
 			int count = 0;
 
 			for(int i=1 ; i <= N ; i++)
-				if(!VIA[i]) count++;
+				if(VIA[i]) count++;
 
 			System.out.println("Case #"+(test_case+1));
 			System.out.print(count);
-
 			for(int i=1 ; i <= N ; i++)
-				if(!VIA[i]) System.out.print(" " + i);
+				if(VIA[i]) System.out.print(" " + i);
 			System.out.println();
 		}
 	}
 
 	public static void find(int s) {
-		PriorityQueue<P15> Q = new PriorityQueue<>();
+		//System.out.println("Start : " + s);
+		PriorityQueue<P20> Q = new PriorityQueue<>();
 		int [] dist = new int[N+1];
 		ArrayList<ArrayList<Integer>> viaList = new ArrayList<>();
 		Arrays.fill(dist, MAX);
 		dist[s] = 0;
 
 		for(int i=0 ; i<=N ; i++)
-			viaList.add(new ArrayList<Integer>());
+			viaList.add(new ArrayList<>());
 
-		Q.add(new P15(s, dist[s]));
+		Q.add(new P20(s, dist[s]));
 
 		while(!Q.isEmpty()) {
-			P15 P = Q.poll();
+			P20 P = Q.poll();
 			int p = P.dest;
 
 			//p 에서 갈수 있는 지점을 하나씩 찾는다 
-			for(P15 V : LIST.get(p)) {
+			for(P20 V : LIST.get(p)) {
 				int v = V.dest;
 
 				ArrayList<Integer> Via = viaList.get(v);
@@ -81,39 +83,40 @@ public class Sol15 {
 				if(alt < dist[v]){
 					dist[v] = alt;
 					Via.clear();
-					if(s != p) Via.add(p);
-					Q.add(new P15(v, dist[v]));
+
+					if(s != p) { 
+						Via.add(p);
+						//System.out.println("Insert : " + p);
+					}
+
+					Q.add(new P20(v, dist[v]));
 				} else if(alt == dist[v]){
+					//System.out.println(alt + " , " + dist[v] + " : " + v + " , " + p);
 					Via.add(p);
+					Via.clear();
 				}
 			}
 		}
-
-		System.out.println("\nStart : " + s);
-		int count = 1;
-		for(ArrayList<Integer> temp : viaList) {
-			System.out.print(count + " ");
+		for(ArrayList<Integer> temp : viaList) {	
 			for(Integer i : temp) {
-				System.out.print(i + " -> ");
-				VIA[i] = true;
+				if(i != s) {
+					VIA[i] = true;
+				}
 			}
-			count++;
-			System.out.println();
 		}
 	}
 }
 
-class P15 implements Comparable<P15> {
+class P20 implements Comparable<P20> {
 	int dest, cost;
 
-	P15(int dest, int cost) {
+	P20(int dest, int cost) {
 		this.dest = dest;
 		this.cost = cost;
 	}
 
 	@Override
-	public int compareTo(P15 o) {
+	public int compareTo(P20 o) {
 		return this.cost - o.cost;
 	}
-
 }
