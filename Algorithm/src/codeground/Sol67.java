@@ -24,55 +24,30 @@ public class Sol67 {
 			for(int i=0 ; i < len ; i++) {
 				if(line.charAt(i) != 'a')
 					continue;
-
 				
-
-				int eLoc = 0, iLoc = 0, oLoc = 0, uLoc = 0;
+				int eLoc = -1, iLoc = -1, oLoc = -1, uLoc = -1;
 				
 				if(i+1 < len)
-					eLoc = line.substring(i+1, len).indexOf('e');
+					eLoc = line.substring(i+1, len).indexOf('e') + (i+1);
 				if(eLoc < len && eLoc != -1)
-					iLoc = line.substring(eLoc, len).indexOf('i');
+					iLoc = line.substring(eLoc, len).indexOf('i') + eLoc;
 				if(iLoc < len && iLoc != -1)
-					oLoc = line.substring(iLoc, len).indexOf('o');
+					oLoc = line.substring(iLoc, len).indexOf('o') + iLoc;
 				if(oLoc < len && oLoc != -1)
-					uLoc = line.substring(oLoc, len).indexOf('u');
+					uLoc = line.substring(oLoc, len).indexOf('u') + oLoc;
 
-				System.out.println("index : " + i + " , " + eLoc + " " + iLoc);
+				//System.out.println("index : " + i + " , " + eLoc + " , " + iLoc + " , " + oLoc + " , " + uLoc);
 				
 				if(i < eLoc && eLoc < iLoc && iLoc < oLoc && oLoc < uLoc) {
-					Start = i+1;
-					Last = uLoc;
+					if(Answer > (uLoc - i)) {
+						Start = i+1;
+						Last = uLoc+1;
+						Answer = (Last - Start);
+					}
 				} else {
 					continue;
 				}
 			}
-
-			/*
-			while(aLoc) {
-
-				aLoc = line.indexOf('a');
-				eLoc = line.indexOf('e');
-				iLoc = line.indexOf('i');
-				oLoc = line.indexOf('o');
-				uLoc = line.indexOf('u');
-
-				if(aLoc < eLoc && eLoc < iLoc && iLoc < oLoc && oLoc < uLoc) {
-					//System.out.println(Answer + " " + aLoc + " , " + uLoc + " , " + temp);
-					if(Answer > (uLoc - aLoc)) {
-						Start = (aLoc+1) + temp;
-						Last = (uLoc+1) + temp;
-						Answer = Last - Start;
-					}
-				} else {
-					break;
-				}
-
-				line = line.substring(aLoc+1, line.length());
-				temp += (aLoc+1);
-				//System.out.println(line + " , " + temp + " " + aLoc);
-			}
-			 */
 
 			System.out.println("Case #"+(test_case+1));
 			System.out.println(Start + " " + Last);
