@@ -1,6 +1,6 @@
-package codeground;
+package lecture;
 
-public class Practice {
+public class Recursion {
 	public static void main(String[] args) {
 		
 		System.out.println(func1("Hello"));
@@ -12,9 +12,17 @@ public class Practice {
 		System.out.println();
 		
 		System.out.println(search(new int[]{1, 2 ,3}, 2, 0, 3));
+		System.out.println(max(new int[]{5, 2 ,3}, 0, 2));
 		/*
 		 * 암시적(implicit) 매개변수 -> 명시적(explicit) 매개변수 로 바꾸어
 		 */
+	}
+	
+	public static int max(int [] data, int begin, int end) {
+		if(begin == end) 
+			return data[begin];
+		else
+			return Math.max(data[begin], max(data,begin+1, end));
 	}
 	
 	public static int search(int [] data, int target, int begin, int end) {

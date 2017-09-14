@@ -62,9 +62,9 @@ public class Sol15 {
 		dist[s] = 0;
 
 		for(int i=0 ; i<=N ; i++)
-			viaList.add(new ArrayList<Integer>());
+			viaList.add(new ArrayList<Integer>()); //시작점부터 어느지점까지 최단경로를 저장하기 위한 목록
 
-		Q.add(new P15(s, dist[s]));
+		Q.add(new P15(s, dist[s]));  //시작점 큐에 삽입
 
 		while(!Q.isEmpty()) {
 			P15 P = Q.poll();
@@ -78,17 +78,18 @@ public class Sol15 {
 
 				int alt = V.cost + dist[p];
 
-				if(alt < dist[v]){
+				if(alt < dist[v]){// 새로운 최단거리 발견하면 d[v] 업데이트. Via 경로를클리어하고 p경로 추가
 					dist[v] = alt;
 					Via.clear();
 					if(s != p) Via.add(p);
 					Q.add(new P15(v, dist[v]));
-				} else if(alt == dist[v]){
+				} else if(alt == dist[v]){// 기존의 최단 거리왁 ㅏㅌ은 경로 발견하면 Via 에 u를 추가
 					Via.add(p);
 				}
 			}
 		}
 
+		//중복된 길을 포함해서 경로에 있는 대학 번호를 추가
 		System.out.println("\nStart : " + s);
 		int count = 1;
 		for(ArrayList<Integer> temp : viaList) {

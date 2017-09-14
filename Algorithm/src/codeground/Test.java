@@ -2,101 +2,104 @@ package codeground;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Collections;
 import java.util.PriorityQueue;
 import java.util.Scanner;
 
-public class Test { 
-	static int N, ROAD;
-	static boolean [] isVia;
-	static int MAX = 987_987_987;
-	static ArrayList<ArrayList<P15>> List;
+public class Test {
+	static long Answer;
+	static ArrayList<P54> oneList;
+	static ArrayList<P54> moreList;
 
-	public static void main(String args[]) throws Exception    {
+	public static void main(String args[]) throws Exception	{
 		Scanner sc = new Scanner(System.in);
 
 		int T = sc.nextInt();
 		for(int test_case = 0; test_case < T; test_case++) {
-			N = sc.nextInt();
-			ROAD = sc.nextInt();
-			
-			isVia = new boolean[N+1];
-			List = new ArrayList<>(N+1);
-			
-			for(int i=0 ; i<=N ; i++)
-				List.add(new ArrayList<P15>());
+			Answer = 0;
 
-			for(int i=0 ; i< ROAD ; i++) {
-				int start = sc.nextInt();
-				int end = sc.nextInt();
-				int dist = sc.nextInt();
-				
-				List.get(start).add(new P15(end, dist));
-				List.get(end).add(new P15(start, dist));
+			int n = sc.nextInt();
+			long sum = 0;
+
+			oneList = new ArrayList<>();
+			moreList = new ArrayList<>();
+
+			for(int i=0; i<n ; i++) {
+				int v = sc.nextInt();
+				int br = sc.nextInt();
+
+				sum += br;
+
+				if(br == 1) {
+					oneList.add(new P54(v, br));
+				} else {
+					moreList.add(new P54(v, br));
+				}
 			}
-			
-			for(int i = 1 ; i <= N ; i++)
-				find(i);
-			
-			int count = 0;
-			
-			for(int i = 1 ; i <= N ; i++)
-				if(!isVia[i]) count++;
-			
-			System.out.println("Case #"+(test_case+1));
-			System.out.print(count);
-			for(int i = 1 ; i <= N ; i++)
-				if(!isVia[i]) System.out.print(" " + i);
-			System.out.println();
-				
+
+			Collections.sort(oneList);
+			Collections.sort(moreList);
+
+			if( (n-1) * 2 > sum) { //2 - 2개, 3 - 4개, 4 - 6개, 5 - 8개의 최소 연결지점이 필요.. 늘어날때마다 2씩 증가
+				System.out.println("Case #"+(test_case+1));
+				System.out.println(-1);
+			} else {
+
+				if(oneList.size() <= 0) {
+					Answer = moreList.get(moreList.size() - 1).v - moreList.get(0).v;
+				} else {
+
+					while( oneList.size() > 0 && moreList.size() > 0) {
+						findNearIsland(0);
+					}
+
+					if(moreList.size() > 1)
+						Answer += moreList.get(moreList.size() -1).v - moreList.get(0).v;
+				}
+
+				System.out.println("Case #"+(test_case+1));
+				System.out.println(Answer);
+			}
+
 
 		}
 	}
-	
-	public static void find(int start) {
-		PriorityQueue<P15> q = new PriorityQueue<>();
-		ArrayList<ArrayList<Integer>> viaList = new ArrayList<>();
-		
-		int [] d = new int[N+1]; //최소거리 저장
-		Arrays.fill(d, MAX);
-		d[start] = 0; //자신의 시작점은 0
-		
-		for(int i = 0 ; i<= N ; i++)
-			viaList.add(new ArrayList<Integer>()); //시작점부터 어느지점까지 최단경로를 저장하기 위한 목록
-		
-		q.add(new P15(start, d[start])); //시작점 큐에 삽입
-		
-		while(!q.isEmpty()) {
-			P15 P = q.poll();
-			int p = P.dest;
-			
-			for(P15 V : List.get(p)) {
-				int v = V.dest;
-				ArrayList<Integer> Via = viaList.get(v);
-				
-				int alt = d[p] + V.cost;
-				
-				if(alt < d[v]) { // 새로운 최단거리 발견하면 d[v] 업데이트. Via 경로를클리어하고 p경로 추가
-					d[v] = alt;
-					Via.clear();
-					if(start != p) Via.add(p);
-					q.add(new P15(v, d[v]));
-				} else if(alt == d[v]) { // 기존의 최단 거리왁 ㅏㅌ은 경로 발견하면 Via 에 u를 추가
-					Via.add(p);
-				}
+
+	public static void findNearIsland(int index) {
+		/*
+		 * 1. v섬과 가장 가까운 교차지점의 섬을 찾는다.
+		 * 2. 만약 그 섬의 카운트가 2라면 해당지점을 moreList 에서 없애고 oneList 에 추가한다.
+		 * 3. 다리 연결했다면 oneList 에서는 제거하고 List 에서 그 섬의 다리 갯수 하나씩 제거 후 Answer 의 연결된 다리 길이 추가
+		 */
+		long minValue = Long.MAX_VALUE;
+		long temp = 0;
+
+		int v = oneList.get(index).v;
+
+		int findIndex = -1;
+
+		for(int i=0; i < moreList.size() ; i++) {
+			temp = Math.abs(moreList.get(i).v - v);
+
+			if(minValue > temp) {
+				minValue = temp;
+				findIndex = i;
 			}
 		}
-		
-		//중복된 길을 포함해서 경로에 있는 대학 번호를 추가
-		System.out.println("Start : " + start);
-		int count = 1;
-		for(ArrayList<Integer> temp : viaList) {
-			System.out.print("Count : " + count++ + "  :  ");
-			for(Integer i : temp) {
-				System.out.print(i + " -> ");
-				isVia[i] = true;
-			}
-			System.out.println();
+
+		int findNearVertex = moreList.get(findIndex).v;
+
+		Answer += Math.abs(findNearVertex-v);
+
+		oneList.remove(0);
+		moreList.get(findIndex).br--;
+
+		if(moreList.get(findIndex).br == 1) {
+			oneList.add(moreList.get(findIndex));
+			moreList.remove(findIndex);
 		}
-		
+
+		Collections.sort(oneList);
+		Collections.sort(moreList);
 	}
 }
