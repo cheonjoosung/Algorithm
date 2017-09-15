@@ -18,6 +18,11 @@ public class Recursion {
 		 */
 	}
 	
+	public static int maze() {
+		return 0;
+	}
+	
+	
 	public static int max(int [] data, int begin, int end) {
 		if(begin == end) 
 			return data[begin];

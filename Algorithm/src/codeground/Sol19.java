@@ -35,6 +35,9 @@ public class Sol19 {
 
 			Collections.sort(list);	
 			
+			for(P19 p : list) 
+				System.out.println(p.x + " " + p.y + " ");
+			
 			ArrayList<Integer> answer = new ArrayList<>();
 			int first = -10_000_001;
 			
