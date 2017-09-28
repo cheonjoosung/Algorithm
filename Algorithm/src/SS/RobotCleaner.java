@@ -1,5 +1,7 @@
 package SS;
 
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Scanner;
 
 public class RobotCleaner {
@@ -25,6 +27,17 @@ public class RobotCleaner {
 
 		boolean isEnd = false;
 
+		/*
+		 * 1.보고있는 방향에서 왼 위 오 가 막혔다
+		 * 1-1. 뒤로 물러날 곳이 존재한다. 한칸 뒤로 가도록 하
+		 * 1-2. 뒤로 물러날 곳이 존재하지 않는다. 종료!!!
+		 * 2.아니 한군데라도 남아있다.
+		 * 2-1. 그 방향을 찾아서 회전하고 한칸 전진 - count++;
+		 */
+		ArrayList<Integer> list = new ArrayList<>();
+		list.add(0);
+		list.add(2);
+		list.add(Arrays.asList(new int[]{3,4}));
 		while(!isEnd) {
 			switch(d) {
 			case 0:
@@ -42,9 +55,9 @@ public class RobotCleaner {
 						//추가
 					}
 				}
-				
+
 				break;
-				
+
 			case 1:
 				if(x == 0) {
 					if(isBlock(count, m, map, x, y, d)) {
@@ -54,14 +67,14 @@ public class RobotCleaner {
 					}
 				} else {
 					if(isBack(count, m, map, x, y, d)) {
-					x--;
+						x--;
 					} else {
 						d = 0;
 						//추가
 					}
 				}
 				break;
-				
+
 			case 2:
 				if(y == 0) {
 					if(isBlock(count, m, map, x, y, d)) {
@@ -78,7 +91,7 @@ public class RobotCleaner {
 					}
 				}
 				break;
-				
+
 			case 3:
 				if(x == m-1) {
 					if(isBlock(count, m, map, x, y, d)) {
@@ -102,41 +115,25 @@ public class RobotCleaner {
 	}
 
 	public static boolean isBack(int n, int m, int [][] map, int x, int y, int d) {
-		switch(d) {
-
-		case 0:
-			break;
-			
-		case 1:
-			break;
-			
-		case 2:
-			break;
-			
-		case 3:
-			break;
-			
-		}
-
 		return false;
 	}
-	
+
 	public static boolean isBlock(int n, int m, int [][] map, int x, int y, int d) {
 		boolean res = false;
-		
+
 		switch(d) {
 
 		case 0:
-			
-			
+
+
 			break;
-			
+
 		case 1:
 			break;
-			
+
 		case 2:
 			break;
-			
+
 		case 3:
 			break;
 		}
