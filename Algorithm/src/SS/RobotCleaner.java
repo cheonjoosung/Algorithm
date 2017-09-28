@@ -34,10 +34,6 @@ public class RobotCleaner {
 		 * 2.아니 한군데라도 남아있다.
 		 * 2-1. 그 방향을 찾아서 회전하고 한칸 전진 - count++;
 		 */
-		ArrayList<Integer> list = new ArrayList<>();
-		list.add(0);
-		list.add(2);
-		list.add(Arrays.asList(new int[]{3,4}));
 		while(!isEnd) {
 			switch(d) {
 			case 0:
