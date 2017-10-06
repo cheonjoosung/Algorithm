@@ -15,6 +15,29 @@ public class Test13458 {
 		
 		int main = sc.nextInt();
 		int sub = sc.nextInt();
+
+		long answer = 0;
+		
+		for(int i=0; i <people ; i++) {
+			if(p[i] - main >= 0) {
+				p[i] -= main; 
+				answer++;
+			} else {
+				p[i] = 0;
+				answer++;
+			}
+		}
+		
+		for(int i=0; i<people ; i++) {
+			if(p[i] % sub == 0) {
+				answer += p[i] / sub;
+			} else {
+				answer += (p[i] / sub) + 1;
+			}
+		}
+		
+		System.out.println(answer);
+		
 		
 		sc.close();
 	}
