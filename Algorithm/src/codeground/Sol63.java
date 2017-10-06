@@ -17,6 +17,8 @@ public class Sol63 {
 			int [] track = new int[people];
 			int [] start = new int[people];
 			
+			//68 , 63 , 217
+			
 			int maxIndex = -1;
 			int max = -1;
 			
@@ -37,7 +39,7 @@ public class Sol63 {
 				isFound = true;
 				for(int i=0 ; i< people ; i++) {
 					if( (v[i]*t + start[i]) % track[i] == 0) {
-						System.out.println(i + " " + t);
+						//System.out.println(i + " " + t);
 						continue;
 					}
 					else {
@@ -50,6 +52,11 @@ public class Sol63 {
 					Answer = t;
 					break;
 				}
+			}
+			
+			for(int i=1 ; i<=312 ; i++) {
+				if( (7*i + 17) % 31 == 0)
+					System.out.println(i);
 			}
 			
 			System.out.println("Case #"+(test_case+1));

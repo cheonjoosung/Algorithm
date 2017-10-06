@@ -4,7 +4,15 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Scanner;
 
-//CodeGround 19번 최대구간중첩
+//CodeGround 19번 최대구간중첩 :
+/*
+ * LIS tree[i] = 마지막으로 하는 가장 긴 증가하는 부분 수열의 길이 , 세그먼트 트리 s~e : s-m / m+1 ~ e 2개
+ * i    : 1 2 3 4 5 6 7 8
+ * A[i] : 1 3 1 2 4 3 4 2
+ * 
+ * i       : 1 2 3 4 5
+ * tree[i] : 0 0 0 0 0
+ */
 public class Sol19 {
 	static int Answer;
 
@@ -26,6 +34,9 @@ public class Sol19 {
 			}
 
 			Collections.sort(list);	
+			
+			for(P19 p : list) 
+				System.out.println(p.x + " " + p.y + " ");
 			
 			ArrayList<Integer> answer = new ArrayList<>();
 			int first = -10_000_001;

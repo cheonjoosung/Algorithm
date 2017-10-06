@@ -2,6 +2,7 @@ package codeground;
 
 import java.util.Scanner;
 
+//Codeground 52번 최대직사각형
 public class Sol52 {
 
 	static int Answer;
