@@ -1,0 +1,46 @@
+package SS;
+
+import java.util.Scanner;
+
+public class Lab14502 {
+	public static int [][] map;
+	
+	public static void main(String[] args) {
+		Scanner sc = new Scanner(System.in);
+		//완전탐색 예상
+		int col = sc.nextInt();
+		int row = sc.nextInt();
+		
+		map = new int[row][col];
+		
+		int firstWallX = 0;
+		int firstWallY = 0;
+		int secondWallX = 1;
+		int secondWallY = 0;
+		int thridWallX = 2;
+		int thirdWallY = 0;
+		
+		for(int i=0; i<row ; i++) {
+			for(int j=0; j<col ; j++) {
+				map[j][i] = sc.nextInt();
+			}
+		}
+		
+		while(firstWallX != (row-3) &&  firstWallY != (col-1)) {
+			
+			
+			if(firstWallX + 1 == row) {
+				firstWallX = 0;
+				
+			} else {
+				firstWallX++;
+			}
+		}
+		
+		for(int i=0; i<nn)
+		
+		
+		
+		sc.close();
+	}
+}
