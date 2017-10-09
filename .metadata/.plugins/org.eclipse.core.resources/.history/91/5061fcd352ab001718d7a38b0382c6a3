@@ -1,0 +1,39 @@
+package backjun.lec03;
+
+import java.util.ArrayList;
+import java.util.Scanner;
+
+public class P1107 {
+	public static void main(String[] args) {
+		Scanner sc = new Scanner(System.in);
+
+		int n = sc.nextInt();
+		int broke = sc.nextInt();
+		int count = 0;
+		int answer = 0;
+
+		ArrayList<Integer> list = new ArrayList<>();
+
+		for(int i=0 ; i<broke ; i++) {
+			list.add(sc.nextInt());
+		}
+		
+		answer = Math.abs(n-100);
+
+		if(n == 100) {
+			System.out.println(0);
+		} else {
+			for(int i=0 ; i<= 100000 ; i++) {
+				int c = i;
+				int len = possible(c);
+				
+				if(len > 0) {
+					int press = Math.abs(c - n);
+					answer = Math.min(answer, len+press);
+				}
+			}
+		}
+
+		sc.close();
+	}
+}

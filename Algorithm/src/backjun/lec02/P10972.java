@@ -4,7 +4,12 @@ import java.util.Arrays;
 
 public class P10972 {
 	public static void main(String[] args) {
+		int [] arr = {1,2,3};
 		
+		isNext(arr, arr.length);
+		
+		for(int k : arr)
+			System.out.print(k + " ");
 	}
 	
 
@@ -30,9 +35,6 @@ public class P10972 {
 		
 		Arrays.sort(arr, index , n);
 		
-		for(int k : arr)
-			System.out.print(k + " ");
-
-		return false;
+		return true;
 	}
 }

@@ -4,7 +4,7 @@ import java.util.Arrays;
 
 public class P10973 {
 	public static void main(String[] args) {
-		int [] arr = {1, 2 , 3 ,4 };
+		int [] arr = {1, 2 , 3 };
 
 		do{
 			for(int k : arr)
@@ -34,10 +34,7 @@ public class P10973 {
 		arr[index2] = temp;
 		
 		Arrays.sort(arr, index , n);
-		
-		for(int k : arr)
-			System.out.print(k + " ");
 
-		return false;
+		return true;
 	}
 }

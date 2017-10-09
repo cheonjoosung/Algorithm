@@ -1,0 +1,89 @@
+package SS;
+
+import java.util.Arrays;
+import java.util.Scanner;
+
+public class SnakeTwo3190 {
+	static int [][] map;
+	static int [][] mapDir;
+	static int BLANK = 0;
+	static int APPLE = 1;
+	static int SNAKE = 2;
+
+	public static void main(String[] args) {
+		Scanner sc = new Scanner(System.in);
+
+		int n = sc.nextInt();
+		int appleCount = sc.nextInt();
+		
+		map = new int[n][n];
+		mapDir = new int[n][n];
+		
+		for(int [] temp : map) 
+			Arrays.fill(temp, BLANK);
+		
+		for(int [] temp : mapDir) 
+			Arrays.fill(temp, -1);
+
+		for(int i=0 ; i< appleCount ; i++) {
+			int x = sc.nextInt();
+			int y = sc.nextInt();
+			map[y][x] = APPLE;
+		}
+		
+		int count = 0;
+		int curDir = 0;
+		int x = 0,  y = 0;
+		int tailX = 0, tailY = 0;
+		
+		map[x][y] = SNAKE;
+		mapDir[x][y] = curDir;
+
+		int moveCount = sc.nextInt();
+		boolean out = false;
+
+		for(int i=0 ; i<moveCount ; i++) {
+			int move = sc.nextInt();
+			int dir = sc.next().equals("L") ? 1 : -1;
+			
+			while(move-- > 0) {
+				count++;
+			
+				if(curDir == 0) x++;
+				else if(curDir == 1) y--;
+				else if(curDir == 2) x--;
+				else y++;
+				
+				if(x < 0 || y < 0 || x >= n || y >= n) {
+					System.out.println(count);
+					out = true;
+					break;
+				}
+				
+				mapDir[x][y] = curDir;
+				System.out.println(tailX + " " + tailY);
+				
+				if(map[x][y] == APPLE) {
+					map[x][y] = SNAKE;
+				} else if(map[x][y] == BLANK){
+					map[x][y] = SNAKE;
+					map[tailX][tailY] = BLANK;
+					if(mapDir[tailX][tailY] == 0) tailX++;
+					else if(mapDir[tailX][tailY] == 1) tailY--;
+					else if(mapDir[tailX][tailY] == 2) tailX--;
+					else if(mapDir[tailX][tailY] == 3) tailY++;
+				} else {
+					System.out.println(count);
+					out = true;
+					break;
+				}
+			}
+			
+			curDir = (curDir + dir + 4) % 4;
+			if(out) break;
+		}
+
+		
+		sc.close();
+	}
+}
