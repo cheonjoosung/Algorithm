@@ -1,0 +1,22 @@
+package SS;
+
+import java.util.Scanner;
+
+
+public class Main {
+	static int [][] map;
+	static int Ans;
+	static int Blank = 0;
+	static int Wall = 1;
+	static int Red = 2;
+	static int Blue = 3;	
+	
+	public static void main(String[] args) {
+		Scanner sc = new Scanner(System.in);
+		
+		
+		
+		sc.close();
+	}
+
+}

@@ -1,0 +1,15 @@
+package SS;
+
+import java.util.Scanner;
+
+
+public class Main {
+	static int [][] map;
+	static int Ans;
+	static int Len = 5;
+	public static void main(String[] args) {
+		
+		
+	}
+
+}

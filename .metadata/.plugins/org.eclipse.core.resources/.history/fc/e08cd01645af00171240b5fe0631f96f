@@ -1,0 +1,37 @@
+package SS;
+
+import java.util.Scanner;
+
+
+public class Main {
+	static int [][] map;
+	static int Ans;
+	static int Blank = 0;
+	static int Wall = 1;
+	static int Red = 2;
+	static int Blue = 3;	
+	static int End = 4;	
+
+	public static void main(String[] args) {
+		Scanner sc = new Scanner(System.in);
+
+		int col = sc.nextInt();
+		int row = sc.nextInt();
+
+		map = new int[row][col];
+
+		for(int i=0 ; i<col ; i++)
+			for(int j=0 ; j<row ; j++) {
+				String s = sc.next();
+				for(int k=0 ; i<s.length() ; i++) {
+					if(s.charAt(i) == '#') map[j][i] = 0;
+					else if(s.charAt(i) == '.') map[j][i] = 0;
+					else if(s.charAt(i) == 'B') map[j][i] = 0;
+					else	 if(s.charAt(i) == 'O') map[j][i] = 0;
+				}
+			}
+
+		sc.close();
+	}
+
+}
