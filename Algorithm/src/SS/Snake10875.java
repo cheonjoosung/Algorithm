@@ -18,7 +18,6 @@ public class Snake10875 {
 		int n = sc.nextInt();
 		int moveCount = sc.nextInt();
 		
-		
 		int curDir = 1;
 		int curX = n;
 		int curY = n;
