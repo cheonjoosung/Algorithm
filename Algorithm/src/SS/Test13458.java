@@ -29,15 +29,11 @@ public class Test13458 {
 		}
 		
 		for(int i=0; i<people ; i++) {
-			if(p[i] % sub == 0) {
-				answer += p[i] / sub;
-			} else {
-				answer += (p[i] / sub) + 1;
-			}
+			if(p[i] % sub == 0) answer += p[i] / sub;
+			else answer += (p[i] / sub) + 1;
 		}
 		
 		System.out.println(answer);
-		
 		
 		sc.close();
 	}
