@@ -65,7 +65,7 @@ public class P10026 {
 
 		sc.close();
 	}
-
+	
 	public static void dfs(int x, int y, int size) {
 		visited[x][y] = true;
 
