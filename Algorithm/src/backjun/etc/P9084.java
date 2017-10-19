@@ -11,10 +11,11 @@ public class P9084 {
 		for(int i=0 ; i<testCase ; i++) {
 			int coinCount = sc.nextInt();
 			int [] coin = new int[coinCount];
-			for(int j=0 ; j<coinCount ; j++) {
-				coin[j] = sc.nextInt();
-			}
+			
+			for(int j=0 ; j<coinCount ; j++) coin[j] = sc.nextInt();
+			
 			int val = sc.nextInt();
+			
 			
 			
 		}
