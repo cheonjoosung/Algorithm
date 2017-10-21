@@ -3,28 +3,28 @@ package backjun.lecture.p9000_10000;
 import java.util.Scanner;
 
 public class P9095 {
+	static int MOD = 10007;
 	public static void main(String[] args) {
 		Scanner sc = new Scanner(System.in);
-		
-		int testCase = sc.nextInt();
-		
-		for(int i=0 ; i<testCase ; i++) {
-			int goal = sc.nextInt();
-			int Ans = go(0, 0, goal);
-			System.out.println(Ans);
+
+		int test = sc.nextInt();
+
+		while(test-- > 0) {
+			int n = sc.nextInt();
+
+			if(n == 1) System.out.println(1);
+			else if(n == 2) System.out.println(2);
+			else {				
+				int [] dp = new int[n+1];
+				dp[0] = 1; dp[1] = 1; dp[2] = 2;
+
+				for(int i=3; i <=n ; i++)
+					dp[i] = dp[i-1] + dp[i-2] + dp[i-3];
+
+				System.out.println(dp[n]);
+			}
 		}
-		
+
 		sc.close();
-	}
-	
-	public static int go(int count , int sum, int goal) {
-		if(sum > goal) return 0;
-		if(sum == goal) return 1;
-		int now = 0;
-		
-		for(int i=1; i<=3 ; i++) {
-			now+= go(count+1, sum+i, goal);
-		}
-		return now;
 	}
 }
