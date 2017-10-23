@@ -1,4 +1,4 @@
-package SS;
+package SS.last;
 
 import java.util.LinkedList;
 import java.util.Queue;
