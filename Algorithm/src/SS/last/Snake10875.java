@@ -1,4 +1,4 @@
-package SS;
+package SS.last;
 
 import java.util.ArrayList;
 import java.util.Scanner;
