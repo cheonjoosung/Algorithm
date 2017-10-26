@@ -21,16 +21,23 @@ public class P1959 {
 
 			int sum = 0;
 			if(n1 < n2) {
-				int temp = n2-1;
-				for(int i=a.length-1 ; i>=0 ; i--) {
-					sum += a[i] * b[temp--];
+				for(int j=0 ; j<(n2-n1)+1 ; j++) {
+					int temp = 0;
+					for(int i=0; i<n1 ; i++) {
+						temp += a[i] * b[i+j];
+					}
+					sum = Math.max(sum, temp);
 				}
-			} else {
-				int temp = n1-1;
-				for(int i=b.length-1 ; i>=0 ; i--) {
-					sum += b[i] * a[temp--];
+			} else if(n1 > n2){
+				for(int j=0 ; j<(n1-n2)+1 ; j++) {
+					int temp = 0;
+					for(int i=0; i<n2 ; i++) {
+						temp += b[i] * a[i+j];
+					}
+					sum = Math.max(sum, temp);
 				}
-			}
+			} else
+				for(int i=0 ; i<n1 ; i++) sum += a[i] * b[i];
 
 			System.out.println("#" + t + " " + sum);
 
