@@ -12,17 +12,42 @@ public class P1979 {
 		for(int t=1 ; t<= testCase ; t++) {			
 			int n = sc.nextInt();
 			int k = sc.nextInt();
-			
-			int [][] a = new int[n][n];
 			int count = 0;
-			
-			for(int i=0 ; i<n ; i++) {
-				for(int j=0; j<n ; j++) {
+			int len1 = 0, len2 = 0;
+
+			int [][] a = new int[n][n];
+
+			for(int i=0 ; i<n ; i++)
+				for(int j=0; j<n ; j++)
 					a[j][i] = sc.nextInt();
+
+			for(int i=0 ; i<n ; i++) {
+				for(int j=0 ; j<n ; j++) {
+					if(a[j][i] == 1) {
+						len1++;
+						if(j == n-1) {
+							if(len1 == k) count++;
+							len1 = 0;
+						}
+					} else {
+						if(len1 == k) count++;
+						len1 = 0;
+					}
+
+					if(a[i][j] == 1) {
+						len2++;
+						if(j == n-1) {
+							if(len2 == k) count++;
+							len2 = 0;
+						}
+					} else {
+						if(len2 == k) count++;
+						len2 = 0;
+					}
 				}
 			}
-			
-			System.out.println("#" + t + " ");
+
+			System.out.println("#" + t + " " + count);
 		}
 
 		sc.close();
