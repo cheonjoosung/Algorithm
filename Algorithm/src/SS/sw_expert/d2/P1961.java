@@ -16,35 +16,36 @@ public class P1961 {
 			int [][] a1 = new int[n][n];
 			int [][] a2 = new int[n][n];
 			int [][] a3 = new int[n][n];
-			
+
 			for(int i=0; i<n; i++)
 				for(int j=0; j<n ; j++)
 					a[j][i] = sc.nextInt();
 
-			
+
 			//시계 방향으로 90도, 180도, 270도
-			
-			
+
+			rotate(a, a1, n);
+			rotate(a1, a2, n);
+			rotate(a2, a3, n);
+
 			System.out.println("#" + t);	
+
 			for(int i=0; i<n; i++) {
-				for(int j=0; j<n ; j++) {
-					System.out.print(a[j][i] + " ");					
-				}
+				for(int j=0; j<n ; j++) System.out.print(a1[j][i]);
+				System.out.print(" ");
+				for(int j=0; j<n ; j++) System.out.print(a2[j][i]);
+				System.out.print(" ");
+				for(int j=0; j<n ; j++) System.out.print(a3[j][i]);	
 				System.out.println();
 			}
 		}
 
 		sc.close();
 	}
-	
-	public static void rotate(int [][] arr, int n) {
-		// 00 10 20
-		// 01 11 21
-		// 02 12 22
-		for(int i=0 ; i<n ; i++) {
-			for(int j=n-1 ; j>=0 ; j--) {
-				System.out.print(arr[i][j]);
-			}
-		}
+
+	public static void rotate(int [][] arr, int [][] temp, int n) {
+		for(int i=0 ; i<n ; i++)
+			for(int j=0 ; j<n ; j++)
+				temp[j][i] = arr[i][n-j-1];
 	}
 }
