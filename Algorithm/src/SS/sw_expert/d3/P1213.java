@@ -13,7 +13,7 @@ public class P1213 {
 			String line = sc.next();
 			int count = 0;
 			
-			for(int i=0 ; i<line.length()-word.length() ; i++) {
+			for(int i=0 ; i<line.length()-word.length()+1 ; i++) {
 				if(line.charAt(i) == word.charAt(0)) {
 					boolean check = true;
 					for(int j=0 ; j<word.length() ; j++) {
