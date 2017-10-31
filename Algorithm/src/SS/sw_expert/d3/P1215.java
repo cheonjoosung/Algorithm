@@ -2,25 +2,16 @@ package SS.sw_expert.d3;
 
 import java.util.Scanner;
 
-//회문1
+//회문
 public class P1215 {
 	public static void main(String[] args) {
 		Scanner sc = new Scanner(System.in);
-        
+
 		for(int t=1 ; t<=10 ; t++) {
 			int len = sc.nextInt();
 			int count = 0;
-			
+
 			int [][] a = new int[8][8];
-			
-			for(int i=0 ; i<8 ; i++) {
-				String s = sc.next();
-				for(int j=0 ; j<s.length() ; j++){
-					if(s.charAt(j) == 'A') a[j][i] = 0;
-					else if(s.charAt(j) == 'B') a[j][i] = 1;
-					else a[j][i] = 2;
-				}
-			}
 			
 			for(int i=0; i<8 ; i++) {
 				for(int j=0 ; j<= 8-len ; j++) {
@@ -33,10 +24,10 @@ public class P1215 {
 					if(b2) count++;
 				}
 			}
-			
+
+
 			System.out.println("#"+t+ " " + count);
 		}
-		
 		sc.close();
 	}
 }
