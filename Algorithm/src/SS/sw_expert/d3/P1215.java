@@ -12,16 +12,7 @@ public class P1215 {
 			int count = 0;
 
 			int [][] a = new int[8][8];
-
-			for(int i=0 ; i<8 ; i++) {
-				String s = sc.next();
-				for(int j=0 ; j<s.length() ; j++){
-					if(s.charAt(j) == 'A') a[j][i] = 0;
-					else if(s.charAt(j) == 'B') a[j][i] = 1;
-					else a[j][i] = 2;
-				}
-			}
-
+			
 			for(int i=0; i<8 ; i++) {
 				for(int j=0 ; j<= 8-len ; j++) {
 					boolean b1 = true, b2 = true;
@@ -34,9 +25,9 @@ public class P1215 {
 				}
 			}
 
+
 			System.out.println("#"+t+ " " + count);
 		}
-
 		sc.close();
 	}
 }
