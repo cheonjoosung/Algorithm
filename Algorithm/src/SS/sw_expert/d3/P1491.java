@@ -14,7 +14,14 @@ public class P1491 {
 			int a = sc.nextInt();
 			int b = sc.nextInt();
 			
-			int ans = 0;
+			long ans = Integer.MAX_VALUE;
+			
+			for(int i=1 ; i<=n; i++) {
+				for(int j=i; i<=n/j ; j++) {
+					long temp = (long)a*Math.abs(i-j) + (long)b*(n - i*j);
+					ans = Math.min(ans, temp);
+				}
+			}
 			
 			System.out.println("#" + t + " " + ans);
 		}
