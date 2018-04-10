@@ -6,19 +6,30 @@ public abstract class Solution {
 	public static void main(String[] args) {
 		Scanner sc = new Scanner(System.in);
 
-		String s = "before";
-
-		System.out.println(s);
-
-		//System.out.println(good(2 + 3));
-		//System.out.println(good(2.0 + 3.0));
-		sc.close();
-	}
-
-	public abstract int test(String s);
-
-	public static <T> T good(T val) {
+		int size = sc.nextInt();
+		int [] arr = new int[size];
 		
-		return val;
+		for(int i=0 ; i<size ; i++) 
+			arr[i] = sc.nextInt();
+		
+		int main = sc.nextInt();
+		int sub = sc.nextInt();
+		long total = 0;
+		
+		for(int i=0 ; i<size ; i++) {
+			if(arr[i] - main >= 0) arr[i] -= main;
+			else arr[i] = 0;
+			
+			total ++;
+		}
+		
+		for(int i=0 ; i<size ; i++) {
+			if(arr[i] % sub == 0) total += arr[i]/sub;
+			else total += (arr[i]/sub) + 1;
+		}
+		
+		System.out.println(total);
+
+		sc.close();
 	}
 }

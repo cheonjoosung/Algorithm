@@ -16,11 +16,10 @@ public class Lab14502 {
 		int col = sc.nextInt();
 		int row = sc.nextInt();
 
+		int x1 = 0, y1 = 0, x2 = 0, y2 = 0, x3 = 0, y3 = 0; 
 		map = new int[row][col];
 		Ans = 0;
 		Wall = 0;
-
-		int x1 = 0, y1 = 0, x2 = 0, y2 = 0, x3 = 0, y3 = 0; 
 
 		for(int i=0; i<col ; i++)
 			for(int j=0; j<row ; j++) {
@@ -54,17 +53,12 @@ public class Lab14502 {
 
 				while(true) {
 					if(y3 > col-1) break;
+					
 					if(map[x3][y3] != 0) {
 						if(x3 + 1 == row) y3++;
 						x3 = (x3+1) % row;
 						continue;
 					}
-
-					int [][] tempMap = new int[row][col];
-					
-					for(int i=0 ; i<col ; i++) 
-						for(int j=0 ; j<row ; j++)
-							tempMap[j][i] = map[j][i];
 					
 					// 0. 벽놓기
 					map[x1][y1] = 1;
