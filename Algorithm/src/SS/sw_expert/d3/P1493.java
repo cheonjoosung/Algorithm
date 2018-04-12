@@ -13,9 +13,15 @@ public class P1493 {
 			int a = sc.nextInt();
 			int b = sc.nextInt();
 			
-			//p★q는 #( &(p) + &(q) )
+			int val = 1;
 			
-			
+			for(int i=0 ;  ; i++) {
+				
+				System.out.println(i + " " + val);
+				val += (i+1);
+				if(i == 8) break;
+			}
+						
 			System.out.println("#" + t + " " + 0);
 		}
 

@@ -56,7 +56,7 @@ public class Maze13460 {
 		dfs(rx, ry, bx, by, 0);
 		
 		
-		System.out.println(rx + " " + ry + " " + bx + " " + by);
+		System.out.println(Ans);
 		sc.close();
 	}
 	
