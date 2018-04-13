@@ -61,8 +61,8 @@ public class P2105 {
 	             
 	            if(!visited[map[nx][ny]]) {
 	            	visited[map[nx][ny]] = true;
-	                go(nx, ny, (cnt + 1), dir);
-	                go(nx, ny, (cnt + 1), (dir + 1));
+	                dfs(nx, ny, (cnt + 1), dir);
+	                dfs(nx, ny, (cnt + 1), (dir + 1));
 	                visited[map[nx][ny]] = false;
 	            }
 	        }
