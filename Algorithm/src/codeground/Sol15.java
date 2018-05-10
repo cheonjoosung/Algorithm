@@ -101,6 +101,12 @@ public class Sol15 {
 			count++;
 			System.out.println();
 		}
+		
+		System.out.println("#################");
+		for(int i=1 ; i < dist.length ; i++) {
+			System.out.print(dist[i] + " ");
+		}
+		System.out.println("#################");
 	}
 }
 
