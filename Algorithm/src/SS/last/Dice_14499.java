@@ -3,7 +3,8 @@ package SS.last;
 import java.util.Arrays;
 import java.util.Scanner;
 
-public class Dice14499 {
+//백준 14499 주사위 굴리기
+public class Dice_14499 {
 	public static int [][] map;
 	public static void main(String[] args) {
 		Scanner sc = new Scanner(System.in);
@@ -34,31 +35,25 @@ public class Dice14499 {
 			int dir = sc.nextInt();
 
 			if(dir == 1) {
-				if(x != m-1) {
+				if(x != m-1)
 					x++;
-					change(dice, dir,x ,y);
-				}
 			} else if(dir == 2) {
-				if(x != 0) {
+				if(x != 0)
 					x--;
-					change(dice, dir,x ,y);
-				}
 			} else if(dir == 3) {
-				if(y != 0) {
+				if(y != 0)
 					y--;
-					change(dice, dir,x ,y);
-				}
 			} else {
-				if(y != n-1) {
+				if(y != n-1)
 					y++;
-					change(dice, dir,x ,y);
-				}
 			}
+
+			change(dice, dir,x ,y);
 		}
 
 		sc.close();
 	}
-	
+
 	public static void change(int [] dice, int mode, int x, int y) {
 		/*
 		 *  0-1-2-3-4-5   
@@ -86,7 +81,7 @@ public class Dice14499 {
 			dice[1] = dice[3];
 			dice[3] = dice[0];
 			dice[0] = temp3;
-			
+
 			break;
 		case 4:
 			int temp4 = dice[2];
@@ -96,13 +91,13 @@ public class Dice14499 {
 			dice[1] = temp4;
 			break;
 		}
-		
+
 		if(map[x][y] == 0) map[x][y] = dice[3];
 		else {
 			dice[3] = map[x][y];
 			map[x][y] = 0;
 		}
-		
+
 		System.out.println(dice[2]);
 	}
 }

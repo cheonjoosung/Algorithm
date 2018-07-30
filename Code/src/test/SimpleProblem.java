@@ -35,6 +35,13 @@ public class SimpleProblem {
 			//1의 배수 = 1*10 , 2의 배수 = 2*5, 5의 배수 = 5*2, 10의 배수 = 10*1 다 10포함
 		}
 		
+		for(int i=1 ; i*i <= num ; i++) {
+			if(num % i == 0) {
+				//list.add(i);
+				//list.add(num/i);
+			}
+		}
+		
 	}
 
 	public static void hanoi(int n, int from, int by, int to) {
@@ -71,8 +78,7 @@ public class SimpleProblem {
 	}
 
 	public static int binarSearch(int num, int low, int high) { //정렬이 되어 있어야 함. 
-
-		if(low > high) return -1;
+		if(low >= high) return -1;
 
 		int mid = (low+high) / 2;
 

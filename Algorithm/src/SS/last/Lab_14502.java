@@ -3,7 +3,18 @@ package SS.last;
 import java.util.Arrays;
 import java.util.Scanner;
 
-public class Lab14502 {
+public class Lab_14502 {
+	public static void main(String[] args) {
+		Scanner sc = new Scanner(System.in);
+		
+		
+		
+		sc.close();
+	}
+}
+
+/*
+public class Lab_14502 {
 	public static int [][] map;
 	public static int Ans;
 	public static int Wall;
@@ -128,3 +139,4 @@ public class Lab14502 {
 		return res;
 	}
 }
+*/
