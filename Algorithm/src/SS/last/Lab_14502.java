@@ -3,140 +3,116 @@ package SS.last;
 import java.util.Arrays;
 import java.util.Scanner;
 
+//백준 14502 연구소
 public class Lab_14502 {
-	public static void main(String[] args) {
-		Scanner sc = new Scanner(System.in);
-		
-		
-		
-		sc.close();
-	}
-}
+	static int row, col, Ans, wallCount;
+	static int [][] map;
 
-/*
-public class Lab_14502 {
-	public static int [][] map;
-	public static int Ans;
-	public static int Wall;
-	public static int [] rowDir = {1, 0, -1, 0};
-	public static int [] colDir = {0, -1, 0, 1};
+	static final int BLANK = 0;
+	static final int WALL = 1;
+	static final int VIRUS = 2;
+
+	static int [] dy = {1, 0, -1, 0}; //맵 상에서 y증가, x감소, y증가, x증가 순서를 위한 변수
+	static int [] dx = {0, -1, 0, 1};
 
 	public static void main(String[] args) {
 		Scanner sc = new Scanner(System.in);
 
-		int col = sc.nextInt();
-		int row = sc.nextInt();
+		row = sc.nextInt();
+		col = sc.nextInt();
 
-		int x1 = 0, y1 = 0, x2 = 0, y2 = 0, x3 = 0, y3 = 0; 
 		map = new int[row][col];
+
 		Ans = 0;
-		Wall = 0;
+		wallCount = 0;
 
-		for(int i=0; i<col ; i++)
-			for(int j=0; j<row ; j++) {
-				map[j][i] = sc.nextInt();
-				if(map[j][i] == 1) Wall++;
+		for(int i=0 ; i<row ; i++) {
+			for(int j=0 ; j<col ; j++) {
+				int val = sc.nextInt(); //0은 빈칸, 1은 벽, 2는 바이러스 
+				map[i][j] = val;
+				if(val == 1) wallCount++;
 			}
-
-		while(true) {
-			if(y1 > col-1) break;
-			if(map[x1][y1] != 0) {
-				if(x1+1 == row) y1++;
-				x1 = (x1+1) % row;
-				continue;
-			} else {
-				if(x1+1 == row) y2 = y1 + 1;
-				else y2 = y1;
-				x2 = (x1+1) % row;
-			}
-
-			while(true) {
-				if(y2 > col-1) break;
-				if(map[x2][y2] != 0) {
-					if(x2 + 1 == row ) y2++;
-					x2 = (x2+1) % row;
-					continue;
-				} else {
-					if(x2+1 == row) y3 = y2+1;
-					else y3 = y2;
-					x3 = (x2+1) % row;
-				}
-
-				while(true) {
-					if(y3 > col-1) break;
-					
-					if(map[x3][y3] != 0) {
-						if(x3 + 1 == row) y3++;
-						x3 = (x3+1) % row;
-						continue;
-					}
-					
-					// 0. 벽놓기
-					map[x1][y1] = 1;
-					map[x2][y2] = 1;
-					map[x3][y3] = 1;
-					// 1. 바이러스 퍼트리기
-					virus(row, col);
-					
-					map[x1][y1] = 0;
-					map[x2][y2] = 0;
-					map[x3][y3] = 0;
-
-					if(x3 + 1 == row) y3++;
-					x3 = (x3+1) % row;
-				}
-				
-				if(x2 == row-2 && y2 == col-1) break;
-				if(x2 + 1 == row) y2++;
-				x2 = (x2+1) % row;
-			}
-			
-			if(x1 == row-3 && y1 == col-1) break;
-			if(x1 + 1 == row) y1++;
-			x1 = (x1+1) % row;
 		}
-		
+
+		for(int i=0 ; i<row ; i++) {
+			for(int j=0 ; j<col ; j++) {
+				if(map[i][j] == 0) {
+					map[i][j] = 1;
+					
+					if(j == (col-1)) //다음 시작될 곳인데 행을 바꿔야 할 때
+						dfs(i+1, 0 , 1);
+					else 
+						dfs(i, j+1, 1);
+					
+					map[i][j] = 0;
+				}
+			}
+		}
+
 		System.out.println(Ans);
 
 		sc.close();
 	}
 
-	public static void virus(int row, int col){
-		boolean [][] visited = new boolean[row][col];
+	public static void dfs(int x, int y, int cnt) {
+		if(cnt == 3) {
+			boolean [][] visited = new boolean[row][col];
 
-		for(boolean [] temp : visited) 
-			Arrays.fill(temp, false);
+			for(boolean [] temp : visited) 
+				Arrays.fill(temp, false);
 
-		int virusCount = 0;
-		
-		for(int i=0 ; i<col ; i++) {
-			for(int j=0; j<row ; j++) {
-				if(map[j][i] == 2  && visited[j][i] == false) {
-					virusCount += spread(j, i, row, col, visited);
+			int virus = 0;
+			for(int i=0 ; i<row ; i++) {
+				for(int j=0 ; j<col ; j++) {
+					if(map[i][j] == 2 && !visited[i][j])
+						virus += spread(i , j, visited);
 				}
 			}
-		}
-		
-		Ans = Math.max(Ans, (row*col - (3 + Wall + virusCount)));
+			Ans = Math.max(Ans, row*col - (virus + 3 + wallCount)); //전체에서 바이러스 퍼진거 + 벽3개 설치 + 기존에 벽 갯수
 
-		//dfs or 재귀 
+			return;
+		}
+
+
+		for(int i=x ; i<row ; i++) {
+			for(int j=y ; j<col ; j++) {
+				//x 가 row 넘어갈경우 col 변경 필요
+				if(map[i][j] == 0) {
+					map[i][j] = 1;
+					
+					if(j == (col-1))
+						dfs(i+1, 0, cnt+1);
+					else 
+						dfs(i, j+1, cnt+1);
+
+					map[i][j] = 0;
+					//1로 선택했다가 그만큼 재귀돌리고 다시 0으로 백트래킹 (0,0) (0,1) -> 0, 2.3.4.5.6.7. 주루
+				}
+			}
+			y = 0; //첫 행의 끝까지 돌았는데 아무것도 선택안되면 칼럼시작 0부터 해야됨
+		}
 	}
 
-	public static int spread(int x, int y, int row, int col, boolean [][] visited) {
+	public static int spread(int x, int y, boolean [][] visited) { 
+		/*
+		 * 바이러스 퍼트리기
+		 * dfs 를 이용하여 퍼트리는데 1인 벽빼고 전파.
+		 * 재귀형태상 온곳을 돌아가는것을 막기위해 visited 필요
+		 */
+		int res = 1;
+
 		visited[x][y] = true;
 
-		int res = 1;
 		for(int i=0 ; i<4 ; i++) {
-			int nextX = x + rowDir[i];
-			int nextY = y + colDir[i];
+			int nextX = x + dx[i];
+			int nextY = y + dy[i];
 
-			if (nextX < 0 || nextX >= row || nextY < 0 || nextY >= col) continue;
+			if(nextX < 0 || nextY < 0 || nextX >= row || nextY >= col) continue;
 
-			if (map[nextX][nextY] != 1 && !visited[nextX][nextY]) {
-				res += spread(nextX, nextY, row, col, visited);
-			}
+			if(!visited[nextX][nextY] && map[nextX][nextY] != 1)
+				res += spread(nextX, nextY, visited);
 		}
+
 		return res;
 	}
 }
-*/
