@@ -3,7 +3,8 @@ package SS.last;
 import java.util.Arrays;
 import java.util.Scanner;
 
-public class Tetris14500 {
+//백준 14500 테트로미노
+public class Tetris_14500 {
 	static int Ans = 0;
 	static int Len = 4;
 	static int row, col;

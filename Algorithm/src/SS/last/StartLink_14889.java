@@ -2,7 +2,8 @@ package SS.last;
 
 import java.util.Scanner;
 
-public class StartLink14889 {
+////백준 14889 스타트와 링크
+public class StartLink_14889 {
 	static int [][] map;
 	static boolean [] visited;
 	static int ans;

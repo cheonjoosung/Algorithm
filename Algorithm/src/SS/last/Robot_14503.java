@@ -2,7 +2,8 @@ package SS.last;
 
 import java.util.Scanner;
 
-public class Robot14503 {
+//백준 14503 로봇청소기  
+public class Robot_14503 {
 	public static int Ans;
 	public static int [][] map;
 	
