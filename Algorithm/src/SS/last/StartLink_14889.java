@@ -4,69 +4,68 @@ import java.util.Scanner;
 
 ////백준 14889 스타트와 링크
 public class StartLink_14889 {
+	static int n, Ans;
 	static int [][] map;
-	static boolean [] visited;
-	static int ans;
-	static int n;
+	static boolean [] isVisited;
 	
 	public static void main(String[] args) {
 		Scanner sc = new Scanner(System.in);
 		
 		n = sc.nextInt();
-		
+		Ans = Integer.MAX_VALUE;
 		map = new int[n+1][n+1];
-		visited = new boolean[n+1];
-		ans = Integer.MAX_VALUE;
+		isVisited = new boolean[n+1]; //팀선택 표시를 위해서
 		
 		for(int i=1 ; i<=n ; i++) {
-			for(int j=1; j<=n ; j++) {
+			for(int j=1 ; j<=n ; j++) {
 				map[i][j] = sc.nextInt();
 			}
 		}
 		
-		dfs(0, 0);
-		System.out.println(ans);
+		dfs(0 , 0);
+		System.out.println(Ans);
+		
 		sc.close();
 	}
 	
-	public static void dfs(int v, int len) {
-		if(n/2 == len) {
-			cal();
-		} else {
-			for(int i=v+1; i<=n ; i++) {
-				if(!visited[i]) {
-					visited[i] = true;
-					dfs(i, len+1);
-				}
-			}
+	public static void dfs(int v, int cnt) {
+		if(cnt == (n/2)) {
+			calc();
+			return;
 		}
 		
-		visited[v] = false;
+		for(int i=v+1 ; i<=n ; i++) {
+			if(isVisited[i]) continue;
+			
+			isVisited[i] = true;
+			dfs(i, cnt+1);
+			isVisited[i] = false;
+		}
 	}
 	
-	public static void cal() {
-		int [] a = new int[n/2+1];
-		int [] b = new int[n/2+1];
+	public static void calc() {
+		int [] a = new int[(n/2) + 1];
+		int [] b = new int[(n/2) + 1];
 		
-		int aIdx = 1, bIdx = 1;
+		int aIdx = 1, bIdx = 1; //스타트와 링크팀
 		for(int i=1 ; i<=n ; i++) {
-			if(visited[i]) a[aIdx++] = i;
+			if(isVisited[i]) a[aIdx++] = i;
 			else b[bIdx++] = i;
 		}
 		
 		int resA = getScore(a);
 		int resB = getScore(b);
-		ans = Math.min(ans, Math.abs(resA-resB));
+		Ans = Math.min(Ans, Math.abs(resA-resB));
 	}
 	
-	public static int getScore(int [] a) {
+	public static int getScore(int [] arr) {
 		int res = 0;
 		int len = n/2;
 		
-		for(int i=1; i<=len ; i++) {
+		for(int i=1 ; i<=len ; i++) {
 			for(int j=i+1 ; j<=len ; j++) {
-				res += map[a[i]][a[j]];
-				res += map[a[j]][a[i]];
+				res += map[arr[i]][arr[j]];
+				res += map[arr[j]][arr[i]];
 			}
 		}
 		

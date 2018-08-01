@@ -2,6 +2,7 @@ package SS.last;
 
 import java.util.Scanner;
 
+//백준 2048 12100
 public class Game2048_12100 {
 	static int [][] map;
 	static int Ans;

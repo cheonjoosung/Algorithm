@@ -2,7 +2,8 @@ package SS.last;
 
 import java.util.Scanner;
 
-public class Slope14890 {
+////백준 14890 경사로
+public class Slope_14890 {
 	static int n;
 	static int len;
 	static int [][] map;

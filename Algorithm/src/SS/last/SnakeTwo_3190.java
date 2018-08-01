@@ -3,7 +3,8 @@ package SS.last;
 import java.util.Arrays;
 import java.util.Scanner;
 
-public class SnakeTwo3190 {
+//백준 뱀 3190
+public class SnakeTwo_3190 {
 	static int [][] map;
 	static int [][] mapDir;
 	static int [] time = new int[10001];

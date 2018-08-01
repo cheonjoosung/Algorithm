@@ -3,7 +3,7 @@ package SS.last;
 import java.util.Arrays;
 import java.util.Scanner;
 
-public class Maze13460 {
+public class Maze_13460 {
 	static int [][] map;
 	static boolean [][] visited;
 	static int Ans;
