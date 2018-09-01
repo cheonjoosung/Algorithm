@@ -1,91 +1,106 @@
 package SS.sw_expert.test_sample;
 
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Collections;
 import java.util.Scanner;
 
 //미생물 격리 
 public class P2382 {
-	public static void main(String[] args) {
-		int T;
+	static int n, m, k, sum;
+	static int [] dx = {-1, 1, 0, 0};
+	static int [] dy = {0, 0, -1, 1}; // 상화좌우
+	static int [][] map;
+	
+	public static void main(String[] args) {		
+		Scanner sc = new Scanner(System.in);
 		
-		Scanner scan = new Scanner(System.in);
+		int t = sc.nextInt();
 		
-		int[][] delta = {{0, 0}, {-1, 0}, {1, 0}, {0, -1}, {0, 1}};
-		T = scan.nextInt();
-		for(int t=1; t<=T; t++)
-		{
-			int N = scan.nextInt(), M = scan.nextInt(), K = scan.nextInt();
-			int[][] originNum = new int[N][N], updateNum = new int[N][N];
-			int[][] originDirection = new int[N][N], updateDirection = new int[N][N]; // 1234 UDLR
-			for(int k=0; k<K; k++)
-			{
-				int i = scan.nextInt(), j = scan.nextInt();
-				originNum[i][j] = scan.nextInt(); originDirection[i][j] = scan.nextInt();
+		for(int tc=1 ; tc<=t ; tc++) {			
+			n = sc.nextInt(); //가로,세로
+			m = sc.nextInt(); //격리시간
+			k = sc.nextInt(); //미생물 군집 수 
+			
+			map = new int[n][n];
+			sum = 0;
+			ArrayList<Point> list = new ArrayList<>();
+			
+			for(int i=0 ; i<k ; i++) { //좌표, 숫자, 방향
+				int x = sc.nextInt();
+				int y = sc.nextInt();
+				int c = sc.nextInt(); 
+				int d = sc.nextInt();
+				
+				list.add(new Point(x, y, c, d-1));
 			}
-			for(int m = 0; m < M; m++)
-			{
-				for(int i=0; i<N; i++)
-				{
-					for(int j=0; j<N; j++)
-					{
-						updateNum[i][j] = 0;
-						updateDirection[i][j] = 0;
+			
+			for(int i=0 ; i<m ; i++) {
+				Collections.sort(list); //내림정렬을 통해 방향은 그친구 위주
+				
+				for(int [] temp : map) 
+					Arrays.fill(temp, -1); //매번 초기화
+				
+				for(int j=0 ; j<list.size() ; j++) {
+					int x = list.get(j).x;
+					int y = list.get(j).y;
+					int c = list.get(j).c;
+					int d = list.get(j).d;
+					
+					int nx = x + dx[d];
+					int ny = y + dy[d];
+					
+					if(nx == 0 || ny == 0 || nx == n-1 || ny == n-1) { //약품구역
+						c = c/2;
+						d = (d%2==0) ? d+1 : d-1;
+						list.get(j).c = c;
+						list.get(j).d = d;
 					}
-				}
-				int[][] maxNum = new int[N][N], maxDirection = new int[N][N];
-				for(int i=0; i<N; i++)
-				{
-					for(int j=0; j<N; j++)
-					{
-						if(originNum[i][j] != 0)
-						{
-							int nextI = i + delta[originDirection[i][j]][0], nextJ = j + delta[originDirection[i][j]][1];
-							if(nextI == 0 || nextJ == 0 || nextI == N-1 || nextJ == N-1) // 약품
-							{
-								updateNum[nextI][nextJ] = originNum[i][j] / 2; // 미생물 감소
-								updateDirection[nextI][nextJ] = originDirection[i][j] < 3 ? (3 - originDirection[i][j]) : (7 - originDirection[i][j]); // 방향 전환
-							}
-							else if(updateNum[nextI][nextJ] != 0) // 합쳐지는 경우
-							{
-								updateNum[nextI][nextJ] += originNum[i][j];
-								if(maxNum[nextI][nextJ] < originNum[i][j])
-								{
-									maxNum[nextI][nextJ] = originNum[i][j];
-									maxDirection[nextI][nextJ] = originDirection[i][j];
-								}
-								updateDirection[nextI][nextJ] = maxDirection[nextI][nextJ];
-							}
-							else
-							{
-								maxNum[nextI][nextJ] = updateNum[nextI][nextJ] = originNum[i][j];
-								maxDirection[nextI][nextJ] = updateDirection[nextI][nextJ] = originDirection[i][j];
-							}
-						}
+					
+					if(map[nx][ny] != -1) { //이동한 위치에 미생물 존재시 삭제
+						list.get(map[nx][ny]).c += c;
+						list.get(j).c = 0;
+					} else {
+						map[nx][ny] = j; //맵에 인덱스를 기록
+						list.get(j).x = nx;
+						list.get(j).y = ny;
 					}
+					
 				}
-				for(int i=0; i<N; i++)
-				{
-					for(int j=0; j<N; j++)
-					{
-						originDirection[i][j] = updateDirection[i][j];
-						originNum[i][j] = updateNum[i][j];
+				
+				for(int j=0 ; j<list.size() ; j++) {
+					if(list.get(j).c == 0) {
+						list.remove(j);
+						j--;
 					}
 				}
 			}
-
-			int sum = 0;
-			for(int i=0; i<N; i++)
-			{
-				for(int j=0; j<N; j++)
-				{
-					if(updateNum[i][j] != 0)
-					{
-						sum += updateNum[i][j];
-					}
-				}
-			}
-			System.out.println("#" + t + " " + sum);
+			
+			for(int i=0 ; i<list.size() ; i++)
+				sum+= list.get(i).c;
+			
+			System.out.println("#" + tc + " " + sum);
 		}
 		
-		scan.close();
+		sc.close();
 	}
+}
+
+class Point implements Comparable<Point>{
+	public int x, y, c, d;
+	Point(int x, int y, int c, int d) {
+		this.x = x;
+		this.y = y;
+		this.c = c;
+		this.d = d;
+	}
+	
+	@Override
+	public int compareTo(Point o) { //내리차순 정렬, 군집이 큰걸 기반으로 방향이 유지되므로... 
+		if(o.c > this.c) return 1;
+		else if(o.c < this.c) return -1;
+		else return 0;
+	}
+	
+	
 }
