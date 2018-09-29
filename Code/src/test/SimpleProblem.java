@@ -14,10 +14,43 @@ public class SimpleProblem {
 		int [] a = {3, 10, 5, 1, 155, 24};
 		int [] temp = new int[a.length];
 		
+		findCouple();
+		//perfectNumber(10);
+		//Sort s = new Sort();
+		//s.bubbleSorting(a);
+		//for(int val : a) System.out.print(val + " ");
+	}
+	
+	public static void findCouple() {
+		int [] arr = {1, 2, 5, 7, 11, 17};
+		int minVal = Integer.MAX_VALUE;
+		int minIdx = 0;
 		
-		Sort s = new Sort();
-		s.mergeSorting(a, temp, 0, a.length-1);
-		for(int val : a) System.out.print(val + " ");
+		for(int i=1 ; i<arr.length ; i++) {
+			int temp = arr[i] - arr[i-1];
+			if(temp < minVal) {
+				minVal = temp;
+				minIdx = i-1;
+			}
+		}
+		
+		System.out.println(arr[minIdx] + " " + arr[minIdx+1]);
+	}
+	
+	public static void perfectNumber(int num) {
+		for(int i=2 ; i<=num ; i++) {
+			int sum = 0;
+			
+			for(int j=1 ; j <= Math.sqrt(i) ; j++) {
+				if(i % j == 0) {
+					sum += j;
+					if(i == (i/j) || i == (j*j)) continue;
+					sum += i/j;
+				}
+			}
+			System.out.println(sum + " " + i);
+			if(sum == i) System.out.println(i);
+		}
 	}
 
 	public static void findDivisor(int num) { // 약수 갯수 구하기..
@@ -108,6 +141,8 @@ public class SimpleProblem {
 	}
 
 	public static void checkPrime() {
+		isNotPrime[0] = true;
+		isNotPrime[1] = true;
 		for(int i=2 ; i<isNotPrime.length ; i++) { 
 			if(isNotPrime[i]) continue;
 			for(int j=i ; j*i < isNotPrime.length ; j++) {

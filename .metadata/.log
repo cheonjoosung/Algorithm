@@ -9219,3 +9219,119 @@ Command-line arguments:  -os macosx -ws cocoa -arch x86_64 -product org.eclipse.
 
 !ENTRY org.eclipse.jface.text 2 0 2018-09-01 17:16:16.975
 !MESSAGE Duplicate template id: 'org.eclipse.wst.xslt.templates.xpath.round'
+!SESSION 2018-09-14 10:46:59.567 -----------------------------------------------
+eclipse.buildId=4.6.3.M20170301-0400
+java.version=1.8.0_131
+java.vendor=Oracle Corporation
+BootLoader constants: OS=macosx, ARCH=x86_64, WS=cocoa, NL=ko_KR
+Framework arguments:  -product org.eclipse.epp.package.jee.product -keyring /Users/cjswntjd/.eclipse_keyring
+Command-line arguments:  -os macosx -ws cocoa -arch x86_64 -product org.eclipse.epp.package.jee.product -keyring /Users/cjswntjd/.eclipse_keyring
+
+!ENTRY org.eclipse.core.net 1 0 2018-09-14 10:47:07.708
+!MESSAGE System property http.nonProxyHosts has been set to local|*.local|169.254/16|*.169.254/16|127.0.0.1:16105|*.127.0.0.1:16105|127.0.0.1:47317|*.127.0.0.1:47317|127.0.0.1:47337|*.127.0.0.1:47337|127.0.0.1:47139|*.127.0.0.1:47139|127.0.0.1:47159|*.127.0.0.1:47159|127.0.0.1:57317|*.127.0.0.1:57317|127.0.0.1:57337|*.127.0.0.1:57337|127.0.0.1:57318|*.127.0.0.1:57318|127.0.0.1:57337|*.127.0.0.1:57337|127.0.0.1:57419|*.127.0.0.1:57419|127.0.0.1:57439|*.127.0.0.1:57439 by an external source. This value will be overwritten using the values from the preferences
+!SESSION 2018-09-18 15:30:51.652 -----------------------------------------------
+eclipse.buildId=4.6.3.M20170301-0400
+java.version=1.8.0_131
+java.vendor=Oracle Corporation
+BootLoader constants: OS=macosx, ARCH=x86_64, WS=cocoa, NL=ko_KR
+Framework arguments:  -product org.eclipse.epp.package.jee.product -keyring /Users/cjswntjd/.eclipse_keyring
+Command-line arguments:  -os macosx -ws cocoa -arch x86_64 -product org.eclipse.epp.package.jee.product -keyring /Users/cjswntjd/.eclipse_keyring
+
+!ENTRY org.eclipse.core.net 1 0 2018-09-18 15:31:00.837
+!MESSAGE System property http.nonProxyHosts has been set to local|*.local|169.254/16|*.169.254/16|127.0.0.1:16105|*.127.0.0.1:16105|127.0.0.1:47317|*.127.0.0.1:47317|127.0.0.1:47337|*.127.0.0.1:47337|127.0.0.1:47139|*.127.0.0.1:47139|127.0.0.1:47159|*.127.0.0.1:47159|127.0.0.1:57317|*.127.0.0.1:57317|127.0.0.1:57337|*.127.0.0.1:57337|127.0.0.1:57318|*.127.0.0.1:57318|127.0.0.1:57337|*.127.0.0.1:57337|127.0.0.1:57419|*.127.0.0.1:57419|127.0.0.1:57439|*.127.0.0.1:57439 by an external source. This value will be overwritten using the values from the preferences
+!SESSION 2018-09-18 16:37:09.417 -----------------------------------------------
+eclipse.buildId=4.6.3.M20170301-0400
+java.version=1.8.0_131
+java.vendor=Oracle Corporation
+BootLoader constants: OS=macosx, ARCH=x86_64, WS=cocoa, NL=ko_KR
+Framework arguments:  -product org.eclipse.epp.package.jee.product -keyring /Users/cjswntjd/.eclipse_keyring
+Command-line arguments:  -os macosx -ws cocoa -arch x86_64 -product org.eclipse.epp.package.jee.product -keyring /Users/cjswntjd/.eclipse_keyring
+
+!ENTRY org.eclipse.core.net 1 0 2018-09-18 16:37:17.857
+!MESSAGE System property http.nonProxyHosts has been set to local|*.local|169.254/16|*.169.254/16|127.0.0.1:16105|*.127.0.0.1:16105|127.0.0.1:47317|*.127.0.0.1:47317|127.0.0.1:47337|*.127.0.0.1:47337|127.0.0.1:47139|*.127.0.0.1:47139|127.0.0.1:47159|*.127.0.0.1:47159|127.0.0.1:57317|*.127.0.0.1:57317|127.0.0.1:57337|*.127.0.0.1:57337|127.0.0.1:57318|*.127.0.0.1:57318|127.0.0.1:57337|*.127.0.0.1:57337|127.0.0.1:57419|*.127.0.0.1:57419|127.0.0.1:57439|*.127.0.0.1:57439 by an external source. This value will be overwritten using the values from the preferences
+
+!ENTRY org.eclipse.jface.text 2 0 2018-09-18 16:38:38.699
+!MESSAGE Duplicate template id: 'org.eclipse.wst.xslt.templates.xpath.number'
+
+!ENTRY org.eclipse.jface.text 2 0 2018-09-18 16:38:38.702
+!MESSAGE Duplicate template id: 'org.eclipse.wst.xslt.templates.xpath.round'
+!SESSION 2018-09-18 22:24:10.638 -----------------------------------------------
+eclipse.buildId=4.6.3.M20170301-0400
+java.version=1.8.0_131
+java.vendor=Oracle Corporation
+BootLoader constants: OS=macosx, ARCH=x86_64, WS=cocoa, NL=ko_KR
+Framework arguments:  -product org.eclipse.epp.package.jee.product -keyring /Users/cjswntjd/.eclipse_keyring
+Command-line arguments:  -os macosx -ws cocoa -arch x86_64 -product org.eclipse.epp.package.jee.product -keyring /Users/cjswntjd/.eclipse_keyring
+
+!ENTRY org.eclipse.core.net 1 0 2018-09-18 22:24:18.838
+!MESSAGE System property http.nonProxyHosts has been set to local|*.local|169.254/16|*.169.254/16|127.0.0.1:16105|*.127.0.0.1:16105|127.0.0.1:47317|*.127.0.0.1:47317|127.0.0.1:47337|*.127.0.0.1:47337|127.0.0.1:47139|*.127.0.0.1:47139|127.0.0.1:47159|*.127.0.0.1:47159|127.0.0.1:57317|*.127.0.0.1:57317|127.0.0.1:57337|*.127.0.0.1:57337|127.0.0.1:57318|*.127.0.0.1:57318|127.0.0.1:57337|*.127.0.0.1:57337|127.0.0.1:57419|*.127.0.0.1:57419|127.0.0.1:57439|*.127.0.0.1:57439 by an external source. This value will be overwritten using the values from the preferences
+!SESSION 2018-09-19 08:53:49.499 -----------------------------------------------
+eclipse.buildId=4.6.3.M20170301-0400
+java.version=1.8.0_131
+java.vendor=Oracle Corporation
+BootLoader constants: OS=macosx, ARCH=x86_64, WS=cocoa, NL=ko_KR
+Framework arguments:  -product org.eclipse.epp.package.jee.product -keyring /Users/cjswntjd/.eclipse_keyring
+Command-line arguments:  -os macosx -ws cocoa -arch x86_64 -product org.eclipse.epp.package.jee.product -keyring /Users/cjswntjd/.eclipse_keyring
+
+!ENTRY org.eclipse.core.net 1 0 2018-09-19 08:54:39.263
+!MESSAGE System property http.nonProxyHosts has been set to local|*.local|169.254/16|*.169.254/16|127.0.0.1:16105|*.127.0.0.1:16105|127.0.0.1:47317|*.127.0.0.1:47317|127.0.0.1:47337|*.127.0.0.1:47337|127.0.0.1:47139|*.127.0.0.1:47139|127.0.0.1:47159|*.127.0.0.1:47159|127.0.0.1:57317|*.127.0.0.1:57317|127.0.0.1:57337|*.127.0.0.1:57337|127.0.0.1:57318|*.127.0.0.1:57318|127.0.0.1:57337|*.127.0.0.1:57337|127.0.0.1:57419|*.127.0.0.1:57419|127.0.0.1:57439|*.127.0.0.1:57439 by an external source. This value will be overwritten using the values from the preferences
+
+!ENTRY org.eclipse.jface.text 2 0 2018-09-19 08:55:37.519
+!MESSAGE Duplicate template id: 'org.eclipse.wst.xslt.templates.xpath.number'
+
+!ENTRY org.eclipse.jface.text 2 0 2018-09-19 08:55:37.523
+!MESSAGE Duplicate template id: 'org.eclipse.wst.xslt.templates.xpath.round'
+!SESSION 2018-09-19 15:47:37.383 -----------------------------------------------
+eclipse.buildId=4.6.3.M20170301-0400
+java.version=1.8.0_131
+java.vendor=Oracle Corporation
+BootLoader constants: OS=macosx, ARCH=x86_64, WS=cocoa, NL=ko_KR
+Framework arguments:  -product org.eclipse.epp.package.jee.product -keyring /Users/cjswntjd/.eclipse_keyring
+Command-line arguments:  -os macosx -ws cocoa -arch x86_64 -product org.eclipse.epp.package.jee.product -keyring /Users/cjswntjd/.eclipse_keyring
+
+!ENTRY org.eclipse.core.net 1 0 2018-09-19 15:47:44.720
+!MESSAGE System property http.nonProxyHosts has been set to local|*.local|169.254/16|*.169.254/16|127.0.0.1:16105|*.127.0.0.1:16105|127.0.0.1:47317|*.127.0.0.1:47317|127.0.0.1:47337|*.127.0.0.1:47337|127.0.0.1:47139|*.127.0.0.1:47139|127.0.0.1:47159|*.127.0.0.1:47159|127.0.0.1:57317|*.127.0.0.1:57317|127.0.0.1:57337|*.127.0.0.1:57337|127.0.0.1:57318|*.127.0.0.1:57318|127.0.0.1:57337|*.127.0.0.1:57337|127.0.0.1:57419|*.127.0.0.1:57419|127.0.0.1:57439|*.127.0.0.1:57439 by an external source. This value will be overwritten using the values from the preferences
+
+!ENTRY org.eclipse.jface.text 2 0 2018-09-19 15:50:00.293
+!MESSAGE Duplicate template id: 'org.eclipse.wst.xslt.templates.xpath.number'
+
+!ENTRY org.eclipse.jface.text 2 0 2018-09-19 15:50:00.296
+!MESSAGE Duplicate template id: 'org.eclipse.wst.xslt.templates.xpath.round'
+!SESSION 2018-09-27 15:25:25.547 -----------------------------------------------
+eclipse.buildId=4.6.3.M20170301-0400
+java.version=1.8.0_131
+java.vendor=Oracle Corporation
+BootLoader constants: OS=macosx, ARCH=x86_64, WS=cocoa, NL=ko_KR
+Framework arguments:  -product org.eclipse.epp.package.jee.product -keyring /Users/cjswntjd/.eclipse_keyring
+Command-line arguments:  -os macosx -ws cocoa -arch x86_64 -product org.eclipse.epp.package.jee.product -keyring /Users/cjswntjd/.eclipse_keyring
+
+!ENTRY org.eclipse.core.net 1 0 2018-09-27 15:25:36.087
+!MESSAGE System property http.nonProxyHosts has been set to local|*.local|169.254/16|*.169.254/16|127.0.0.1:16105|*.127.0.0.1:16105|127.0.0.1:47317|*.127.0.0.1:47317|127.0.0.1:47337|*.127.0.0.1:47337|127.0.0.1:47139|*.127.0.0.1:47139|127.0.0.1:47159|*.127.0.0.1:47159|127.0.0.1:57317|*.127.0.0.1:57317|127.0.0.1:57337|*.127.0.0.1:57337|127.0.0.1:57318|*.127.0.0.1:57318|127.0.0.1:57337|*.127.0.0.1:57337|127.0.0.1:57419|*.127.0.0.1:57419|127.0.0.1:57439|*.127.0.0.1:57439 by an external source. This value will be overwritten using the values from the preferences
+
+!ENTRY org.eclipse.jface.text 2 0 2018-09-27 15:28:56.332
+!MESSAGE Duplicate template id: 'org.eclipse.wst.xslt.templates.xpath.number'
+
+!ENTRY org.eclipse.jface.text 2 0 2018-09-27 15:28:56.336
+!MESSAGE Duplicate template id: 'org.eclipse.wst.xslt.templates.xpath.round'
+!SESSION 2018-09-29 22:35:20.640 -----------------------------------------------
+eclipse.buildId=4.6.3.M20170301-0400
+java.version=1.8.0_131
+java.vendor=Oracle Corporation
+BootLoader constants: OS=macosx, ARCH=x86_64, WS=cocoa, NL=ko_KR
+Framework arguments:  -product org.eclipse.epp.package.jee.product -keyring /Users/cjswntjd/.eclipse_keyring
+Command-line arguments:  -os macosx -ws cocoa -arch x86_64 -product org.eclipse.epp.package.jee.product -keyring /Users/cjswntjd/.eclipse_keyring
+
+!ENTRY org.eclipse.core.net 1 0 2018-09-29 22:35:34.262
+!MESSAGE System property http.nonProxyHosts has been set to local|*.local|169.254/16|*.169.254/16|127.0.0.1:16105|*.127.0.0.1:16105|127.0.0.1:47317|*.127.0.0.1:47317|127.0.0.1:47337|*.127.0.0.1:47337|127.0.0.1:47139|*.127.0.0.1:47139|127.0.0.1:47159|*.127.0.0.1:47159|127.0.0.1:57317|*.127.0.0.1:57317|127.0.0.1:57337|*.127.0.0.1:57337|127.0.0.1:57318|*.127.0.0.1:57318|127.0.0.1:57337|*.127.0.0.1:57337|127.0.0.1:57419|*.127.0.0.1:57419|127.0.0.1:57439|*.127.0.0.1:57439 by an external source. This value will be overwritten using the values from the preferences
+
+!ENTRY org.eclipse.jface.text 2 0 2018-09-29 22:39:20.047
+!MESSAGE Duplicate template id: 'org.eclipse.wst.xslt.templates.xpath.number'
+
+!ENTRY org.eclipse.jface.text 2 0 2018-09-29 22:39:20.051
+!MESSAGE Duplicate template id: 'org.eclipse.wst.xslt.templates.xpath.round'
+
+!ENTRY org.eclipse.jface.text 2 0 2018-09-29 22:41:28.603
+!MESSAGE Duplicate template id: 'org.eclipse.wst.xslt.templates.xpath.number'
+
+!ENTRY org.eclipse.jface.text 2 0 2018-09-29 22:41:28.603
+!MESSAGE Duplicate template id: 'org.eclipse.wst.xslt.templates.xpath.round'
