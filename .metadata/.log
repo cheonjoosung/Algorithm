@@ -9415,3 +9415,158 @@ Command-line arguments:  -os macosx -ws cocoa -arch x86_64 -product org.eclipse.
 
 !ENTRY org.eclipse.jface.text 2 0 2018-10-02 07:58:28.747
 !MESSAGE Duplicate template id: 'org.eclipse.wst.xslt.templates.xpath.round'
+
+!ENTRY org.eclipse.jdt.core 4 4 2018-10-02 10:29:22.908
+!MESSAGE JavaBuilder handling CoreException
+!STACK 1
+org.eclipse.core.internal.resources.ResourceException: A resource exists with a different case: '/Algorithm/bin/SS/sw_expert/test_sample/Pos.class'.
+	at org.eclipse.core.internal.resources.Resource.checkDoesNotExist(Resource.java:323)
+	at org.eclipse.core.internal.resources.Resource.checkDoesNotExist(Resource.java:301)
+	at org.eclipse.core.internal.resources.File.create(File.java:107)
+	at org.eclipse.jdt.internal.core.builder.AbstractImageBuilder.writeClassFileContents(AbstractImageBuilder.java:881)
+	at org.eclipse.jdt.internal.core.builder.AbstractImageBuilder.writeClassFile(AbstractImageBuilder.java:860)
+	at org.eclipse.jdt.internal.core.builder.AbstractImageBuilder.acceptResult(AbstractImageBuilder.java:191)
+	at org.eclipse.jdt.internal.compiler.Compiler.processCompiledUnits(Compiler.java:593)
+	at org.eclipse.jdt.internal.compiler.Compiler.compile(Compiler.java:462)
+	at org.eclipse.jdt.internal.compiler.Compiler.compile(Compiler.java:417)
+	at org.eclipse.jdt.internal.core.builder.AbstractImageBuilder.compile(AbstractImageBuilder.java:368)
+	at org.eclipse.jdt.internal.core.builder.BatchImageBuilder.compile(BatchImageBuilder.java:179)
+	at org.eclipse.jdt.internal.core.builder.AbstractImageBuilder.compile(AbstractImageBuilder.java:305)
+	at org.eclipse.jdt.internal.core.builder.BatchImageBuilder.build(BatchImageBuilder.java:61)
+	at org.eclipse.jdt.internal.core.builder.JavaBuilder.buildAll(JavaBuilder.java:256)
+	at org.eclipse.jdt.internal.core.builder.JavaBuilder.buildDeltas(JavaBuilder.java:272)
+	at org.eclipse.jdt.internal.core.builder.JavaBuilder.build(JavaBuilder.java:195)
+	at org.eclipse.core.internal.events.BuildManager$2.run(BuildManager.java:735)
+	at org.eclipse.core.runtime.SafeRunner.run(SafeRunner.java:42)
+	at org.eclipse.core.internal.events.BuildManager.basicBuild(BuildManager.java:206)
+	at org.eclipse.core.internal.events.BuildManager.basicBuild(BuildManager.java:246)
+	at org.eclipse.core.internal.events.BuildManager$1.run(BuildManager.java:301)
+	at org.eclipse.core.runtime.SafeRunner.run(SafeRunner.java:42)
+	at org.eclipse.core.internal.events.BuildManager.basicBuild(BuildManager.java:304)
+	at org.eclipse.core.internal.events.BuildManager.basicBuildLoop(BuildManager.java:360)
+	at org.eclipse.core.internal.events.BuildManager.build(BuildManager.java:383)
+	at org.eclipse.core.internal.events.AutoBuildJob.doBuild(AutoBuildJob.java:144)
+	at org.eclipse.core.internal.events.AutoBuildJob.run(AutoBuildJob.java:235)
+	at org.eclipse.core.internal.jobs.Worker.run(Worker.java:55)
+!SUBENTRY 1 org.eclipse.core.resources 4 275 2018-10-02 10:29:22.908
+!MESSAGE A resource exists with a different case: '/Algorithm/bin/SS/sw_expert/test_sample/Pos.class'.
+
+!ENTRY org.eclipse.jface.text 2 0 2018-10-02 10:38:51.676
+!MESSAGE Duplicate template id: 'org.eclipse.wst.xslt.templates.xpath.number'
+
+!ENTRY org.eclipse.jface.text 2 0 2018-10-02 10:38:51.676
+!MESSAGE Duplicate template id: 'org.eclipse.wst.xslt.templates.xpath.round'
+!SESSION 2018-10-02 15:42:48.536 -----------------------------------------------
+eclipse.buildId=4.6.3.M20170301-0400
+java.version=1.8.0_131
+java.vendor=Oracle Corporation
+BootLoader constants: OS=macosx, ARCH=x86_64, WS=cocoa, NL=ko_KR
+Framework arguments:  -product org.eclipse.epp.package.jee.product -keyring /Users/cjswntjd/.eclipse_keyring
+Command-line arguments:  -os macosx -ws cocoa -arch x86_64 -product org.eclipse.epp.package.jee.product -keyring /Users/cjswntjd/.eclipse_keyring
+
+!ENTRY org.eclipse.core.net 1 0 2018-10-02 15:43:05.160
+!MESSAGE System property http.nonProxyHosts has been set to local|*.local|169.254/16|*.169.254/16|127.0.0.1:16105|*.127.0.0.1:16105|127.0.0.1:47317|*.127.0.0.1:47317|127.0.0.1:47337|*.127.0.0.1:47337|127.0.0.1:47139|*.127.0.0.1:47139|127.0.0.1:47159|*.127.0.0.1:47159|127.0.0.1:57317|*.127.0.0.1:57317|127.0.0.1:57337|*.127.0.0.1:57337|127.0.0.1:57318|*.127.0.0.1:57318|127.0.0.1:57337|*.127.0.0.1:57337|127.0.0.1:57419|*.127.0.0.1:57419|127.0.0.1:57439|*.127.0.0.1:57439 by an external source. This value will be overwritten using the values from the preferences
+
+!ENTRY org.eclipse.jface.text 2 0 2018-10-02 15:44:33.594
+!MESSAGE Duplicate template id: 'org.eclipse.wst.xslt.templates.xpath.number'
+
+!ENTRY org.eclipse.jface.text 2 0 2018-10-02 15:44:33.597
+!MESSAGE Duplicate template id: 'org.eclipse.wst.xslt.templates.xpath.round'
+
+!ENTRY org.eclipse.jface.text 2 0 2018-10-02 16:41:28.976
+!MESSAGE Duplicate template id: 'org.eclipse.wst.xslt.templates.xpath.number'
+
+!ENTRY org.eclipse.jface.text 2 0 2018-10-02 16:41:28.976
+!MESSAGE Duplicate template id: 'org.eclipse.wst.xslt.templates.xpath.round'
+!SESSION 2018-10-02 21:43:28.637 -----------------------------------------------
+eclipse.buildId=4.6.3.M20170301-0400
+java.version=1.8.0_131
+java.vendor=Oracle Corporation
+BootLoader constants: OS=macosx, ARCH=x86_64, WS=cocoa, NL=ko_KR
+Framework arguments:  -product org.eclipse.epp.package.jee.product -keyring /Users/cjswntjd/.eclipse_keyring
+Command-line arguments:  -os macosx -ws cocoa -arch x86_64 -product org.eclipse.epp.package.jee.product -keyring /Users/cjswntjd/.eclipse_keyring
+
+!ENTRY org.eclipse.core.net 1 0 2018-10-02 21:44:05.901
+!MESSAGE System property http.nonProxyHosts has been set to local|*.local|169.254/16|*.169.254/16|127.0.0.1:16105|*.127.0.0.1:16105|127.0.0.1:47317|*.127.0.0.1:47317|127.0.0.1:47337|*.127.0.0.1:47337|127.0.0.1:47139|*.127.0.0.1:47139|127.0.0.1:47159|*.127.0.0.1:47159|127.0.0.1:57317|*.127.0.0.1:57317|127.0.0.1:57337|*.127.0.0.1:57337|127.0.0.1:57318|*.127.0.0.1:57318|127.0.0.1:57337|*.127.0.0.1:57337|127.0.0.1:57419|*.127.0.0.1:57419|127.0.0.1:57439|*.127.0.0.1:57439 by an external source. This value will be overwritten using the values from the preferences
+
+!ENTRY org.eclipse.jface.text 2 0 2018-10-02 21:47:12.414
+!MESSAGE Duplicate template id: 'org.eclipse.wst.xslt.templates.xpath.number'
+
+!ENTRY org.eclipse.jface.text 2 0 2018-10-02 21:47:12.418
+!MESSAGE Duplicate template id: 'org.eclipse.wst.xslt.templates.xpath.round'
+
+!ENTRY org.eclipse.jface.text 2 0 2018-10-02 21:47:27.121
+!MESSAGE Duplicate template id: 'org.eclipse.wst.xslt.templates.xpath.number'
+
+!ENTRY org.eclipse.jface.text 2 0 2018-10-02 21:47:27.121
+!MESSAGE Duplicate template id: 'org.eclipse.wst.xslt.templates.xpath.round'
+!SESSION 2018-10-02 22:43:59.912 -----------------------------------------------
+eclipse.buildId=4.6.3.M20170301-0400
+java.version=1.8.0_131
+java.vendor=Oracle Corporation
+BootLoader constants: OS=macosx, ARCH=x86_64, WS=cocoa, NL=ko_KR
+Framework arguments:  -product org.eclipse.epp.package.jee.product -keyring /Users/cjswntjd/.eclipse_keyring
+Command-line arguments:  -os macosx -ws cocoa -arch x86_64 -product org.eclipse.epp.package.jee.product -keyring /Users/cjswntjd/.eclipse_keyring
+
+!ENTRY org.eclipse.core.net 1 0 2018-10-02 22:44:15.731
+!MESSAGE System property http.nonProxyHosts has been set to local|*.local|169.254/16|*.169.254/16|127.0.0.1:16105|*.127.0.0.1:16105|127.0.0.1:47317|*.127.0.0.1:47317|127.0.0.1:47337|*.127.0.0.1:47337|127.0.0.1:47139|*.127.0.0.1:47139|127.0.0.1:47159|*.127.0.0.1:47159|127.0.0.1:57317|*.127.0.0.1:57317|127.0.0.1:57337|*.127.0.0.1:57337|127.0.0.1:57318|*.127.0.0.1:57318|127.0.0.1:57337|*.127.0.0.1:57337|127.0.0.1:57419|*.127.0.0.1:57419|127.0.0.1:57439|*.127.0.0.1:57439 by an external source. This value will be overwritten using the values from the preferences
+!SESSION 2018-10-03 07:45:19.265 -----------------------------------------------
+eclipse.buildId=4.6.3.M20170301-0400
+java.version=1.8.0_131
+java.vendor=Oracle Corporation
+BootLoader constants: OS=macosx, ARCH=x86_64, WS=cocoa, NL=ko_KR
+Framework arguments:  -product org.eclipse.epp.package.jee.product -keyring /Users/cjswntjd/.eclipse_keyring
+Command-line arguments:  -os macosx -ws cocoa -arch x86_64 -product org.eclipse.epp.package.jee.product -keyring /Users/cjswntjd/.eclipse_keyring
+
+!ENTRY org.eclipse.core.net 1 0 2018-10-03 07:45:27.329
+!MESSAGE System property http.nonProxyHosts has been set to local|*.local|169.254/16|*.169.254/16|127.0.0.1:16105|*.127.0.0.1:16105|127.0.0.1:47317|*.127.0.0.1:47317|127.0.0.1:47337|*.127.0.0.1:47337|127.0.0.1:47139|*.127.0.0.1:47139|127.0.0.1:47159|*.127.0.0.1:47159|127.0.0.1:57317|*.127.0.0.1:57317|127.0.0.1:57337|*.127.0.0.1:57337|127.0.0.1:57318|*.127.0.0.1:57318|127.0.0.1:57337|*.127.0.0.1:57337|127.0.0.1:57419|*.127.0.0.1:57419|127.0.0.1:57439|*.127.0.0.1:57439 by an external source. This value will be overwritten using the values from the preferences
+
+!ENTRY org.eclipse.jdt.ui 4 10001 2018-10-03 07:47:20.433
+!MESSAGE Internal Error
+!STACK 1
+Java Model Exception: Java Model Status [Cell(int, int, int, int) [in Cell [in [Working copy] P5653.java [in SS.sw_expert.test_sample [in src [in Algorithm]]]]] does not exist]
+	at org.eclipse.jdt.internal.core.JavaElement.newNotPresentException(JavaElement.java:556)
+	at org.eclipse.jdt.internal.core.JavaElement.openWhenClosed(JavaElement.java:590)
+	at org.eclipse.jdt.internal.core.JavaElement.getElementInfo(JavaElement.java:316)
+	at org.eclipse.jdt.internal.core.JavaElement.getElementInfo(JavaElement.java:302)
+	at org.eclipse.jdt.internal.core.SourceRefElement.getSourceRange(SourceRefElement.java:218)
+	at org.eclipse.jdt.internal.core.Member.getJavadocRange(Member.java:291)
+	at org.eclipse.jdt.internal.ui.text.javadoc.JavadocContentAccess2.getHTMLContentFromSource(JavadocContentAccess2.java:658)
+	at org.eclipse.jdt.internal.ui.text.javadoc.JavadocContentAccess2.getHTMLContent(JavadocContentAccess2.java:534)
+	at org.eclipse.jdt.internal.ui.text.java.hover.JavadocHover.getHoverInfo(JavadocHover.java:717)
+	at org.eclipse.jdt.internal.ui.text.java.hover.JavadocHover.internalGetHoverInfo(JavadocHover.java:635)
+	at org.eclipse.jdt.internal.ui.text.java.hover.JavadocHover.getHoverInfo2(JavadocHover.java:627)
+	at org.eclipse.jdt.internal.ui.text.java.hover.BestMatchHover.getHoverInfo2(BestMatchHover.java:164)
+	at org.eclipse.jdt.internal.ui.text.java.hover.BestMatchHover.getHoverInfo2(BestMatchHover.java:130)
+	at org.eclipse.jdt.internal.ui.text.java.hover.JavaEditorTextHoverProxy.getHoverInfo2(JavaEditorTextHoverProxy.java:86)
+	at org.eclipse.jface.text.TextViewerHoverManager$4.run(TextViewerHoverManager.java:165)
+!SUBENTRY 1 org.eclipse.jdt.core 4 969 2018-10-03 07:47:20.434
+!MESSAGE Cell(int, int, int, int) [in Cell [in [Working copy] P5653.java [in SS.sw_expert.test_sample [in src [in Algorithm]]]]] does not exist
+
+!ENTRY org.eclipse.jface.text 2 0 2018-10-03 07:47:31.972
+!MESSAGE Duplicate template id: 'org.eclipse.wst.xslt.templates.xpath.number'
+
+!ENTRY org.eclipse.jface.text 2 0 2018-10-03 07:47:31.973
+!MESSAGE Duplicate template id: 'org.eclipse.wst.xslt.templates.xpath.round'
+!SESSION 2018-10-03 12:29:20.265 -----------------------------------------------
+eclipse.buildId=4.6.3.M20170301-0400
+java.version=1.8.0_131
+java.vendor=Oracle Corporation
+BootLoader constants: OS=macosx, ARCH=x86_64, WS=cocoa, NL=ko_KR
+Framework arguments:  -product org.eclipse.epp.package.jee.product -keyring /Users/cjswntjd/.eclipse_keyring
+Command-line arguments:  -os macosx -ws cocoa -arch x86_64 -product org.eclipse.epp.package.jee.product -keyring /Users/cjswntjd/.eclipse_keyring
+
+!ENTRY org.eclipse.core.net 1 0 2018-10-03 12:29:58.015
+!MESSAGE System property http.nonProxyHosts has been set to local|*.local|169.254/16|*.169.254/16|127.0.0.1:16105|*.127.0.0.1:16105|127.0.0.1:47317|*.127.0.0.1:47317|127.0.0.1:47337|*.127.0.0.1:47337|127.0.0.1:47139|*.127.0.0.1:47139|127.0.0.1:47159|*.127.0.0.1:47159|127.0.0.1:57317|*.127.0.0.1:57317|127.0.0.1:57337|*.127.0.0.1:57337|127.0.0.1:57318|*.127.0.0.1:57318|127.0.0.1:57337|*.127.0.0.1:57337|127.0.0.1:57419|*.127.0.0.1:57419|127.0.0.1:57439|*.127.0.0.1:57439 by an external source. This value will be overwritten using the values from the preferences
+
+!ENTRY org.eclipse.jface.text 2 0 2018-10-03 12:33:37.771
+!MESSAGE Duplicate template id: 'org.eclipse.wst.xslt.templates.xpath.number'
+
+!ENTRY org.eclipse.jface.text 2 0 2018-10-03 12:33:37.774
+!MESSAGE Duplicate template id: 'org.eclipse.wst.xslt.templates.xpath.round'
+
+!ENTRY org.eclipse.jface.text 2 0 2018-10-03 12:35:29.814
+!MESSAGE Duplicate template id: 'org.eclipse.wst.xslt.templates.xpath.number'
+
+!ENTRY org.eclipse.jface.text 2 0 2018-10-03 12:35:29.814
+!MESSAGE Duplicate template id: 'org.eclipse.wst.xslt.templates.xpath.round'
