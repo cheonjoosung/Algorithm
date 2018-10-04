@@ -1,116 +1,122 @@
 package SS.sw_expert.test_sample;
 
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
 import java.util.ArrayList;
-import java.util.Collections;
-import java.util.Comparator;
-import java.util.Iterator;
-import java.util.Scanner;
+import java.util.LinkedList;
+import java.util.List;
+import java.util.Queue;
+import java.util.StringTokenizer;
 
 //줄기세포 배양
 public class P5653 {
 	static int [][] map;
-	static int ans, row, col, k;
-	static int [] dx = {0, -1, 0, 1};
-	static int [] dy = {1, 0, -1, 0};
-	static ArrayList<Cell> list;
+	static int ans, n, m, k;
+	static int [] dx = {1, 0, -1, 0};
+	static int [] dy = {0, 1, 0, -1};
+	static List<ArrayList<Cell>> list;
 
-	public static void main(String[] args) {
-		Scanner sc = new Scanner(System.in);
+	public static void main(String[] args) throws IOException {
+		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+		StringBuilder sb = new StringBuilder();
 
-		int t = sc.nextInt();
+		int t = Integer.parseInt(br.readLine());
+		list = new ArrayList<>();
 
 		for(int tc=1 ; tc<=t ; tc++) {
-			col = sc.nextInt(); //세포셀 크기 row,col<=50 
-			row = sc.nextInt();
-			k = sc.nextInt(); //배양 시간 k<=300
+			StringTokenizer st = new StringTokenizer(br.readLine());
 
-			ans = 0;
-			map = new int[row+k][col+k]; //1이 가장 빠르게 번식함. 양쪽으로 퍼지니까 k/2+k/2=k 만큼 크게 설정, 비활성화된 친구 표시
-			list = new ArrayList<>(); //활성중인 세포를 표시하기 위한 리스트
+			n = Integer.parseInt(st.nextToken()); //세포셀 크기 row,col<=50 
+			m = Integer.parseInt(st.nextToken());
+			k = Integer.parseInt(st.nextToken()); //배양 시간 k<=300
 
-			for(int i=0 ; i<row ; i++)
-				for(int j=0 ; j<col ; j++) {
-					int val = sc.nextInt();
-					if(val != 0) {
-						list.add(new Cell(i+k/2, j+k/2, val, val, val*2, 1));
-						map[i+k/2][j+k/2] = val;
-					}
-				}
-
+			map = new int[n+k][m+k]; //1이 가장 빠르게 번식함. 양쪽으로 퍼지니까 k/2+k/2=k 만큼 크게 설정, 비활성화된 친구 표시
 			
-			for(int i=0 ; i<=k ; i++) {
-				int size = list.size();
-				
-				for(int j=0 ; j<size ; j++) {					
-					if(list.get(j).nonActTime == -1 && list.get(j).state == 1) {
-						list.get(j).state = 0;
-						spread(list.get(j).x, list.get(j).y, list.get(j).val);
-					}
-				}
-				
-				Collections.sort(list);
-				
-				Iterator<Cell> iter = list.iterator();
-				while(iter.hasNext()) {
-					Cell c = iter.next();
+			list.clear();
+			for(int i=0 ; i<10 ; i++)
+				list.add(new ArrayList<>()); //활성중인 세포를 표시하기 위한 리스트
+
+			for(int i=(k/2) ; i<(k/2)+n ; i++) {
+				st = new StringTokenizer(br.readLine());
+				for(int j=(k/2) ; j<(k/2)+m ; j++) {
+					map[i][j] = Integer.parseInt(st.nextToken());
 					
-					if(c.totalTime <= 0 && c.state == 0) 
-						iter.remove();
-				}
-				
-				print(i);
-				
-				for(int j=0 ; j<list.size() ; j++) {
-					list.get(j).nonActTime--;
-					list.get(j).totalTime--;
+					//생명력이 0~9사이
+					if(map[i][j] != 0) 
+						list.get(map[i][j]-1).add(new Cell(i, j, map[i][j], map[i][j], k ,0));
 				}
 			}
 
-			for(int i=0 ; i<list.size() ; i++) {
-				if(list.get(i).state == 1) ans++;
-				else {
-					if(list.get(i).totalTime >=0) ans++;
-					
+			solve();
+			
+			int ans = 0;
+			for(int i=0 ; i<map.length ; i++) {
+				for(int j=0 ; j<map[0].length ; j++) {
+					if(map[i][j] !=0 && map[i][j] != -1) ans++;
 				}
+			}
+			sb.append("#" + tc + " " + ans + "\n");
+		}
+		System.out.println(sb);
+	}
+	
+	public static void solve() {
+		Queue<Cell> q = new LinkedList<>();
+		
+		for(int i=9 ; i>=0 ; i--) {
+			if(list.get(i).size() != 0) {
+				for(int j=0 ; j<list.get(i).size() ; j++) {
+					int x = list.get(i).get(j).x;
+					int y = list.get(i).get(j).y;
+					int k = list.get(i).get(j).k;
+					int time = list.get(i).get(j).time;
+					q.add(new Cell(x, y, k, k, time, 0));
+				}
+			}
+		}
+		
+		while(!q.isEmpty()) {
+			Cell c = q.poll();
+			
+			if(c.state == 0 && c.flag == 1) { //
+				map[c.x][c.y] = -1;
+				continue;
 			}
 			
-			ans = list.size();
-			System.out.println("#" + tc + " " + ans);
-		}
-		sc.close();
-	}
-
-	public static void print(int k) {
-		System.out.println("K : " + k);
-		for(Cell c : list) {
-			System.out.print("Info : " + c.x + " " + c.y + " "
-					+ c.val + " " + c.nonActTime + " " + c.totalTime + " " + c.state);
-			System.out.println();
-		}
-		System.out.println();
-	}
-
-	public static void spread(int x, int y, int val) {
-		for(int i=0 ; i<4 ; i++) {
-			int nextX = x+dx[i];
-			int nextY = y+dy[i];
-
-			if(map[nextX][nextY] == 0) {
-				map[nextX][nextY] = val;
-				list.add(new Cell(nextX, nextY, val, val, val*2, 1));
+			if(c.time == 0) continue;
+			
+			if(c.state == 0) { //비활성시간이 0이 될때
+				q.add(new Cell(c.x, c.y, c.k, c.k, c.time, 1)); //활성화되고 머무는 시간 flag->1
+			} else {
+				q.add(new Cell(c.x,c.y, c.k, c.state-1, c.time-1, c.flag)); //시간 감소
+				continue;
 			}
+			
+			for(int i=0 ; i<4 ; i++) {
+				int nx = c.x + dx[i];
+				int ny = c.y + dy[i];
+				
+				if(nx<0 || ny <0 || nx>=n+k || ny>=m+k) continue;
+				if(map[nx][ny] != 0) continue;
+				
+				map[nx][ny] = c.k;
+				q.add(new Cell(nx, ny, c.k, c.k, c.time-1, 0));
+			}
+			
 		}
 	}
 }
 
-class Cell implements Comparable<Cell>{
-	int x; int y; int val; int nonActTime; int totalTime; int state;
-	Cell(int x, int y, int val, int nonActTime, int totalTime, int state) {
-		this.x = x; this.y =y; this.val = val; 
-		this.nonActTime = nonActTime; this.totalTime = totalTime; this.state=state; //1은 비활성화 0은 활성호
+class Cell {
+	int x; int y; int k; int state; int time; int flag;
+	public Cell(int x, int y, int k, int state, int time, int flag) {
+		this.x = x;
+		this.y = y;
+		this.k = k;
+		this.state = state; //변화는 생명력
+		this.time = time; //전체시간
+		this.flag = flag; //0이 되었을 때 번식 유무
 	}
-	@Override
-	public int compareTo(Cell o) {
-		return (o.val - this.val);
-	}
+
 }
