@@ -10,10 +10,11 @@ import java.util.StringTokenizer;
 
 //원자 소멸 시뮬레이션
 public class P5648 {
-	static int ans;
-	static int n, row, col;
+	static int n;
+	static int [] dx = {0, 0, -1, 1};
+	static int [] dy = {1, -1, 0, 0};
 
-	public static void main(String[] args) throws IOException {
+	public static void main(String[] args) throws IOException{
 		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
 		StringBuilder sb = new StringBuilder();
 		int tc = Integer.parseInt(br.readLine());
@@ -35,61 +36,58 @@ public class P5648 {
 		System.out.print(sb);
 	}
 
-	static int[][] map = new int[4001][4001];
-	private static int solve(ArrayList<Atom> list) {
-		Queue<Atom> queue = new LinkedList<>();
-		// 0~4000 까지 사용하기 위해서 4001로
-		for(int i=0;i<list.size();i++) {
-			// 주어진 좌표랑 배열상 x y기준이 다르기 때문에 교환
-			// -를 없애기 위해 +1000
-			int x = list.get(i).y+1000;
-			int y = list.get(i).x+1000;
-			int d = list.get(i).d;
-			int k = list.get(i).k;
-			if(k==0) k=101;
-			// 0.5칸에서 만나는 것을 방지하기 위해서 *2 (0~4000)
-			// 배열 상 x는 0 부터 시작하니 뒤집기
-			queue.add(new Atom(4000-x*2, y*2, d, k));
-			map[4000-x*2][y*2] = k;
+	static int [][] map = new int[4001][4001];
+	public static int solve(ArrayList<Atom> list) {
+		Queue<Atom> q = new LinkedList<>();
+
+		//0.5초때의 애매한 상황을 피하기 위하여 2배
+		for(Atom a : list) {
+			int x = a.x+1000;
+			int y = a.y+1000;
+			q.add(new Atom(2*x, 2*y, a.d, a.k));
+			map[2*x][2*y] = a.k;
 		}
-		int cntZero = 0;
-		int result = 0;
-		while(!queue.isEmpty()) {
-			Atom t = queue.poll();
-			// 이동하려고 하는데 자신의 K 보다 크면 충돌이 일어난 것.
-			if(map[t.x][t.y]>t.k) {
-				if(t.k==101) result-=101;
-				result+=map[t.x][t.y];
-				map[t.x][t.y] = 0;
+
+		
+		int res = 0;
+		while(!q.isEmpty()) {
+			Atom a = q.remove();
+
+			/*
+			 * 1. 출발하기 전에 나의 방출값과 맵의 저장된 값(누군가 오면 기존의 값보다 커진다) 비교
+			 * 2. 내가 가진 방출값보다 맵의 값이 크다면 충돌한거기에 해당맵을 0으로 하고 큐에서 제거(continue)
+			 */
+			if(map[a.x][a.y] > a.k) { //누가와서 파워를 더했기에 추가됬으므로 지워야함
+				res += map[a.x][a.y];
+				map[a.x][a.y] = 0;
 				continue;
 			}
-			int tx = t.x;
-			int ty = t.y;
-			switch(t.d) {
-			case 0: tx-=1; break;
-			case 1:    tx+=1; break;
-			case 2:    ty-=1; break;
-			case 3:    ty+=1; break;
-			}
-			if(tx<0 || ty<0 || tx>4000 || ty>4000) {
-				map[t.x][t.y] = 0;
+
+			//칸 이동
+			int nx = a.x + dx[a.d];
+			int ny = a.y + dy[a.d];
+
+			//범위 나가면 제거. 맵에 표시된 값 제거
+			if(nx < 0 || ny < 0 || nx > 4000 || ny > 4000) {
+				map[a.x][a.y] = 0;
 				continue;
 			}
-			// 해당 좌표에 값이 있다면
-			if(map[tx][ty]!=0) {
-				if(t.k==101) cntZero++;
-				map[tx][ty] += t.k;
-				map[t.x][t.y] = 0;
-			}else {
-				// 값이 없다면
-				map[tx][ty] = t.k;
-				map[t.x][t.y] = 0;
-				queue.add(new Atom(tx, ty, t.d, t.k));
+
+			/*
+			 * 1. 이동한 칸에 값이 있는 경우 : 먼저 온 것이기에 내가 가진 방출값만 더해주고 이동하기 전의 위치를 0으로 + 제
+			 * 2. 이동한 칸에 값이 0인 경우 : 아무도 안왔기에 나의 방출값 표시 + 이동하기 전의 위치 0 + 이동한 위치로 큐에 추
+			 */
+			if(map[nx][ny] != 0) {
+				map[nx][ny] += a.k; //누군가 먼저 도착한 것이기에 더해준다.
+				map[a.x][a.y] = 0; //이동했으므로 기존 것 초기화
+			} else {
+				map[nx][ny] = a.k;
+				map[a.x][a.y] = 0; //이동했으므로 기존것 초기화
+				q.add(new Atom(nx, ny, a.d, a.k));
 			}
 		}
-		// zero 잘라주기
-		result -= cntZero*101;
-		return result;
+
+		return res;
 	}
 }
 

@@ -43,9 +43,7 @@ public class P5644 {
 				chargeList.add(new Po(x, y, c, p));
 			}
 			
-			
 			Collections.sort(chargeList);
-			//for(Po p : chargeList) System.out.println(p.p);
 			
 			for(int i=0 ; i<=m ; i++) {
 				ArrayList<Integer> aList = new ArrayList<>();
@@ -55,17 +53,10 @@ public class P5644 {
 				ax += dx[amove[i]]; ay += dy[amove[i]];
 				bx += dx[bmove[i]]; by += dy[bmove[i]];
 				
-				//System.out.println("좌표 : " + ax + " " + ay + "   " + bx + " " + by);
-				
-				//A 계산
+				//A B 계산
 				for(int j=0 ; j<a ; j++) {
 					Po po = chargeList.get(j);
 					if(po.c >= calcD(po.x, po.y, ax, ay)) aList.add(j);
-				}
-				
-				//B 계산 
-				for(int j=0 ; j<a ; j++) {
-					Po po = chargeList.get(j);
 					if(po.c >= calcD(po.x, po.y, bx, by)) bList.add(j);
 				}
 				
@@ -78,9 +69,9 @@ public class P5644 {
 					
 					for(int aIdx=0 ; aIdx<aSize ; aIdx++) {
 						for(int bIdx=0 ; bIdx<bSize ; bIdx++) {
-							if(aList.get(aIdx) == bList.get(bIdx)) {
+							if(aList.get(aIdx) == bList.get(bIdx)) 
 								max = Math.max(max, chargeList.get(aList.get(aIdx)).p);
-							} else {
+							else {
 								max = Math.max(max,
 										chargeList.get(aList.get(aIdx)).p + chargeList.get(bList.get(bIdx)).p);
 							}
