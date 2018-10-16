@@ -1,7 +1,9 @@
 package SS.sw_expert.d3;
 
+import java.math.BigInteger;
 import java.util.Scanner;
 
+//두 수의 덧셈
 public class P3260 {
 	public static void main(String[] args) {
 		Scanner sc = new Scanner(System.in);
@@ -12,14 +14,12 @@ public class P3260 {
 			String aStr = sc.next();
 			String bStr = sc.next();
 			
-			char [] aChar = aStr.toCharArray();
-			char [] bChar = bStr.toCharArray();
+			BigInteger a = new BigInteger(aStr); 
+			BigInteger b = new BigInteger(bStr);
+		
+			BigInteger c = a.add(b);
 			
-			if(aChar.length > bChar.length) {
-				
-			}
-			
-			System.out.println("#t " + 0);
+			System.out.println("#" + t + " " + c);
 		}
 		
 		sc.close();

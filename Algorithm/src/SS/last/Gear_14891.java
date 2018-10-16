@@ -108,28 +108,18 @@ public class Gear_14891 {
 			break;
 		}
 	}
-
-	public static void change(int [] arr, int mode) {
-		if(mode == 1) {
-			int temp = arr[0];
-			arr[0] = arr[7];
-			arr[7] = arr[6];
-			arr[6] = arr[5];
-			arr[5] = arr[4];
-			arr[4] = arr[3];
-			arr[3] = arr[2];
-			arr[2] = arr[1];
-			arr[1] = temp;
+	
+	public static void change(int [] arr, int dir) {
+		if(dir == 1) {
+			int temp = arr[arr.length-1];
+			for(int i=arr.length-1 ; i>=1 ; i--)
+				arr[i] = arr[i-1];
+			arr[0] = temp;
 		} else {
 			int temp = arr[0];
-			arr[0] = arr[1];
-			arr[1] = arr[2];
-			arr[2] = arr[3];
-			arr[3] = arr[4];
-			arr[4] = arr[5];
-			arr[5] = arr[6];
-			arr[6] = arr[7];
-			arr[7] = temp;
+			for(int i=0 ; i<arr.length-1 ; i++)
+				arr[i] = arr[i+1];
+			arr[arr.length-1] = temp;
 		}
 	}
 }
