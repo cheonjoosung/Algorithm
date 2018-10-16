@@ -1,122 +1,126 @@
 package SS.sw_expert.test_sample;
 
-import java.io.BufferedReader;
-import java.io.IOException;
-import java.io.InputStreamReader;
 import java.util.ArrayList;
-import java.util.LinkedList;
-import java.util.List;
-import java.util.Queue;
-import java.util.StringTokenizer;
+import java.util.Collections;
+import java.util.Iterator;
+import java.util.Scanner;
 
 //줄기세포 배양
 public class P5653 {
+	static int n, m, k, ans;
 	static int [][] map;
-	static int ans, n, m, k;
-	static int [] dx = {1, 0, -1, 0};
-	static int [] dy = {0, 1, 0, -1};
-	static List<ArrayList<Cell>> list;
+	static int [] dx = {0, -1, 0, 1};
+	static int [] dy = {1, 0, -1, 0};
+	static ArrayList<C> list;
 
-	public static void main(String[] args) throws IOException {
-		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
-		StringBuilder sb = new StringBuilder();
+	public static void main(String[] args) {
+		Scanner sc = new Scanner(System.in);
+		int tc = sc.nextInt();
 
-		int t = Integer.parseInt(br.readLine());
-		list = new ArrayList<>();
+		for(int t=1 ; t<=tc ; t++) {
+			n = sc.nextInt();
+			m = sc.nextInt();
+			k = sc.nextInt();
 
-		for(int tc=1 ; tc<=t ; tc++) {
-			StringTokenizer st = new StringTokenizer(br.readLine());
+			/*
+			 * k시간동안 이동한다면 1인 세포는 2초마다 이동하므로 좌우로 k/2씩 증가가능
+			 * n+k , m+k 가 세포의 최대 가능한 크기임. 이것이 싫다면 부딪히지 않을 만큼 범위의 500*500 잡아도 됨
+			 */
+			map = new int[n+k][m+k];  
+			ans = 0;
+			list = new ArrayList<>();
 
-			n = Integer.parseInt(st.nextToken()); //세포셀 크기 row,col<=50 
-			m = Integer.parseInt(st.nextToken());
-			k = Integer.parseInt(st.nextToken()); //배양 시간 k<=300
-
-			map = new int[n+k][m+k]; //1이 가장 빠르게 번식함. 양쪽으로 퍼지니까 k/2+k/2=k 만큼 크게 설정, 비활성화된 친구 표시
-			
-			list.clear();
-			for(int i=0 ; i<10 ; i++)
-				list.add(new ArrayList<>()); //활성중인 세포를 표시하기 위한 리스트
-
-			for(int i=(k/2) ; i<(k/2)+n ; i++) {
-				st = new StringTokenizer(br.readLine());
-				for(int j=(k/2) ; j<(k/2)+m ; j++) {
-					map[i][j] = Integer.parseInt(st.nextToken());
-					
-					//생명력이 0~9사이
-					if(map[i][j] != 0) 
-						list.get(map[i][j]-1).add(new Cell(i, j, map[i][j], map[i][j], k ,0));
+			for(int i=k/2 ; i<n+k/2 ; i++) {
+				for(int j=k/2 ; j<m+k/2 ; j++) {
+					map[i][j] = sc.nextInt();
+					if(map[i][j] != 0) {
+						/*
+						 * 살아있는 시간은 = 비활성 + 활성시간 - 1 = 2*x - 1
+						 * 2초인 세포는 2초때 활성이 들어가므로 총 3초동안 생존임 
+						 * false 여부는 spread 판단... 
+						 */
+						list.add(new C(i, j, map[i][j], map[i][j], 2*map[i][j] - 1, false));
+					}
 				}
 			}
 
-			solve();
-			
-			int ans = 0;
-			for(int i=0 ; i<map.length ; i++) {
-				for(int j=0 ; j<map[0].length ; j++) {
-					if(map[i][j] !=0 && map[i][j] != -1) ans++;
-				}
-			}
-			sb.append("#" + tc + " " + ans + "\n");
-		}
-		System.out.println(sb);
+			Collections.sort(list);
+			solve();			
+
+			ans = list.size();
+			System.out.println("#" + t + " " + ans);
+		}        
+
+		sc.close();
 	}
-	
+
 	public static void solve() {
-		Queue<Cell> q = new LinkedList<>();
-		
-		for(int i=9 ; i>=0 ; i--) {
-			if(list.get(i).size() != 0) {
-				for(int j=0 ; j<list.get(i).size() ; j++) {
-					int x = list.get(i).get(j).x;
-					int y = list.get(i).get(j).y;
-					int k = list.get(i).get(j).k;
-					int time = list.get(i).get(j).time;
-					q.add(new Cell(x, y, k, k, time, 0));
+		/*
+		 * 1. 비활성 0 이면 activeOn
+		 * 2. 비활성 -1 이면 퍼트리기
+		 * 2-1. 맵에 상하좌우 퍼트릴때 이동하는 곳에 값이 0일때만 퍼트린다.
+		 * 3. 활성시간 -1 && activeOn 이면 제거 
+		 * 4. activeOn 이면 -1
+		 * 5. 활성시간이 끝난 세포를 List 에서 제거
+		 */
+		for(int t=1 ; t<=k ; t++) {
+			for(int i=0 ; i<list.size() ; i++) {
+				list.get(i).nt--;
+				list.get(i).at--;
+			}
+
+			ArrayList<C> temp = new ArrayList<>();
+			for(int i=0 ; i<list.size() ; i++) {
+				if(list.get(i).nt <= -1 && list.get(i).isSpread == false) {
+					spread(list.get(i), temp);
 				}
 			}
+
+			/*
+			 * 역순 정렬을 하는 이유
+			 * 1. 1, 2, 3 인 세포가 동시에 이동할 때 높은 value가 우선권을 가짐
+			 * 2. List 대신 Priority 큐를 써서 풀이도 가능
+			 * 3. List<ArrayList<C>> list 이중을 이용가능
+			 * 3-1. 생명령이 1부터 10이므로 리스트 0에는 생명력 1인 애들이 들어감. i리스트에는 생명력이 i-1인 친구들이 들어감  
+			 */
+			if(temp.size() > 0) list.addAll(temp);
+			Collections.sort(list); 
+			
+			/*
+			 * ArrayList 제거시 반드시 iterator 사용해야 함. 
+			 * 미사용시 concurrentModification Exception 발생 
+			 */
+			Iterator<C> iter = list.iterator();
+			while(iter.hasNext()) {
+				C c = iter.next();
+				
+				if(c.at <= -1) //비활성 + 활성시간이 -1 이하면 죽은세포
+					iter.remove();
+			}
 		}
-		
-		while(!q.isEmpty()) {
-			Cell c = q.poll();
-			
-			if(c.state == 0 && c.flag == 1) { //
-				map[c.x][c.y] = -1;
-				continue;
+
+	}
+
+	public static void spread(C c, ArrayList<C> temp) {
+		for(int i=0 ; i<4 ; i++) { //상하좌우
+			int nx = c.x + dx[i];
+			int ny = c.y + dy[i];
+
+			if(map[nx][ny] == 0) {
+				map[nx][ny] = c.v;
+				temp.add(new C(nx, ny, c.v, c.v, c.v*2-1, false));
 			}
-			
-			if(c.time == 0) continue;
-			
-			if(c.state == 0) { //비활성시간이 0이 될때
-				q.add(new Cell(c.x, c.y, c.k, c.k, c.time, 1)); //활성화되고 머무는 시간 flag->1
-			} else {
-				q.add(new Cell(c.x,c.y, c.k, c.state-1, c.time-1, c.flag)); //시간 감소
-				continue;
-			}
-			
-			for(int i=0 ; i<4 ; i++) {
-				int nx = c.x + dx[i];
-				int ny = c.y + dy[i];
-				
-				if(nx<0 || ny <0 || nx>=n+k || ny>=m+k) continue;
-				if(map[nx][ny] != 0) continue;
-				
-				map[nx][ny] = c.k;
-				q.add(new Cell(nx, ny, c.k, c.k, c.time-1, 0));
-			}
-			
 		}
 	}
 }
 
-class Cell {
-	int x; int y; int k; int state; int time; int flag;
-	public Cell(int x, int y, int k, int state, int time, int flag) {
-		this.x = x;
-		this.y = y;
-		this.k = k;
-		this.state = state; //변화는 생명력
-		this.time = time; //전체시간
-		this.flag = flag; //0이 되었을 때 번식 유무
+class C implements Comparable<C>{
+	int x; int y; int v; int nt; int at; boolean isSpread;
+	C(int x, int y, int v, int nt, int at, boolean isSpread) {
+		this.x = x; this.y =y; this.v = v; this.nt = nt; this.at = at; this.isSpread = isSpread;
 	}
-
+	@Override
+	public int compareTo(C o) {
+		return (o.v - this.v);
+	}
 }

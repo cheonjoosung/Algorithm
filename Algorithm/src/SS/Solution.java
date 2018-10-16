@@ -1,34 +1,28 @@
 package SS;
 
-import java.io.BufferedReader;
-import java.io.IOException;
-import java.io.InputStreamReader;
-import java.util.StringTokenizer;
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Iterator;
+import java.util.Scanner;
 
 public class Solution {
 	static int n, ans;
 
-	public static void main(String[] args) throws IOException{
-		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
-		StringBuilder sb = new StringBuilder();
-		int tc = Integer.parseInt(br.readLine());
+	public static void main(String[] args) {
+		Scanner sc = new Scanner(System.in);
+		int tc = sc.nextInt();
 
-		for(int i=1;i<=tc;i++) {
-			n = Integer.parseInt(br.readLine());
+		for(int t=1 ; t<=tc ; t++) {
+			n = sc.nextInt();
+
 			ans = 0;
+			solve();			
 			
-			for(int j=0;j<n;j++) {
-				StringTokenizer st = new StringTokenizer(br.readLine());
-				
-			}
-			sb.append("#"+i+" "+ ans +"\n");
+			System.out.println("#" + t + " " + ans);
 		}        
 
-		System.out.print(sb);
-	}
-	
-	public static void solve() {
-		
+		sc.close();
 	}
 
+	public static void solve() {}
 }
