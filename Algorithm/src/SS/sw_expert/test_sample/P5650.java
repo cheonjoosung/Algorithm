@@ -8,7 +8,7 @@ import java.util.Arrays;
 import java.util.Scanner;
 import java.util.StringTokenizer;
 
-//핀볼 게임
+//SWExpertAcademy 모의 SW 역량 테스트 핀볼 게임
 public class P5650 {
 	static int [][] map;
 	static boolean [] visited;

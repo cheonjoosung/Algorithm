@@ -2,7 +2,7 @@ package SS.sw_expert.test_sample;
 
 import java.util.Scanner;
 
-//요리사
+//SWExpertAcademy 모의 SW 역량 테스트 요리사
 public class P4012 {
 	static int [][] map;
 	static boolean [] visited;

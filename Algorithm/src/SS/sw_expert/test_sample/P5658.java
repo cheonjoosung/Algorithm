@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Scanner;
 
-//보물상자 비밀번호
+//SWExpertAcademy 모의 SW 역량 테스트 보물상자 비밀번호
 public class P5658 {
 	static int [] arr;
 	static ArrayList<Integer> list;

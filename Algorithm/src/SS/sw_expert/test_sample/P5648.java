@@ -8,7 +8,7 @@ import java.util.LinkedList;
 import java.util.Queue;
 import java.util.StringTokenizer;
 
-//원자 소멸 시뮬레이션
+//SWExpertAcademy 모의 SW 역량 테스트 원자 소멸 시뮬레이션
 public class P5648 {
 	static int n;
 	static int [] dx = {0, 0, -1, 1};

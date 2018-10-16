@@ -4,97 +4,61 @@ import java.util.Scanner;
 
 //백준 14503 로봇청소기  
 public class Robot_14503 {
-	public static int Ans;
-	public static int [][] map;
-	
 	public static void main(String[] args) {
 		Scanner sc = new Scanner(System.in);
 
-		Ans = 0;
-		
 		int row = sc.nextInt();
 		int col = sc.nextInt();
-		
+
 		int x = sc.nextInt();
 		int y = sc.nextInt();
-		int dir = sc.nextInt(); //0 북, 1 동 , 2 남, 3 서 
-		
-		map = new int[row][col];
-		
-		for(int i=0 ; i<row ; i++)
+		int d = sc.nextInt();
+
+		int [][] map = new int[row][col];
+
+		int [] dx = {1, 0, -1, 0};
+		int [] dy = {0, 1, 0, -1};
+		int cnt = 0;
+
+		for(int i=row-1 ; i>=0 ; i--)
 			for(int j=0 ; j<col ; j++)
 				map[i][j] = sc.nextInt();
-		
-		/*dir 0 북, 1 동, 2 남, 3 서 
-		 * (r,c) r을 북쪽에서 떨어진 칸의 개수, c는 서쪽으로 부터 떨어진 개수 
-		 * 1. 현재 자리 청소. (기본은 0 청소하면 1로 표시) 
-		 * 2. 왼쪽 방향으로 탐색
-		 * 2-1. 왼쪽에 청소할 공간있으면 한칸 전진후 1로 돌아간다.
-		 * 2-2. 왼쪽에 청소할 공간없으면 2번으로 돌아간다.
-		 * 2-3. 다 청소되어있으면 기존방향을 유지한채로 한칸 후진. 
-		 * 3. 네 방향 청소되고 후진도 불가능한 상태인 경우 작동 중지
-		 */
-		
+
+		x = (row-1) - x;
 		while(true) {
 			if(map[x][y] == 0) {
+				cnt++;
 				map[x][y] = 2;
-				Ans++;
 			}
-			
-			boolean back = true;
 
-			for(int i=0 ; i< 4 ; i++) {
-				if(dir == 3) {
-					dir = 2;
-					if(map[x+1][y] == 0) {
-						x++;
-						back = false;
-						break;
-					}
-				} else if(dir == 2){
-					dir = 1;
-					if(map[x][y+1] == 0) {
-						y++;
-						back = false;
-						break;
-					}
-				} else if(dir == 1) {
-					dir = 0;
-					if(map[x-1][y] == 0) {
-						x--;
-						back = false;
-						break;
-					}
-				} else if(dir == 0) {
-					dir = 3;
-					if(map[x][y-1] == 0) {
-						y--;
-						back = false;
-						break;
-					}
-				}
+			boolean back = true;
+			for(int i=0 ; i<4 ; i++) {
+				d = (d + 4 - 1) % 4;
+				int nx = x + dx[d];
+				int ny = y + dy[d];
+
+				if(map[nx][ny] == 1 || map[nx][ny] == 2) continue;
+
+				back = false;
+				x = nx;
+				y = ny;
+				break;
 			}
-			
+
 			if(back) {
-				if(dir == 3) {
-					if(map[x][y+1] == 1) break;
-					else y++;
-				} else if(dir == 2) {
-					if(map[x-1][y] == 1) break;
-					else x--;
-				} else if(dir == 1) {
-					if(map[x][y-1] == 1) break;
-					else y--;
-				} else if(dir == 0) {
-					if(map[x+1][y] == 1) break;
-					else x++;
+				//후퇴 가능성 파악해야함
+				int nx = x + dx[(d+2)%4];
+				int ny = y + dy[(d+2)%4];
+
+				if(map[nx][ny] == 1) break;
+				else {
+					x = nx;
+					y = ny;
 				}
 			}
 		}
-				
-		System.out.println(Ans);
 
+		System.out.println(cnt);
 		sc.close();
 	}
-
 }

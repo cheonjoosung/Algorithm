@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Scanner;
 
-//무선 충전
+//SWExpertAcademy 모의 SW 역량 테스트 무선 충전
 public class P5644 {
 	static int ans;
 	static int m, a; //시간, 충전기 수

@@ -4,7 +4,7 @@ import java.util.LinkedList;
 import java.util.Queue;
 import java.util.Scanner;
 
-//벽돌 깨기
+//SWExpertAcademy 모의 SW 역량 테스트 벽돌 깨기
 public class P5656 {
 	static int n, row, col, ans;
 	static int [][] map;

@@ -5,7 +5,7 @@ import java.util.Collections;
 import java.util.Iterator;
 import java.util.Scanner;
 
-//줄기세포 배양
+//SWExpertAcademy 모의 SW 역량 테스트 줄기세포 배양
 public class P5653 {
 	static int n, m, k, ans;
 	static int [][] map;

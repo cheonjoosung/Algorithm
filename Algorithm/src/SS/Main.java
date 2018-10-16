@@ -1,32 +1,63 @@
 package SS;
 
-import java.util.Arrays;
 import java.util.Scanner;
 
 public class Main {
-	static int row, col, Ans, Block;
-	static int [][] arr;
-	static boolean [][] visited;
-	
 	public static void main(String [] args) {
-		int [] arr = new int[4];
-		int [] copyArr = new int[4];
-		
-		int [][] arr2 = new int[4][4];
-		int [][] copyArr2 = new int[4][4];
-		
-		/*
-		 * 1차원 배열 카피
-		 */
-		Arrays.fill(arr, 1);
-		copyArr = arr.clone();
-		
-		/*
-		 * 2차원 배열 카피
-		 */
-		
-		for(int i=0 ; i<arr2.length ; i++)
-			copyArr2[i] = arr2[i].clone();
-		
+		Scanner sc = new Scanner(System.in);
+
+		int row = sc.nextInt();
+		int col = sc.nextInt();
+
+		int x = sc.nextInt();
+		int y = sc.nextInt();
+		int d = sc.nextInt();
+
+		int [][] map = new int[row][col];
+
+		int [] dx = {1, 0, -1, 0};
+		int [] dy = {0, 1, 0, -1};
+		int cnt = 0;
+
+		for(int i=row-1 ; i>=0 ; i--)
+			for(int j=0 ; j<col ; j++)
+				map[i][j] = sc.nextInt();
+
+		x = (row-1) - x;
+		while(true) {
+			if(map[x][y] == 0) {
+				cnt++;
+				map[x][y] = 2;
+			}
+
+			boolean back = true;
+			for(int i=0 ; i<4 ; i++) {
+				d = (d + 4 - 1) % 4;
+				int nx = x + dx[d];
+				int ny = y + dy[d];
+
+				if(map[nx][ny] == 1 || map[nx][ny] == 2) continue;
+
+				back = false;
+				x = nx;
+				y = ny;
+				break;
+			}
+
+			if(back) {
+				//후퇴 가능성 파악해야함
+				int nx = x + dx[(d+2)%4];
+				int ny = y + dy[(d+2)%4];
+
+				if(map[nx][ny] == 1) break;
+				else {
+					x = nx;
+					y = ny;
+				}
+			}
+		}
+
+		System.out.println(cnt);
+		sc.close();
 	}
 }
