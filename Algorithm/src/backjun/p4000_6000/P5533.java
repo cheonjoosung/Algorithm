@@ -9,31 +9,29 @@ public class P5533 {
 		
 		int n = sc.nextInt();
 		
-		int [][] a = new int[3][5];
-		int [] score = new int[n];
+		int [][] a = new int[n][3];
+		
+		for(int i=0 ; i<n ; i++)
+			for(int j=0 ; j<3 ; j++)
+				a[i][j] = sc.nextInt();
+
 		
 		for(int i=0 ; i<n ; i++) {
 			for(int j=0 ; j<3 ; j++) {
-				a[j][i] = sc.nextInt();
-			}
-		}
-		
-		for(int i=0 ; i<3 ; i++) {			
-			for(int j=0 ; j<n ; j++) {
-				boolean isAdd = true;
+				boolean isFound = false;
 				for(int k=0 ; k<n ; k++) {
-					if(j == k) continue;
-					if(a[i][j] == a[i][k]) {
-						isAdd = false;
-						break;
+					if(i==k) continue;
+					if(a[i][j] == a[k][j]) {
+						a[k][j] = 0;
+						isFound = true;
 					}
 				}
-				if(isAdd) score[j] += a[i][j];
+				if(isFound) a[i][j] = 0;
 			}
 		}
 		
 		for(int i=0 ; i<n ; i++) {
-			System.out.println(score[i]);
+			System.out.println(a[i][0] + a[i][1] + a[i][2]);
 		}
 		
 		sc.close();
