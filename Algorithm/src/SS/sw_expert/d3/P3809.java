@@ -10,22 +10,24 @@ public class P3809 {
 		int tc = sc.nextInt();
 		
 		for(int t=1 ; t<=tc ; t++) {
-			long num = sc.nextLong();
+			int n = sc.nextInt();
 			
-			while(num >= 10) {
-				String s = String.valueOf(num);
-				
-				long value = 0;
-				char [] temp = s.toCharArray();
-				
-				for(char c : temp)
-					value += Integer.parseInt(c+"");
-				
-				num = value;
+			String s = "";
+			int ans = 0;
+			
+			for(int i=0 ; i<n ; i++)
+				s += sc.nextInt() + "";
+			
+			int idx = 0;
+			while(true) {
+				if(s.contains(idx+"")) idx++;
+				else {
+					ans = idx;
+					break;
+				}
 			}
 			
-			
-			System.out.println("#" + t + " " + num);
+			System.out.println("#" + t + " " + ans);
 		}
 		
 		sc.close();
