@@ -2,7 +2,7 @@ package SS.sw_expert.d3;
 
 import java.util.Scanner;
 
-//5642번 [Professional] 건초더미
+//5603번 [Professional] 건초더미
 public class P5603 {
 	static int ans, n;
 	static int [] arr;
