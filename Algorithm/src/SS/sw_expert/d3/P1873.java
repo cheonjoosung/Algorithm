@@ -24,6 +24,7 @@ public class P1873 {
 			 * . 평지 , * 벽돌 , # 강철 , - 물 , ^ 위쪽 , v 아래쪽 , < 왼쪽 , > 오른쪽
 			 * (U 위로 , D 아래쪽, L 왼쪽 , R 오른쪽) + 한칸전진 , S 바라보는 방향으로 포탄 발사 
 			 */
+			
 			for(int i=0 ; i<row ; i++) {
 				String s = sc.next();
 				for(int j=0 ; j<s.length() ; j++) {
