@@ -2,7 +2,7 @@ package SS.sw_expert.d4;
 
 import java.util.Scanner;
 
-//[S/W 문제해결 기본] 2일차 - Ladder1
+//[S/W 문제해결 기본] 7일차 - 미로
 public class P1226 {
 	static int sx, sy, fx, fy, ans, finalY;
 	static int [][] map;
