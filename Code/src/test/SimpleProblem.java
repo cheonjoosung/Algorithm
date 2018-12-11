@@ -1,83 +1,99 @@
 package test;
 
-import data_structure.Sort;
-
 public class SimpleProblem {
-	public static char [] val = {'a', 'b', 'c', 'e', 'd', 'k'};
-	public static boolean [] isNotPrime = new boolean[101];
-	public static long [] fact = new long[11];
-	public static int [] arr = {1, 3, 5, 19, 24, 155};
-	public static int [] fibo;
+	//1.이진검색
+	public int binarySearch(int [] arr, int low, int high, int key) {
+		if(low > high) return -1;
 
+		int mid = (low+high) / 2;
 
-	public static void main(String[] args) {
-		int [] a = {3, 10, 5, 1, 155, 24};
-		int [] temp = new int[a.length];
-		
-		findCouple();
-		//perfectNumber(10);
-		//Sort s = new Sort();
-		//s.bubbleSorting(a);
-		//for(int val : a) System.out.print(val + " ");
+		if(arr[mid] == key) return mid;
+		else if(arr[mid] < key) return binarySearch(arr, mid+1, high, key);
+		else return binarySearch(arr, low, mid-1, key);
 	}
-	
-	public static void findCouple() {
-		int [] arr = {1, 2, 5, 7, 11, 17};
-		int minVal = Integer.MAX_VALUE;
-		int minIdx = 0;
-		
-		for(int i=1 ; i<arr.length ; i++) {
-			int temp = arr[i] - arr[i-1];
-			if(temp < minVal) {
-				minVal = temp;
-				minIdx = i-1;
+
+	//2-1.약수찾기
+	public void printDivisor(int value) {
+		for(int i=1 ; i<=Math.sqrt(value) ; i++) {
+			if(value % i == 0) {
+				if(i*i == value) System.out.print(i + " ");
+				else System.out.print(i + " " + value/i + " ");
 			}
 		}
-		
-		System.out.println(arr[minIdx] + " " + arr[minIdx+1]);
-	}
-	
-	public static void perfectNumber(int num) {
-		for(int i=2 ; i<=num ; i++) {
-			int sum = 0;
-			
-			for(int j=1 ; j <= Math.sqrt(i) ; j++) {
-				if(i % j == 0) {
-					sum += j;
-					if(i == (i/j) || i == (j*j)) continue;
-					sum += i/j;
-				}
-			}
-			System.out.println(sum + " " + i);
-			if(sum == i) System.out.println(i);
-		}
+		System.out.println();
 	}
 
-	public static void findDivisor(int num) { // 약수 갯수 구하기..
-		int cnt = 0;
-		for(int i=1 ; i <= Math.abs(num) ; i++) {
-			if(num % i == 0) cnt++; // list.add(i) && list.add(num/i)
-			if(i * i < num) cnt++; //
-		}
-		
+	//2-2.약수개수 구하기
+	public void countDivisor() {
 		int [] count = new int[10000+1];
-		for(int i=1 ; i <= 10000 ; i++) {
-			for(int j=1 ; j <= 10000 ; j++) 
+		for(int i=1 ; i<=100 ; i++) {
+			for(int j=1 ; j<=100 ; j++)
 				count[i*j]++;
-			//10의 약수 = 1,2,5,10
-			//1의 배수 = 1*10 , 2의 배수 = 2*5, 5의 배수 = 5*2, 10의 배수 = 10*1 다 10포함
 		}
+		System.out.println(count[4] + " " + count[100] + " " + count[201] + " " + count[204]);
+	}
+
+	//2-3.완전수 구하기(자기 자신을 제외한 약수들의 합 = 자기자신)
+	public void perfectNumber(int val) {
+		int sum = 0;		
+		for(int j=1 ; j<=Math.sqrt(val) ; j++) {
+			if(val%j == 0) {
+				if(j*j == val) sum += j;
+				else sum += val/j + j;
+			}
+		}
+
+		if(val*2 == sum) System.out.println(val + " is Perfect Number");
+		else System.out.println(val + " is NOT Perfect Number");
+	}
+	
+	//3. 소수 체크하기(배수 활용)
+	public void primeNumberCheck() {
+		boolean [] isNotPrime = new boolean[1000+1];
+		isNotPrime[0] = true;
+		isNotPrime[1] = true;
 		
-		for(int i=1 ; i*i <= num ; i++) {
-			if(num % i == 0) {
-				//list.add(i);
-				//list.add(num/i);
+		for(int i=2 ; i<=1000 ; i++) {
+			if(isNotPrime[i]) continue;
+			
+			for(int j=i ; j*i<=1000 ; j++) {
+				isNotPrime[i*j] = true;
 			}
 		}
 		
+		System.out.println("101 소수입니다. " + isNotPrime[101]);
+		System.out.println("102 소수입니다. " + isNotPrime[102]);
 	}
-
-	public static void hanoi(int n, int from, int by, int to) {
+	
+	//4. 팩토리얼 게산(메모리제이션 활용)
+	public void factorial(int num) {
+		int [] fact = new int[num+1];
+		fact[0] = 1;
+		
+		for(int i=1 ; i<=num ; i++)
+			fact[i] = fact[i-1] * i;
+		
+		System.out.println(fact[num] + " " + fact[num-1] + " " + fact[num-2]);
+	}
+	
+	//5. 피보나치 수열(메모리제이션 활용)
+	public void fibonachi(int num) {
+		int [] fibo = new int[num+1];
+		
+		if(num == 0) System.out.println(0);
+		else if(num == 1) System.out.println(1);
+		else {
+			fibo[0] = 0;
+			fibo[1] = 1;
+			
+			for(int i=2 ; i<=num ; i++) 
+				fibo[i] = fibo[i-1] + fibo[i-2];
+		}
+		System.out.println(fibo[num] + " " + fibo[num-1] + " " + fibo[num-2]);
+	}
+	
+	//6. 하노이 
+	public void hanoi(int n, int from, int by, int to) {
 		if(n == 1) move(from, to);
 		else {
 			hanoi(n-1, from, to, by);
@@ -92,69 +108,7 @@ public class SimpleProblem {
 		}
 	}
 
-	public static void move(int a, int b) {
+	public void move(int a, int b) {
 		System.out.println(a + " -> " + b);
-	}
-
-	public static void fibo(int num) {
-		fibo = new int[num+1];
-
-		if(num == 0) System.out.println(0);
-		else if(num == 1) System.out.println(1);
-		else {
-			fibo[0] = 0;
-			fibo[1] = 1;
-
-			for(int i=2 ; i<=num ; i++)
-				fibo[i] = fibo[i-1] + fibo[i-2];
-		}
-	}
-
-	public static int binarSearch(int num, int low, int high) { //정렬이 되어 있어야 함. 
-		if(low >= high) return -1;
-
-		int mid = (low+high) / 2;
-
-		if(num < arr[mid]) return binarSearch(num, low, mid-1);
-		else if(num == arr[mid]) return mid;
-		else return binarSearch(num, mid+1, high);
-	}
-
-	public static void reverseString(char [] arr) {
-		int size = arr.length;
-
-		for(int i=0 ; i<size/2 ; i++) {
-			char tmp = arr[i];
-			arr[i] = arr[size - 1 - i];
-			arr[size - 1 - i] = tmp;
-		}
-	}
-
-	public static StringBuilder reverseString2(char [] arr) {
-		StringBuilder temp = new StringBuilder();
-		int size = arr.length;
-
-		for(int i=0 ; i<size ; i++) 
-			temp.append(arr[size-1-i]);
-
-		return temp;
-	}
-
-	public static void checkPrime() {
-		isNotPrime[0] = true;
-		isNotPrime[1] = true;
-		for(int i=2 ; i<isNotPrime.length ; i++) { 
-			if(isNotPrime[i]) continue;
-			for(int j=i ; j*i < isNotPrime.length ; j++) {
-				isNotPrime[i*j] = true;
-			}
-		}
-	}
-
-	public static void calcFactorial() {
-		fact[0] = 1;
-
-		for(int i=1 ; i<fact.length ; i++)
-			fact[i] = fact[i-1] * i;
 	}
 }
