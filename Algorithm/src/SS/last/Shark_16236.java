@@ -1,38 +1,107 @@
 package SS.last;
 
+import java.util.Arrays;
+import java.util.LinkedList;
+import java.util.Queue;
 import java.util.Scanner;
 
 //아기 상어
 public class Shark_16236 {
+	static int n, x, y;
 	static int [][] map;
-	static int ans, n;
+	static boolean[][] visited;	
+	static int[][] dir = {{1,0},{0,1},{-1,0},{0,-1}};
 
 	public static void main(String[] args) {
 		Scanner sc = new Scanner(System.in);
 
 		n = sc.nextInt();
-		
 		map = new int[n][n];
-		ans = 0;		
-		
-		/*
-		 * 0은 빈칸, 1~6은 물고기의 크기, 9아기상어의 위치
-		 * 도움을 요청하지 않고 물고기를 잡아먹을 수 있는 시간 출력
-		 * 조건1) 물고기가 1마리면 그 물고기를 먹으러 감
-		 * 조건2) 물고기가 여러마리면 지나가는 칸의 개수가 최소에 있는 물고기
-		 * 조건2-1) 근데 최소 거리에 있는 물고기가 여러마리면 가장위에 -> 가장왼쪽 순으로 선택
-		 * 조건3) 이동하는데 1초씩 걸리고 먹는데는 시간이 소요되지 않음
-		 * 조건4) 자신의 크기과 같은 물고기를 먹으면 1이 증가, 만약 2라면 두마리 먹어야 3이된다.
-		 * 조건5) 이동할 때 물고기가 있는 위치는 갈수없음
-		 * 조건6) 자신보다 큰 물고기를 먹을 수 없음
-		 */
-		
-		for(int i=0 ; i<n ; i++) 
-			for(int j=0 ; j<n ; j++)
+
+		for(int i=0;i<n;i++)
+			for(int j=0;j<n;j++) {
 				map[i][j] = sc.nextInt();
-		
-		System.out.println(ans);
+
+				if(map[i][j]==9) {
+					x=i; 
+					y=j;
+				}
+			}
+
+		visited = new boolean[n][n];
+		solve();
 
 		sc.close();
+	}
+	
+	private static void solve() {
+		Queue<Shark> q = new LinkedList<>();
+
+		q.add(new Shark(x,y,2,0,0));
+		visited[x][y] = true;
+
+		int res = 0;
+
+		while(!q.isEmpty()) {
+			int eatX = 99, eatY = 99; 
+			int eat=0, big=0, cnt=0;
+			int size = q.size();
+			
+			for(int j=0;j<size;j++) {
+				Shark shark = q.poll();
+				
+				for(int i=0;i<4;i++) {
+					int nx = shark.x + dir[i][0];
+					int ny = shark.y + dir[i][1];
+					
+					if(nx<0 || ny<0 || nx>=n || ny>=n) continue;
+					if(visited[nx][ny]) continue;
+					if(map[nx][ny] > shark.big) continue;
+					
+					visited[nx][ny]=true;
+					q.add(new Shark(nx, ny, shark.big, shark.eat, shark.cnt+1));
+					
+					if(map[nx][ny]!=0 && map[nx][ny] != shark.big) { //우선 : 위 -> 좌
+						if(nx < eatX) {
+							eatX = nx; eatY = ny; eat = shark.eat; big = shark.big; cnt = shark.cnt+1;
+						} else if(nx==eatX) {
+							if(ny < eatY) {
+								eatX = nx; eatY = ny; eat = shark.eat; big = shark.big; cnt = shark.cnt+1;
+							}
+						}
+					}
+				}
+			}
+			
+			if(eatX != 99) { //먹었다면....
+				eat++;
+				
+				if(eat == big) {
+					big++;
+					eat=0;
+				}
+
+				map[x][y] = 0;
+				map[eatX][eatY] = 9;
+				res += cnt;
+				x = eatX; y = eatY;
+
+				for(boolean [] tempArr : visited) 
+					Arrays.fill(tempArr, false);
+
+				q.clear();
+				visited[eatX][eatY] = true;
+				q.add(new Shark(eatX,eatY,big,eat,0));
+			}
+		}
+
+		System.out.println(res);
+	}
+}
+
+class Shark{
+	int x, y, big, eat, cnt;
+	Shark(int x,int y,int big,int eat,int cnt){
+		this.x = x; this.y = y; this.big = big; this.eat = eat; this.cnt = cnt;
 	}
 }
