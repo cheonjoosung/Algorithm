@@ -91,6 +91,6 @@ class Tree implements Comparable<Tree> {
 
 	@Override
 	public int compareTo(Tree o) {
-		return Integer.compare(age, o.age);
+		return Integer.compare(this.age, o.age);
 	}
 }
