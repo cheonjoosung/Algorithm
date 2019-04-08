@@ -11321,3 +11321,86 @@ Command-line arguments:  -os macosx -ws cocoa -arch x86_64 -product org.eclipse.
 
 !ENTRY org.eclipse.jface.text 2 0 2019-04-02 09:42:04.965
 !MESSAGE Duplicate template id: 'org.eclipse.wst.xslt.templates.xpath.round'
+!SESSION 2019-04-07 14:20:49.398 -----------------------------------------------
+eclipse.buildId=4.6.3.M20170301-0400
+java.version=1.8.0_131
+java.vendor=Oracle Corporation
+BootLoader constants: OS=macosx, ARCH=x86_64, WS=cocoa, NL=ko_KR
+Framework arguments:  -product org.eclipse.epp.package.jee.product -keyring /Users/cjswntjd/.eclipse_keyring
+Command-line arguments:  -os macosx -ws cocoa -arch x86_64 -product org.eclipse.epp.package.jee.product -keyring /Users/cjswntjd/.eclipse_keyring
+
+!ENTRY org.eclipse.core.net 1 0 2019-04-07 14:21:05.882
+!MESSAGE System property http.nonProxyHosts has been set to local|*.local|169.254/16|*.169.254/16|127.0.0.1:16105|*.127.0.0.1:16105|127.0.0.1:47317|*.127.0.0.1:47317|127.0.0.1:47337|*.127.0.0.1:47337|127.0.0.1:47139|*.127.0.0.1:47139|127.0.0.1:47159|*.127.0.0.1:47159|127.0.0.1:57317|*.127.0.0.1:57317|127.0.0.1:57337|*.127.0.0.1:57337|127.0.0.1:57318|*.127.0.0.1:57318|127.0.0.1:57337|*.127.0.0.1:57337|127.0.0.1:57419|*.127.0.0.1:57419|127.0.0.1:57439|*.127.0.0.1:57439 by an external source. This value will be overwritten using the values from the preferences
+!SESSION 2019-04-08 14:14:57.131 -----------------------------------------------
+eclipse.buildId=4.6.3.M20170301-0400
+java.version=1.8.0_131
+java.vendor=Oracle Corporation
+BootLoader constants: OS=macosx, ARCH=x86_64, WS=cocoa, NL=ko_KR
+Framework arguments:  -product org.eclipse.epp.package.jee.product -keyring /Users/cjswntjd/.eclipse_keyring
+Command-line arguments:  -os macosx -ws cocoa -arch x86_64 -product org.eclipse.epp.package.jee.product -keyring /Users/cjswntjd/.eclipse_keyring
+
+!ENTRY org.eclipse.core.net 1 0 2019-04-08 14:15:19.009
+!MESSAGE System property http.nonProxyHosts has been set to local|*.local|169.254/16|*.169.254/16|127.0.0.1:16105|*.127.0.0.1:16105|127.0.0.1:47317|*.127.0.0.1:47317|127.0.0.1:47337|*.127.0.0.1:47337|127.0.0.1:47139|*.127.0.0.1:47139|127.0.0.1:47159|*.127.0.0.1:47159|127.0.0.1:57317|*.127.0.0.1:57317|127.0.0.1:57337|*.127.0.0.1:57337|127.0.0.1:57318|*.127.0.0.1:57318|127.0.0.1:57337|*.127.0.0.1:57337|127.0.0.1:57419|*.127.0.0.1:57419|127.0.0.1:57439|*.127.0.0.1:57439 by an external source. This value will be overwritten using the values from the preferences
+
+!ENTRY org.eclipse.jface.text 2 0 2019-04-08 14:48:23.715
+!MESSAGE Duplicate template id: 'org.eclipse.wst.xslt.templates.xpath.number'
+
+!ENTRY org.eclipse.jface.text 2 0 2019-04-08 14:48:23.719
+!MESSAGE Duplicate template id: 'org.eclipse.wst.xslt.templates.xpath.round'
+
+!ENTRY org.eclipse.jface.text 2 0 2019-04-08 14:48:29.019
+!MESSAGE Duplicate template id: 'org.eclipse.wst.xslt.templates.xpath.number'
+
+!ENTRY org.eclipse.jface.text 2 0 2019-04-08 14:48:29.019
+!MESSAGE Duplicate template id: 'org.eclipse.wst.xslt.templates.xpath.round'
+!SESSION 2019-04-08 19:54:01.600 -----------------------------------------------
+eclipse.buildId=4.6.3.M20170301-0400
+java.version=1.8.0_131
+java.vendor=Oracle Corporation
+BootLoader constants: OS=macosx, ARCH=x86_64, WS=cocoa, NL=ko_KR
+Framework arguments:  -product org.eclipse.epp.package.jee.product -product org.eclipse.epp.package.jee.product -keyring /Users/cjswntjd/.eclipse_keyring
+Command-line arguments:  -os macosx -ws cocoa -arch x86_64 -product org.eclipse.epp.package.jee.product -data /Users/cjswntjd/Desktop/CODE/workspace_java -product org.eclipse.epp.package.jee.product -keyring /Users/cjswntjd/.eclipse_keyring
+
+!ENTRY org.eclipse.core.net 1 0 2019-04-08 19:54:05.206
+!MESSAGE System property http.nonProxyHosts has been set to local|*.local|169.254/16|*.169.254/16|127.0.0.1:16105|*.127.0.0.1:16105|127.0.0.1:47317|*.127.0.0.1:47317|127.0.0.1:47337|*.127.0.0.1:47337|127.0.0.1:47139|*.127.0.0.1:47139|127.0.0.1:47159|*.127.0.0.1:47159|127.0.0.1:57317|*.127.0.0.1:57317|127.0.0.1:57337|*.127.0.0.1:57337|127.0.0.1:57318|*.127.0.0.1:57318|127.0.0.1:57337|*.127.0.0.1:57337|127.0.0.1:57419|*.127.0.0.1:57419|127.0.0.1:57439|*.127.0.0.1:57439 by an external source. This value will be overwritten using the values from the preferences
+
+!ENTRY org.eclipse.jface.text 2 0 2019-04-08 19:55:10.472
+!MESSAGE Duplicate template id: 'org.eclipse.wst.xslt.templates.xpath.number'
+
+!ENTRY org.eclipse.jface.text 2 0 2019-04-08 19:55:10.477
+!MESSAGE Duplicate template id: 'org.eclipse.wst.xslt.templates.xpath.round'
+
+!ENTRY org.eclipse.jdt.core 4 4 2019-04-08 22:02:33.686
+!MESSAGE JavaBuilder handling CoreException
+!STACK 1
+org.eclipse.core.internal.resources.ResourceException: A resource exists with a different case: '/Algorithm/bin/SS/last/dot.class'.
+	at org.eclipse.core.internal.resources.Resource.checkDoesNotExist(Resource.java:323)
+	at org.eclipse.core.internal.resources.Resource.checkDoesNotExist(Resource.java:301)
+	at org.eclipse.core.internal.resources.File.create(File.java:107)
+	at org.eclipse.jdt.internal.core.builder.AbstractImageBuilder.writeClassFileContents(AbstractImageBuilder.java:881)
+	at org.eclipse.jdt.internal.core.builder.AbstractImageBuilder.writeClassFile(AbstractImageBuilder.java:860)
+	at org.eclipse.jdt.internal.core.builder.AbstractImageBuilder.acceptResult(AbstractImageBuilder.java:191)
+	at org.eclipse.jdt.internal.compiler.Compiler.processCompiledUnits(Compiler.java:593)
+	at org.eclipse.jdt.internal.compiler.Compiler.compile(Compiler.java:462)
+	at org.eclipse.jdt.internal.compiler.Compiler.compile(Compiler.java:417)
+	at org.eclipse.jdt.internal.core.builder.AbstractImageBuilder.compile(AbstractImageBuilder.java:368)
+	at org.eclipse.jdt.internal.core.builder.BatchImageBuilder.compile(BatchImageBuilder.java:179)
+	at org.eclipse.jdt.internal.core.builder.AbstractImageBuilder.compile(AbstractImageBuilder.java:305)
+	at org.eclipse.jdt.internal.core.builder.BatchImageBuilder.build(BatchImageBuilder.java:61)
+	at org.eclipse.jdt.internal.core.builder.JavaBuilder.buildAll(JavaBuilder.java:256)
+	at org.eclipse.jdt.internal.core.builder.JavaBuilder.buildDeltas(JavaBuilder.java:272)
+	at org.eclipse.jdt.internal.core.builder.JavaBuilder.build(JavaBuilder.java:195)
+	at org.eclipse.core.internal.events.BuildManager$2.run(BuildManager.java:735)
+	at org.eclipse.core.runtime.SafeRunner.run(SafeRunner.java:42)
+	at org.eclipse.core.internal.events.BuildManager.basicBuild(BuildManager.java:206)
+	at org.eclipse.core.internal.events.BuildManager.basicBuild(BuildManager.java:246)
+	at org.eclipse.core.internal.events.BuildManager$1.run(BuildManager.java:301)
+	at org.eclipse.core.runtime.SafeRunner.run(SafeRunner.java:42)
+	at org.eclipse.core.internal.events.BuildManager.basicBuild(BuildManager.java:304)
+	at org.eclipse.core.internal.events.BuildManager.basicBuildLoop(BuildManager.java:360)
+	at org.eclipse.core.internal.events.BuildManager.build(BuildManager.java:383)
+	at org.eclipse.core.internal.events.AutoBuildJob.doBuild(AutoBuildJob.java:144)
+	at org.eclipse.core.internal.events.AutoBuildJob.run(AutoBuildJob.java:235)
+	at org.eclipse.core.internal.jobs.Worker.run(Worker.java:55)
+!SUBENTRY 1 org.eclipse.core.resources 4 275 2019-04-08 22:02:33.687
+!MESSAGE A resource exists with a different case: '/Algorithm/bin/SS/last/dot.class'.
