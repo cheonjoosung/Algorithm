@@ -1,178 +1,288 @@
 package SS.last;
 
-import java.util.Scanner;
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
+import java.util.StringTokenizer;
 
 //큐빙
 public class Qube_5373 {
-	static char [][] map;
-	static int n, ans;
+	static int T; // 테스트케이스 수
+	static int n; // 큐브를 돌린 횟수
+	static char map[][];
+	static char temp[];
 
-	public static void main(String[] args) {
-		Scanner sc = new Scanner(System.in);
+	// U = 0, L = 1, F = 2, R = 3, B = 4, D = 5
+	public static void main(String[] args) throws NumberFormatException, IOException {
 
-		n = sc.nextInt();
+		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
 
-		map = new char[27][6];
-		StringBuffer sb = new StringBuffer();
-		/*
-		 * 1층 0~8 / 2층 9~17 / 3층 18~26 
-		 * 0~5 는 위, 앞, 오른, 뒷, 왼쪽, 아래
-		 */
+		T = Integer.parseInt(br.readLine());
 
-		for(int i=0 ; i<n ; i++) {
-			init();
-			int cnt = sc.nextInt();
+		for(int t=1; t<=T; t++){
 
-			for(int j=0 ; j<cnt ; j++) {
-				String s = sc.next();
+			initCube();
+			n = Integer.parseInt(br.readLine());
+			String str = br.readLine();
+			StringTokenizer st = new StringTokenizer(str," ");
 
-				int dir = s.charAt(1) == '+' ? 1 : -1;
-				move(s.charAt(0), dir);
-				
+			for(int i=0; i<n; i++){
+				String input = st.nextToken();
+				char m = input.charAt(0);
+				char d = input.charAt(1);
+
+				turn(m, d);
+
 			}
-			
-			for(int k=0 ; k<3 ; k++) sb.append(map[k][0]);
-			sb.append("\n");
-			for(int k=3 ; k<6 ; k++) sb.append(map[k][0]);
-			sb.append("\n");
-			for(int k=6 ; k<9 ; k++) sb.append(map[k][0]);			
-			sb.append("\n");
-		}		
-
-		System.out.println(sb);
-		sc.close();
+			printUp();
+		}
 	}
 
-	public static void init() {
-		map = new char[27][6];
-		
-		for(int i=0 ; i<27 ; i++) {
-			for(int j=0 ; j<6 ; j++) {
-				if(j==0) map[i][j] = 'w';
-				else if(j==1) map[i][j] = 'r';
-				else if(j==2) map[i][j] = 'b';
-				else if(j==3) map[i][j] = 'o';
-				else if(j==4) map[i][j] = 'g';
-				else map[i][j] = 'y';
+	public static void turn(char m, char d){
+
+		switch(d){
+		case '+':
+			turnMe(m);
+			turnOther(m);
+			break;
+		case '-':
+			turnMe(m);
+			turnMe(m);
+			turnMe(m);
+			turnOther(m);
+			turnOther(m);
+			turnOther(m);
+			break;
+		}
+	}
+
+	public static void turnMe(char m){
+		// m을 d방향으로 회전
+		int idx = -1;
+		// U = 0, L = 1, B = 2, R = 3, F = 4, D = 5
+		switch(m){
+		case 'U':
+			idx = 0;
+			break;
+		case 'L':
+			idx = 1;
+			break;
+		case 'F':
+			idx = 2;
+			break;
+		case 'R':
+			idx = 3;
+			break;
+		case 'B':
+			idx = 4;
+			break;
+		case 'D':
+			idx = 5;
+			break;
+		}
+
+
+		char tempMap[] = {map[idx][6], map[idx][3], map[idx][0]
+				, map[idx][7], map[idx][4], map[idx][1]
+						, map[idx][8], map[idx][5], map[idx][2]};
+
+		for(int i=0; i<9; i++){
+			map[idx][i] = tempMap[i];
+		}
+
+	}
+
+	public static void turnOther(char m){
+		// m을 d방향으로 회전할 때 주변것들
+
+		temp = new char[3];
+
+		switch(m){
+		case 'U':
+			temp[0] = map[1][6];
+			temp[1] = map[1][3];
+			temp[2] = map[1][0];
+
+			map[1][6] = map[2][0];
+			map[1][3] = map[2][1];
+			map[1][0] = map[2][2];
+
+			map[2][0] = map[3][2];
+			map[2][1] = map[3][5];
+			map[2][2] = map[3][8];
+
+			map[3][2] = map[4][0];
+			map[3][5] = map[4][1];
+			map[3][8] = map[4][2];
+
+			map[4][0]= temp[0];
+			map[4][1]= temp[1];
+			map[4][2]= temp[2];
+
+			break;
+		case 'D':
+
+			temp[0] = map[4][6];
+			temp[1] = map[4][7];
+			temp[2] = map[4][8];
+
+			map[4][6] = map[3][0];
+			map[4][7] = map[3][3];
+			map[4][8] = map[3][6];
+
+			map[3][0] = map[2][6];
+			map[3][3] = map[2][7];
+			map[3][6] = map[2][8];
+
+			map[2][6] = map[1][8];
+			map[2][7] = map[1][5];
+			map[2][8] = map[1][2];
+
+			map[1][8]= temp[0];
+			map[1][5]= temp[1];
+			map[1][2]= temp[2];
+
+			break;
+
+		case 'F':
+			temp[0] = map[1][2];
+			temp[1] = map[1][1];
+			temp[2] = map[1][0];
+
+			map[1][2] = map[5][2];
+			map[1][1] = map[5][1];
+			map[1][0] = map[5][0];
+
+			map[5][2] = map[3][2];
+			map[5][1] = map[3][1];
+			map[5][0] = map[3][0];
+
+			map[3][2] = map[0][6];
+			map[3][1] = map[0][7];
+			map[3][0] = map[0][8];
+
+			map[0][6]= temp[0];
+			map[0][7]= temp[1];
+			map[0][8]= temp[2];
+
+			break;
+
+		case 'B':
+			temp[0] = map[3][6];
+			temp[1] = map[3][7];
+			temp[2] = map[3][8];
+
+			map[3][6] = map[5][6];
+			map[3][7] = map[5][7];
+			map[3][8] = map[5][8];
+
+			map[5][6] = map[1][6];
+			map[5][7] = map[1][7];
+			map[5][8] = map[1][8];
+
+			map[1][6] = map[0][2];
+			map[1][7] = map[0][1];
+			map[1][8] = map[0][0];
+
+			map[0][2]= temp[0];
+			map[0][1]= temp[1];
+			map[0][0]= temp[2];
+
+			break;
+
+
+		case 'R':
+
+			temp[0] = map[2][8];
+			temp[1] = map[2][5];
+			temp[2] = map[2][2];
+
+			map[2][8] = map[5][8];
+			map[2][5] = map[5][5];
+			map[2][2] = map[5][2];
+
+			map[5][8] = map[4][0];
+			map[5][5] = map[4][3];
+			map[5][2] = map[4][6];
+
+			map[4][0] = map[0][8];
+			map[4][3] = map[0][5];
+			map[4][6] = map[0][2];
+
+			map[0][8]= temp[0];
+			map[0][5]= temp[1];
+			map[0][2]= temp[2];
+
+			break;
+
+		case 'L':
+
+			temp[0] = map[4][8];
+			temp[1] = map[4][5];
+			temp[2] = map[4][2];
+
+			map[4][8] = map[5][0];
+			map[4][5] = map[5][3];
+			map[4][2] = map[5][6];
+
+			map[5][0] = map[2][0];
+			map[5][3] = map[2][3];
+			map[5][6] = map[2][6];
+
+			map[2][0] = map[0][0];
+			map[2][3] = map[0][3];
+			map[2][6] = map[0][6];
+
+			map[0][0]= temp[0];
+			map[0][3]= temp[1];
+			map[0][6]= temp[2];
+
+			break;
+		}
+	}
+
+	public static void initCube(){
+
+		map = new char[6][9];
+
+		char myColor = ' ';
+
+		for(int i=0; i<=5; i++){
+			switch(i){
+			case 0:
+				myColor = 'w';
+				break;
+			case 1:
+				myColor = 'g';
+				break;
+			case 2:
+				myColor = 'r';
+				break;
+			case 3:
+				myColor = 'b';
+				break;
+			case 4:
+				myColor = 'o';
+				break;
+			case 5:
+				myColor = 'y';
+				break;
+			}
+
+
+			for(int j=0; j<9; j++){
+				map[i][j] = myColor;
 			}
 		}
 	}
 
-	public static void move(char pos, int dir) {
-		/*
-		 * 0-흰색, 1-빨간색, 2-파란색, 3-오레지색, 4-초록색, 5-노란색
-		 * 1-시계방향, -1-반시계방향
-		 */
-		switch(pos) {
-		case 'U':
-			for(int i=0 ; i<=8 ; i++) {
-				if(dir == 1) {
-					char temp = map[i][1];
-					map[i][1] = map[i][2];
-					map[i][2] = map[i][3];
-					map[i][3] = map[i][4];
-					map[i][4] = temp;
-				} else {
-					System.out.println("HI");
-					char temp = map[i][1];
-					map[i][1] = map[i][4];
-					map[i][4] = map[i][3];
-					map[i][3] = map[i][2];
-					map[i][2] = temp;
-				}
+	public static void printUp(){
+
+		for(int i=0; i<9; i++){
+			System.out.print(map[0][i]);
+			if(i%3 == 2){
+				System.out.println();
 			}
-			break;
-		case 'D':
-			for(int i=18 ; i<=26 ; i++) {
-				if(dir == 1) {
-					char temp = map[i][1];
-					map[i][1] = map[i][4];
-					map[i][4] = map[i][3];
-					map[i][3] = map[i][2];
-					map[i][2] = temp;
-				} else {
-					char temp = map[i][1];
-					map[i][1] = map[i][2];
-					map[i][2] = map[i][3];
-					map[i][3] = map[i][4];
-					map[i][4] = temp;
-				}
-			}
-			break;
-		case 'L':
-			for(int i=0 ; i<=24 ; i=i+3) {
-				if(dir == 1) {
-					char temp = map[i][0];
-					map[i][0] = map[i][3];
-					map[i][3] = map[i][5];
-					map[i][5] = map[i][1];
-					map[i][1] = temp;
-				} else {
-					char temp = map[i][0];
-					map[i][0] = map[i][1];
-					map[i][1] = map[i][5];
-					map[i][5] = map[i][3];
-					map[i][3] = temp;
-				}
-			}
-			break;
-		case 'R':
-			for(int i=2 ; i<=26 ; i=i+3) {
-				if(dir == 1) {
-					char temp = map[i][0];
-					map[i][0] = map[i][1];
-					map[i][1] = map[i][5];
-					map[i][5] = map[i][3];
-					map[i][3] = temp;
-				} else {
-					char temp = map[i][0];
-					map[i][0] = map[i][3];
-					map[i][3] = map[i][5];
-					map[i][5] = map[i][1];
-					map[i][1] = temp;
-				}
-			}
-			break;
-		case 'F':
-			for(int i=6 ; i<=26 ; i++) {
-				if(i>=9 && i<=14) continue;
-				if(i>=18 && i<=23) continue;
-				
-				if(dir == 1) {
-					char temp = map[i][0];
-					map[i][0] = map[i][4];
-					map[i][4] = map[i][5];
-					map[i][5] = map[i][2];
-					map[i][2] = temp;
-				} else {
-					char temp = map[i][0];
-					map[i][0] = map[i][2];
-					map[i][2] = map[i][5];
-					map[i][5] = map[i][4];
-					map[i][4] = temp;
-				}
-			}
-			break;
-		case 'B': 
-			for(int i=0 ; i<=20 ; i++) {
-				if(i>=3 && i<=8) continue;
-				if(i>=12 && i<=17) continue;
-				
-				if(dir == 1) {
-					char temp = map[i][0];
-					map[i][0] = map[i][2];
-					map[i][2] = map[i][5];
-					map[i][5] = map[i][4];
-					map[i][4] = temp;
-				} else {
-					char temp = map[i][0];
-					map[i][0] = map[i][4];
-					map[i][4] = map[i][5];
-					map[i][5] = map[i][2];
-					map[i][2] = temp;
-				}
-			}
-			break;
 		}
 	}
 }
