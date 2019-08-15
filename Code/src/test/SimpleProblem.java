@@ -56,7 +56,7 @@ public class SimpleProblem {
 		for(int i=2 ; i<=1000 ; i++) {
 			if(isNotPrime[i]) continue;
 			
-			for(int j=i ; j*i<=1000 ; j++) {
+			for(int j=2 ; j*i<=1000 ; j++) {
 				isNotPrime[i*j] = true;
 			}
 		}
