@@ -1,4 +1,4 @@
-package kakao;
+package kakao.test;
 
 import java.util.Arrays;
 

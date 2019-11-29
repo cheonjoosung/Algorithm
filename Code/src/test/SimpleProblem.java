@@ -19,8 +19,9 @@ public class SimpleProblem {
 				if(i*i == value) System.out.print(i + " ");
 				else System.out.print(i + " " + value/i + " ");
 			}
-		}
+		
 		System.out.println();
+		}
 	}
 
 	//2-2.약수개수 구하기

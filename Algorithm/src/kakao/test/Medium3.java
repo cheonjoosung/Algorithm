@@ -1,4 +1,4 @@
-package kakao;
+package kakao.test;
 
 public class Medium3 {
 	public static String change124(int n) {
