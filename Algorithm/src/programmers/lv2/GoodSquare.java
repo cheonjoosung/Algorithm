@@ -11,9 +11,6 @@ public class GoodSquare {
 			
 			int ceilVal = (int) Math.ceil(temp);			
 			answer += h - ceilVal;
-			
-			//System.out.println(ceilVal + " " + (h-ceilVal));
-			
 		}
 		
 		return answer * 2;
