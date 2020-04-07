@@ -10,9 +10,11 @@ import java.util.Date;
 import java.util.List;
 import java.util.regex.Pattern;
 
+import programmers.lv1.DollGame;
+
 public class Main {
 	public static void main(String [] args) {
-		NewsCluster nc = new NewsCluster();
+		DollGame nc = new DollGame();
 		System.out.println(nc.solution("FRANCE", "french"));
 		System.out.println(nc.solution("handshake", "shake hands"));
 		System.out.println(nc.solution("aa1+aa2", "AAAA12"));
